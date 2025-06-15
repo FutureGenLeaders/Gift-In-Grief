@@ -48,7 +48,7 @@ export default function Index() {
   ];
 
   return (
-    <main>
+    <main className="min-h-screen bg-background w-full">
       {/* Navigation */}
       <nav className="bg-black/80 backdrop-blur-sm border-b border-yellow-600/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -82,7 +82,7 @@ export default function Index() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative py-20 px-4 text-center">
+      <section className="relative py-20 px-4 text-center bg-background">
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">
             <Compass className="h-16 w-16 mx-auto text-yellow-600 mb-6" />
@@ -146,7 +146,7 @@ export default function Index() {
       </section>
 
       {/* Journey Overview */}
-      <section className="py-20 px-4 bg-slate-800/30">
+      <section className="py-20 px-4 bg-background">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-yellow-600 to-red-700 bg-clip-text text-transparent">
             {t('journey.title').toString()}
@@ -199,7 +199,7 @@ export default function Index() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 text-center">
+      <section className="py-20 px-4 text-center bg-background">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold mb-6 text-white">
             {t('cta.title').toString()}
