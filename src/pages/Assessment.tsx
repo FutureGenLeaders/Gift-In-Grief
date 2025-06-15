@@ -112,21 +112,19 @@ const Assessment = () => {
         <div className="max-w-2xl mx-auto text-center">
           <Heart className="h-16 w-16 mx-auto text-purple-400 mb-6" />
           <h1 className="text-4xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-            <span>Your Gentle Journey Begins</span>
+            Your Gentle Journey Begins
           </h1>
           <p className="text-xl text-gray-300 mb-8">
-            <span>
-              Thank you for your courage in exploring your grief. Your personalized healing path has been prepared with love and wisdom.
-            </span>
+            Thank you for your courage in exploring your grief. Your personalized healing path has been prepared with love and wisdom.
           </p>
           <div className="space-y-4">
             <Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-3 w-full">
-              <span>Explore Your Healing Path</span>
+              Explore Your Healing Path
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             <Link to="/">
               <Button variant="outline" size="lg" className="border-purple-500 text-purple-400 hover:bg-purple-500/10 px-8 py-3 w-full">
-                <span>Return to Home</span>
+                Return to Home
               </Button>
             </Link>
           </div>
@@ -141,15 +139,13 @@ const Assessment = () => {
         <div className="mb-8 text-center">
           <Link to="/" className="inline-flex items-center text-purple-400 hover:text-purple-300 mb-6">
             <ArrowLeft className="mr-2 h-4 w-4" />
-            <span>Back to Home</span>
+            Back to Home
           </Link>
           <h1 className="text-3xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-            <span>Gentle Assessment</span>
+            Gentle Assessment
           </h1>
           <p className="text-gray-300 mb-6">
-            <span>
-              Question {currentQuestion + 1} of {questions.length} - Take your time, there are no wrong answers
-            </span>
+            Question {currentQuestion + 1} of {questions.length} - Take your time, there are no wrong answers
           </p>
           <Progress value={progress} className="mb-8" />
         </div>
@@ -157,10 +153,10 @@ const Assessment = () => {
         <Card className="bg-slate-800/50 border-slate-700">
           <CardHeader>
             <CardDescription className="text-purple-400 text-sm font-medium">
-              <span>{questions[currentQuestion].theme}</span>
+              {questions[currentQuestion].theme}
             </CardDescription>
             <CardTitle className="text-white text-xl leading-relaxed">
-              <span>{questions[currentQuestion].question}</span>
+              {questions[currentQuestion].question}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -173,7 +169,7 @@ const Assessment = () => {
                 <div key={index} className="flex items-start space-x-3 p-4 rounded-lg hover:bg-slate-700/50 transition-colors">
                   <RadioGroupItem value={option.value} id={option.value} className="mt-1" />
                   <Label htmlFor={option.value} className="text-gray-300 cursor-pointer leading-relaxed">
-                    <span>{option.label}</span>
+                    {option.label}
                   </Label>
                 </div>
               ))}
@@ -187,16 +183,14 @@ const Assessment = () => {
                 className="border-slate-600 text-gray-400 hover:bg-slate-700"
               >
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                <span>Previous</span>
+                Previous
               </Button>
               <Button 
                 onClick={nextQuestion}
                 disabled={!answers[currentQuestion]}
                 className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
               >
-                <span>
-                  {currentQuestion === questions.length - 1 ? "Complete Assessment" : "Next"}
-                </span>
+                {currentQuestion === questions.length - 1 ? "Complete Assessment" : "Next"}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
