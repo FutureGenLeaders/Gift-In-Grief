@@ -1,16 +1,20 @@
+
 import HeroSection from "@/components/home/HeroSection";
 import LossTypesSection from "@/components/home/LossTypesSection";
 import PillarsSection from "@/components/home/PillarsSection";
 import JourneyOverviewSection from "@/components/home/JourneyOverviewSection";
 import CtaSection from "@/components/home/CtaSection";
 import HomeNav from "@/components/home/HomeNav";
-import { Link } from "react-router-dom";
 import CurriculumProgress from "@/components/CurriculumProgress";
+import MonthlyMotivation from "@/components/MonthlyMotivation";
+import CompletionCertificate from "@/components/CompletionCertificate";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { Link } from "react-router-dom";
 
 export default function Index() {
   const [joinDate, setJoinDate] = useState<Date | null>(null);
+  const [showCertificate, setShowCertificate] = useState(false);
 
   // Get join date from auth user metadata
   useEffect(() => {
@@ -22,11 +26,24 @@ export default function Index() {
     getJoinDate();
   }, []);
 
+  // Drip: decide whether to show certificate (simulate for now; would want logic to check for completion)
+  // For demo, if joinDate was 9 months+ ago show certificate
+  useEffect(() => {
+    if (joinDate) {
+      const now = new Date();
+      const months = (now.getFullYear() - joinDate.getFullYear()) * 12 + now.getMonth() - joinDate.getMonth();
+      if (months >= 9) {
+        setShowCertificate(true);
+      }
+    }
+  }, [joinDate]);
+
   return (
     <main className="min-h-screen bg-black w-full">
       <HomeNav />
 
       <HeroSection />
+      <MonthlyMotivation />
       <LossTypesSection />
       <PillarsSection />
 
@@ -46,9 +63,14 @@ export default function Index() {
       </div>
 
       {joinDate ? (
-        <div className="mt-12">
-          <CurriculumProgress joinDate={joinDate} />
-        </div>
+        <>
+          <div className="mt-12">
+            <CurriculumProgress joinDate={joinDate} />
+          </div>
+          {showCertificate && (
+            <CompletionCertificate joinDate={joinDate} />
+          )}
+        </>
       ) : null}
     </main>
   );

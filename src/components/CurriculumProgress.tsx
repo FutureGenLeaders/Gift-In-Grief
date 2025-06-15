@@ -23,7 +23,7 @@ function getWeeksSince(date: Date) {
   return Math.floor(diff / (1000 * 60 * 60 * 24 * 7));
 }
 
-export default function CurriculumProgress({ joinDate }: { joinDate: Date }) {
+export default function CurriculumProgress({ joinDate, onComplete }: { joinDate: Date; onComplete?: () => void }) {
   const [modules, setModules] = useState<CurriculumModule[]>([]);
   const [progress, setProgress] = useState<Record<string, UserProgressEntry>>({});
   const [loading, setLoading] = useState(true);
@@ -37,27 +37,32 @@ export default function CurriculumProgress({ joinDate }: { joinDate: Date }) {
       setLoading(true);
       setError(null);
 
-      // Fetch modules
+      // Fix: Use string as any for Supabase table due to type limits
       const { data: mods, error: modErr } = await supabase
-        .from("curriculum_modules")
+        .from("curriculum_modules" as any)
         .select("*")
         .order("release_week", { ascending: true });
 
-      // Fetch user progress
       const { data: user } = await supabase.auth.getUser();
-      const { data: prog, error: progErr } = user?.user?.id
-        ? await supabase
-            .from("user_curriculum_progress")
-            .select("*")
-            .eq("user_id", user.user.id)
-        : { data: null, error: null };
+      const userId = user?.user?.id;
+
+      let prog = null;
+      let progErr = null;
+      if (userId) {
+        const { data, error } = await supabase
+          .from("user_curriculum_progress" as any)
+          .select("*")
+          .eq("user_id", userId);
+        prog = data;
+        progErr = error;
+      }
 
       if (modErr) setError(modErr.message);
       if (progErr) setError(progErr.message);
 
       setModules(mods || []);
       const progMap: Record<string, UserProgressEntry> = {};
-      (prog || []).forEach((p) => {
+      (prog || []).forEach((p: any) => {
         progMap[p.module_id] = p;
       });
       setProgress(progMap);
@@ -72,19 +77,31 @@ export default function CurriculumProgress({ joinDate }: { joinDate: Date }) {
     if (!user?.user?.id) return;
 
     await supabase
-      .from("user_curriculum_progress")
+      .from("user_curriculum_progress" as any)
       .upsert([
         {
           user_id: user.user.id,
           module_id: moduleId,
           completed_at: new Date().toISOString(),
+          unlocked_at: progress[moduleId]?.unlocked_at ?? new Date().toISOString(),
         },
       ]);
-    // Refresh
+
     setProgress((old) => ({
       ...old,
       [moduleId]: { ...old[moduleId], completed_at: new Date().toISOString() },
     }));
+
+    // If all modules completed, fire callback
+    const allComplete =
+      modules.length > 0 &&
+      modules
+        .filter((m) => m.release_week <= weeksSinceJoin + 1)
+        .every((m) => old[m.id]?.completed_at || m.id === moduleId);
+
+    if (allComplete && onComplete) {
+      onComplete();
+    }
   }
 
   return (
@@ -97,7 +114,7 @@ export default function CurriculumProgress({ joinDate }: { joinDate: Date }) {
       ) : (
         <div className="space-y-4">
           {modules
-            .filter((m) => m.release_week <= weeksSinceJoin + 1) // Only unlock up to this week
+            .filter((m) => m.release_week <= weeksSinceJoin + 1)
             .map((m) => (
               <div
                 key={m.id}
