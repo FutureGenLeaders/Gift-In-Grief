@@ -5,6 +5,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 
+// WARNING: Type override for Supabase missing-type tables.
+// For full type safety, re-generate your Supabase types after DB change.
+
 type Session = {
   id: string;
   title: string;
@@ -18,7 +21,8 @@ export function SessionList() {
   const { data: sessions, isLoading, error, refetch } = useQuery({
     queryKey: ["sessions"],
     queryFn: async () => {
-      let { data, error } = await supabase.from("sessions")
+      const { data, error } = await (supabase as any)
+        .from("sessions")
         .select("*")
         .gte("start_time", new Date().toISOString())
         .order("start_time");
@@ -28,12 +32,12 @@ export function SessionList() {
   });
 
   const bookSession = async (sessionId: string) => {
-    const { data: { user } } = await supabase.auth.getUser();
+    const { data: { user } } = await (supabase as any).auth.getUser();
     if (!user?.id) {
       toast({ title: "Please sign in to book.", description: "" });
       return;
     }
-    const { error } = await supabase.from("bookings").insert({
+    const { error } = await (supabase as any).from("bookings").insert({
       session_id: sessionId,
       user_id: user.id,
     });
@@ -52,7 +56,7 @@ export function SessionList() {
   return (
     <ul className="space-y-4">
       {sessions.map(sess => (
-        <li key={sess.id} className="border rounded p-4 shadow-sm flex flex-col gap-2">
+        <li key={sess.id} className="border rounded p-4 shadow-sm flex flex-col gap-2 bg-background">
           <div>
             <span className="text-lg font-semibold">{sess.title}</span>
             <span className="block text-gray-500 text-sm">{sess.description}</span>

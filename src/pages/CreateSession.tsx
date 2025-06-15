@@ -4,6 +4,9 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 
+// WARNING: Type override for Supabase missing-type tables.
+// For full type safety, re-generate your Supabase types after DB change.
+
 export default function CreateSession() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -17,13 +20,13 @@ export default function CreateSession() {
     e.preventDefault();
     setLoading(true);
     setMessage(null);
-    const { data: user } = await supabase.auth.getUser();
+    const { data: user } = await (supabase as any).auth.getUser();
     if (!user?.user?.id) {
       setMessage("You must be logged in to create a session.");
       setLoading(false);
       return;
     }
-    const { error } = await supabase.from("sessions").insert({
+    const { error } = await (supabase as any).from("sessions").insert({
       title,
       description,
       zoom_link: zoomLink,
