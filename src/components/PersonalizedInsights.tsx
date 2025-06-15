@@ -21,20 +21,20 @@ export default function PersonalizedInsights() {
 
       // Get user profile
       const { data: profile } = await supabase
-        .from("user_profiles")
+        .from("user_profiles" as any)
         .select("full_name, created_at")
         .eq("user_id", user.user.id)
         .single();
 
       // Get total sessions completed
       const { data: sessions } = await supabase
-        .from("daily_sessions")
+        .from("daily_sessions" as any)
         .select("completed_at")
         .eq("user_id", user.user.id);
 
       // Calculate current streak
       const { data: recentSessions } = await supabase
-        .from("daily_sessions")
+        .from("daily_sessions" as any)
         .select("completed_at")
         .eq("user_id", user.user.id)
         .order("completed_at", { ascending: false })

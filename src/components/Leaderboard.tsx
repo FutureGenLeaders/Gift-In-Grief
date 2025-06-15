@@ -18,21 +18,29 @@ export default function Leaderboard() {
     async function fetchLeaderboard() {
       // Get user profiles with session counts
       const { data, error } = await supabase
-        .from("user_profiles")
+        .from("user_profiles" as any)
         .select(`
           full_name,
-          user_id,
-          daily_sessions!inner(user_id)
+          user_id
         `);
 
       if (!error && data) {
-        // Count sessions per user and create leaderboard
-        const userSessionCounts = data.map(profile => ({
-          full_name: profile.full_name || "Anonymous",
-          email: "", // We'll get this from auth if needed
-          session_count: profile.daily_sessions?.length || 0,
-          rank: 0
-        }));
+        // Get daily sessions for each user
+        const userSessionCounts = await Promise.all(
+          data.map(async (profile: any) => {
+            const { data: sessions } = await supabase
+              .from("daily_sessions" as any)
+              .select("id")
+              .eq("user_id", profile.user_id);
+            
+            return {
+              full_name: profile.full_name || "Anonymous",
+              email: "", 
+              session_count: sessions?.length || 0,
+              rank: 0
+            };
+          })
+        );
 
         // Sort by session count and assign ranks
         const sortedLeaders = userSessionCounts

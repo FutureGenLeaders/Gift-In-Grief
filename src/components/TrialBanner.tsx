@@ -21,7 +21,7 @@ export default function TrialBanner() {
       if (!user?.user?.id) return;
 
       const { data: profile } = await supabase
-        .from("user_profiles")
+        .from("user_profiles" as any)
         .select("trial_start_date, trial_end_date, subscription_status")
         .eq("user_id", user.user.id)
         .single();

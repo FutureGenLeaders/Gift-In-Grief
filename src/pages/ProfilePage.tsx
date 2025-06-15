@@ -40,14 +40,14 @@ export default function ProfilePage() {
 
       // Get user profile
       const { data: profileData } = await supabase
-        .from("user_profiles")
+        .from("user_profiles" as any)
         .select("*")
         .eq("user_id", user.user.id)
         .single();
 
       // Get session history
       const { data: sessions } = await supabase
-        .from("daily_sessions")
+        .from("daily_sessions" as any)
         .select("*")
         .eq("user_id", user.user.id)
         .order("completed_at", { ascending: false })
@@ -78,7 +78,7 @@ export default function ProfilePage() {
         }
 
         // Calculate longest streak
-        longestStreak = Math.max(...sessions.map(s => s.streak_count));
+        longestStreak = Math.max(...sessions.map((s: any) => s.streak_count));
       }
 
       setProfile(profileData);

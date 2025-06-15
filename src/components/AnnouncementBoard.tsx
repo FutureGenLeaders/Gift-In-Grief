@@ -17,7 +17,7 @@ export default function AnnouncementBoard() {
     async function fetchAnnouncements() {
       setLoading(true);
       const { data, error } = await supabase
-        .from("announcements")
+        .from("announcements" as any)
         .select("id, title, content, posted_at")
         .order("posted_at", { ascending: false });
       if (!error && data) setAnnouncements(data);
