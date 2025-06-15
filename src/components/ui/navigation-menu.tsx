@@ -17,7 +17,9 @@ const NavigationMenu = React.forwardRef<
     )}
     {...props}
   >
-    {children}
+    {typeof children === "object" && children !== null && "toString" in children
+      ? children.toString()
+      : children}
     <NavigationMenuViewport />
   </NavigationMenuPrimitive.Root>
 ))
@@ -53,7 +55,9 @@ const NavigationMenuTrigger = React.forwardRef<
     className={cn(navigationMenuTriggerStyle(), "group", className)}
     {...props}
   >
-    {children}{" "}
+    {typeof children === "object" && children !== null && "toString" in children
+      ? children.toString()
+      : children}{" "}
     <ChevronDown
       className="relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-data-[state=open]:rotate-180"
       aria-hidden="true"

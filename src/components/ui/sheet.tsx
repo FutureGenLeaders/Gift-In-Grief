@@ -103,12 +103,16 @@ SheetFooter.displayName = "SheetFooter"
 const SheetTitle = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Title>,
   React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title>
->(({ className, ...props }, ref) => (
+>(({ className, children, ...props }, ref) => (
   <SheetPrimitive.Title
     ref={ref}
     className={cn("text-lg font-semibold text-foreground", className)}
     {...props}
-  />
+  >
+    {typeof children === "object" && children !== null && "toString" in children
+      ? children.toString()
+      : children}
+  </SheetPrimitive.Title>
 ))
 SheetTitle.displayName = SheetPrimitive.Title.displayName
 
@@ -128,4 +132,3 @@ export {
   Sheet, SheetClose,
   SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetOverlay, SheetPortal, SheetTitle, SheetTrigger
 }
-

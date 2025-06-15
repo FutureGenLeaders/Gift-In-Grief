@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import * as ToggleGroupPrimitive from "@radix-ui/react-toggle-group"
 import { type VariantProps } from "class-variance-authority"
@@ -36,7 +37,6 @@ const ToggleGroupItem = React.forwardRef<
     VariantProps<typeof toggleVariants>
 >(({ className, children, variant, size, ...props }, ref) => {
   const context = React.useContext(ToggleGroupContext)
-
   return (
     <ToggleGroupPrimitive.Item
       ref={ref}
@@ -49,7 +49,9 @@ const ToggleGroupItem = React.forwardRef<
       )}
       {...props}
     >
-      {children}
+      {typeof children === "object" && children !== null && "toString" in children
+        ? children.toString()
+        : children}
     </ToggleGroupPrimitive.Item>
   )
 })

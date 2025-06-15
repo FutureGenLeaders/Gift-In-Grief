@@ -22,7 +22,9 @@ const SelectTrigger = React.forwardRef<
     )}
     {...props}
   >
-    {children}
+    {typeof children === "object" && children !== null && "toString" in children
+      ? children.toString()
+      : children}
     <SelectPrimitive.Icon asChild>
       <ChevronDown className="h-4 w-4 opacity-50" />
     </SelectPrimitive.Icon>

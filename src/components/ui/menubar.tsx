@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import * as MenubarPrimitive from "@radix-ui/react-menubar"
 import { Check, ChevronRight, Circle } from "lucide-react"
@@ -17,7 +18,7 @@ const MenubarRadioGroup = MenubarPrimitive.RadioGroup
 const Menubar = React.forwardRef<
   React.ElementRef<typeof MenubarPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Root>
->(({ className, ...props }, ref) => (
+>(({ className, children, ...props }, ref) => (
   <MenubarPrimitive.Root
     ref={ref}
     className={cn(
@@ -25,14 +26,18 @@ const Menubar = React.forwardRef<
       className
     )}
     {...props}
-  />
+  >
+    {typeof children === "object" && children !== null && "toString" in children
+      ? children.toString()
+      : children}
+  </MenubarPrimitive.Root>
 ))
 Menubar.displayName = MenubarPrimitive.Root.displayName
 
 const MenubarTrigger = React.forwardRef<
   React.ElementRef<typeof MenubarPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Trigger>
->(({ className, ...props }, ref) => (
+>(({ className, children, ...props }, ref) => (
   <MenubarPrimitive.Trigger
     ref={ref}
     className={cn(
@@ -40,7 +45,11 @@ const MenubarTrigger = React.forwardRef<
       className
     )}
     {...props}
-  />
+  >
+    {typeof children === "object" && children !== null && "toString" in children
+      ? children.toString()
+      : children}
+  </MenubarPrimitive.Trigger>
 ))
 MenubarTrigger.displayName = MenubarPrimitive.Trigger.displayName
 
@@ -59,7 +68,9 @@ const MenubarSubTrigger = React.forwardRef<
     )}
     {...props}
   >
-    {children}
+    {typeof children === "object" && children !== null && "toString" in children
+      ? children.toString()
+      : children}
     <ChevronRight className="ml-auto h-4 w-4" />
   </MenubarPrimitive.SubTrigger>
 ))
@@ -110,7 +121,7 @@ const MenubarItem = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Item> & {
     inset?: boolean
   }
->(({ className, inset, ...props }, ref) => (
+>(({ className, inset, children, ...props }, ref) => (
   <MenubarPrimitive.Item
     ref={ref}
     className={cn(
@@ -119,7 +130,11 @@ const MenubarItem = React.forwardRef<
       className
     )}
     {...props}
-  />
+  >
+    {typeof children === "object" && children !== null && "toString" in children
+      ? children.toString()
+      : children}
+  </MenubarPrimitive.Item>
 ))
 MenubarItem.displayName = MenubarPrimitive.Item.displayName
 
@@ -141,7 +156,9 @@ const MenubarCheckboxItem = React.forwardRef<
         <Check className="h-4 w-4" />
       </MenubarPrimitive.ItemIndicator>
     </span>
-    {children}
+    {typeof children === "object" && children !== null && "toString" in children
+      ? children.toString()
+      : children}
   </MenubarPrimitive.CheckboxItem>
 ))
 MenubarCheckboxItem.displayName = MenubarPrimitive.CheckboxItem.displayName
@@ -163,7 +180,9 @@ const MenubarRadioItem = React.forwardRef<
         <Circle className="h-2 w-2 fill-current" />
       </MenubarPrimitive.ItemIndicator>
     </span>
-    {children}
+    {typeof children === "object" && children !== null && "toString" in children
+      ? children.toString()
+      : children}
   </MenubarPrimitive.RadioItem>
 ))
 MenubarRadioItem.displayName = MenubarPrimitive.RadioItem.displayName
@@ -173,7 +192,7 @@ const MenubarLabel = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Label> & {
     inset?: boolean
   }
->(({ className, inset, ...props }, ref) => (
+>(({ className, inset, children, ...props }, ref) => (
   <MenubarPrimitive.Label
     ref={ref}
     className={cn(
@@ -182,7 +201,11 @@ const MenubarLabel = React.forwardRef<
       className
     )}
     {...props}
-  />
+  >
+    {typeof children === "object" && children !== null && "toString" in children
+      ? children.toString()
+      : children}
+  </MenubarPrimitive.Label>
 ))
 MenubarLabel.displayName = MenubarPrimitive.Label.displayName
 
