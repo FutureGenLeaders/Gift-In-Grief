@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Assessment from "./pages/Assessment";
 import NotFound from "./pages/NotFound";
+import Sessions from "@/pages/Sessions";
+import CreateSession from "@/pages/CreateSession";
 import "./i18n";
 import { usePushNotifications } from "@/hooks/usePushNotifications";
 
@@ -24,6 +26,8 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/assessment" element={<Assessment />} />
+            <Route path="/sessions" element={<Sessions />} />
+            <Route path="/create-session" element={<CreateSession />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

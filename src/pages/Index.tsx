@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, Compass, Sun, Users, Briefcase, Home, TreePine, Sparkles, Sunrise, Shield } from "lucide-react";
@@ -6,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import LanguageSelector from "@/components/LanguageSelector";
 
-const Index = () => {
+export default function Index() {
   const { t } = useTranslation();
 
   const pillars = [
@@ -49,7 +48,7 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-slate-800 to-slate-900">
+    <main>
       {/* Navigation */}
       <nav className="bg-black/80 backdrop-blur-sm border-b border-yellow-600/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -216,9 +215,15 @@ const Index = () => {
           </Link>
         </div>
       </section>
-    </div>
+
+      <div className="flex gap-4 mt-8">
+        <Link className="text-blue-700 underline" to="/sessions">
+          View & Book Sessions
+        </Link>
+        <Link className="text-teal-700 underline" to="/create-session">
+          Host: Create Session
+        </Link>
+      </div>
+    </main>
   );
-};
-
-export default Index;
-
+}
