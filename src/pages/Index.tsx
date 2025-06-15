@@ -1,47 +1,46 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, Heart, Flower2, Star, Sun, Compass, Users, Briefcase, Home, Leaf, Sparkles, Sunrise, Shield, Butterfly, TreePine } from "lucide-react";
+import { ArrowRight, Heart, Star, Sun, Compass, Users, Briefcase, Home, TreePine, Sparkles, Sunrise, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Index = () => {
   const pillars = [
     {
-      icon: <Flower2 className="h-8 w-8" />,
+      icon: <TreePine className="h-8 w-8" />,
       title: "Impermanence",
       description: "Understanding the natural flow of life and finding peace in change",
-      color: "from-yellow-600 to-red-700"
+      color: "from-amber-600 to-red-700"
     },
     {
       icon: <Star className="h-8 w-8" />,
       title: "Truth & Balance",
       description: "Seeking authentic understanding and cosmic order through life's challenges",
-      color: "from-red-700 to-yellow-600"
+      color: "from-red-700 to-amber-600"
     },
     {
       icon: <Heart className="h-8 w-8" />,
       title: "Death & Rebirth",
       description: "Embracing the sacred cycles of transformation and renewal",
-      color: "from-yellow-600 to-slate-400"
+      color: "from-amber-600 to-slate-400"
     },
     {
       icon: <Sun className="h-8 w-8" />,
       title: "Unconditional Love",
       description: "Discovering the healing power of forgiveness and compassionate presence",
-      color: "from-red-700 to-yellow-600"
+      color: "from-red-700 to-amber-600"
     }
   ];
 
   const lossTypes = [
-    { title: "Loss of Relationship", icon: <Users className="h-6 w-6" />, color: "from-red-700 to-yellow-600" },
-    { title: "Loss of Career/Purpose", icon: <Briefcase className="h-6 w-6" />, color: "from-yellow-600 to-red-700" },
-    { title: "Loss of Financial Security", icon: <Home className="h-6 w-6" />, color: "from-yellow-600 to-slate-400" },
-    { title: "Loss of Health", icon: <Leaf className="h-6 w-6" />, color: "from-slate-400 to-red-700" },
+    { title: "Loss of Relationship", icon: <Users className="h-6 w-6" />, color: "from-red-700 to-amber-600" },
+    { title: "Loss of Career/Purpose", icon: <Briefcase className="h-6 w-6" />, color: "from-amber-600 to-red-700" },
+    { title: "Loss of Financial Security", icon: <Home className="h-6 w-6" />, color: "from-amber-600 to-slate-400" },
+    { title: "Loss of Health", icon: <TreePine className="h-6 w-6" />, color: "from-slate-400 to-red-700" },
     { title: "Loss of Spiritual Identity", icon: <Sparkles className="h-6 w-6" />, color: "from-red-700 to-slate-400" },
-    { title: "Loss of Dreams/Future", icon: <Sunrise className="h-6 w-6" />, color: "from-yellow-600 to-red-700" },
+    { title: "Loss of Dreams/Future", icon: <Sunrise className="h-6 w-6" />, color: "from-amber-600 to-red-700" },
     { title: "Loss of Safety/Security", icon: <Shield className="h-6 w-6" />, color: "from-slate-500 to-black" },
-    { title: "Loss of Identity/Role", icon: <Butterfly className="h-6 w-6" />, color: "from-slate-400 to-yellow-600" },
-    { title: "Radical Acceptance", icon: <TreePine className="h-6 w-6" />, color: "from-yellow-600 to-slate-500" }
+    { title: "Loss of Identity/Role", icon: <Sparkles className="h-6 w-6" />, color: "from-slate-400 to-amber-600" },
+    { title: "Radical Acceptance", icon: <TreePine className="h-6 w-6" />, color: "from-amber-600 to-slate-500" }
   ];
 
   return (
