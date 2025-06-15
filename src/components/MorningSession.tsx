@@ -11,12 +11,15 @@ export default function MorningSession() {
 
   const handleCompleteSession = async () => {
     setIsCompleting(true);
-    
+
     const { data: user } = await supabase.auth.getUser();
-    if (!user?.user?.id) return;
+    if (!user?.user?.id) {
+      setIsCompleting(false);
+      return;
+    }
 
     // Get current streak
-    const { data: recentSessions } = await (supabase as any)
+    const { data: recentSessions } = await supabase
       .from("daily_sessions")
       .select("completed_at")
       .eq("user_id", user.user.id)
@@ -37,7 +40,7 @@ export default function MorningSession() {
     }
 
     // Record the session
-    await (supabase as any)
+    await supabase
       .from("daily_sessions")
       .insert({
         user_id: user.user.id,
@@ -50,7 +53,7 @@ export default function MorningSession() {
   };
 
   const getCurrentStreak = async (userId: string): Promise<number> => {
-    const { data: sessions } = await (supabase as any)
+    const { data: sessions } = await supabase
       .from("daily_sessions")
       .select("completed_at")
       .eq("user_id", userId)
@@ -66,17 +69,17 @@ export default function MorningSession() {
     for (let i = 0; i < sessions.length; i++) {
       const sessionDate = new Date(sessions[i].completed_at);
       sessionDate.setHours(0, 0, 0, 0);
-      
+
       const expectedDate = new Date(today);
       expectedDate.setDate(today.getDate() - i);
-      
+
       if (sessionDate.getTime() === expectedDate.getTime()) {
         streak++;
       } else {
         break;
       }
     }
-    
+
     return streak;
   };
 

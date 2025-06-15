@@ -38,15 +38,15 @@ export default function ProfilePage() {
       const { data: user } = await supabase.auth.getUser();
       if (!user?.user?.id) return;
 
-      // Get user profile
-      const { data: profileData } = await (supabase as any)
+      // Get user profile (now typed)
+      const { data: profileData } = await supabase
         .from("user_profiles")
         .select("*")
         .eq("user_id", user.user.id)
-        .single();
+        .maybeSingle();
 
       // Get session history
-      const { data: sessions } = await (supabase as any)
+      const { data: sessions } = await supabase
         .from("daily_sessions")
         .select("*")
         .eq("user_id", user.user.id)

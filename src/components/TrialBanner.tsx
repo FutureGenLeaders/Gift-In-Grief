@@ -20,11 +20,11 @@ export default function TrialBanner() {
       const { data: user } = await supabase.auth.getUser();
       if (!user?.user?.id) return;
 
-      const { data: profile } = await (supabase as any)
+      const { data: profile } = await supabase
         .from("user_profiles")
         .select("trial_start_date, trial_end_date, subscription_status")
         .eq("user_id", user.user.id)
-        .single();
+        .maybeSingle();
 
       if (profile && profile.subscription_status === 'trial') {
         const now = new Date();

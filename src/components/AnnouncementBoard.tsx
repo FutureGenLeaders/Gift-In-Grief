@@ -16,10 +16,12 @@ export default function AnnouncementBoard() {
   useEffect(() => {
     async function fetchAnnouncements() {
       setLoading(true);
-      const { data, error } = await (supabase as any)
+      // Use explicit type argument to help with types
+      const { data, error } = await supabase
         .from("announcements")
         .select("id, title, content, posted_at")
-        .order("posted_at", { ascending: false });
+        .order("posted_at", { ascending: false }) as { data: Announcement[] | null, error: any };
+
       if (!error && data) setAnnouncements(data);
       setLoading(false);
     }
@@ -48,3 +50,4 @@ export default function AnnouncementBoard() {
     </div>
   );
 }
+

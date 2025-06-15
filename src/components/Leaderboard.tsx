@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Trophy, Medal, Award } from "lucide-react";
@@ -17,25 +16,22 @@ export default function Leaderboard() {
   useEffect(() => {
     async function fetchLeaderboard() {
       // Get user profiles with session counts
-      const { data, error } = await (supabase as any)
+      const { data, error } = await supabase
         .from("user_profiles")
-        .select(`
-          full_name,
-          user_id
-        `);
+        .select(`full_name, user_id`);
 
       if (!error && data) {
         // Get daily sessions for each user
         const userSessionCounts = await Promise.all(
           data.map(async (profile: any) => {
-            const { data: sessions } = await (supabase as any)
+            const { data: sessions } = await supabase
               .from("daily_sessions")
               .select("id")
               .eq("user_id", profile.user_id);
-            
+
             return {
               full_name: profile.full_name || "Anonymous",
-              email: "", 
+              email: "",
               session_count: sessions?.length || 0,
               rank: 0
             };
