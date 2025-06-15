@@ -36,7 +36,7 @@ export default function CurriculumProgress({ joinDate, onComplete }: { joinDate:
       setLoading(true);
       setError(null);
 
-      const { data: mods, error: modErr } = await supabase
+      const { data: mods, error: modErr } = await (supabase as any)
         .from("curriculum_modules")
         .select("*")
         .order("release_week", { ascending: true });
@@ -47,7 +47,7 @@ export default function CurriculumProgress({ joinDate, onComplete }: { joinDate:
       let prog = null;
       let progErr = null;
       if (userId) {
-        const { data, error } = await supabase
+        const { data, error } = await (supabase as any)
           .from("user_curriculum_progress")
           .select("*")
           .eq("user_id", userId);
@@ -73,7 +73,7 @@ export default function CurriculumProgress({ joinDate, onComplete }: { joinDate:
     const { data: user } = await supabase.auth.getUser();
     if (!user?.user?.id) return;
 
-    await supabase
+    await (supabase as any)
       .from("user_curriculum_progress")
       .upsert([
         {
@@ -98,7 +98,7 @@ export default function CurriculumProgress({ joinDate, onComplete }: { joinDate:
       modules.length > 0 &&
       modules
         .filter((m) => m.release_week <= weeksSinceJoin + 1)
-        .every((m) => prev[m.id]?.completed_at || m.id === moduleId);
+        .every((m) => progress[m.id]?.completed_at || m.id === moduleId);
 
     if (allComplete && onComplete) {
       onComplete();

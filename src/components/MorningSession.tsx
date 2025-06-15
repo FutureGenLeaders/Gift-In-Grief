@@ -16,7 +16,7 @@ export default function MorningSession() {
     if (!user?.user?.id) return;
 
     // Get current streak
-    const { data: recentSessions } = await supabase
+    const { data: recentSessions } = await (supabase as any)
       .from("daily_sessions")
       .select("completed_at")
       .eq("user_id", user.user.id)
@@ -37,7 +37,7 @@ export default function MorningSession() {
     }
 
     // Record the session
-    await supabase
+    await (supabase as any)
       .from("daily_sessions")
       .insert({
         user_id: user.user.id,
@@ -50,7 +50,7 @@ export default function MorningSession() {
   };
 
   const getCurrentStreak = async (userId: string): Promise<number> => {
-    const { data: sessions } = await supabase
+    const { data: sessions } = await (supabase as any)
       .from("daily_sessions")
       .select("completed_at")
       .eq("user_id", userId)

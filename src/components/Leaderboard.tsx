@@ -17,7 +17,7 @@ export default function Leaderboard() {
   useEffect(() => {
     async function fetchLeaderboard() {
       // Get user profiles with session counts
-      const { data, error } = await supabase
+      const { data, error } = await (supabase as any)
         .from("user_profiles")
         .select(`
           full_name,
@@ -28,7 +28,7 @@ export default function Leaderboard() {
         // Get daily sessions for each user
         const userSessionCounts = await Promise.all(
           data.map(async (profile: any) => {
-            const { data: sessions } = await supabase
+            const { data: sessions } = await (supabase as any)
               .from("daily_sessions")
               .select("id")
               .eq("user_id", profile.user_id);

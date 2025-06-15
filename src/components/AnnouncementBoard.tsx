@@ -16,7 +16,7 @@ export default function AnnouncementBoard() {
   useEffect(() => {
     async function fetchAnnouncements() {
       setLoading(true);
-      const { data, error } = await supabase
+      const { data, error } = await (supabase as any)
         .from("announcements")
         .select("id, title, content, posted_at")
         .order("posted_at", { ascending: false });
