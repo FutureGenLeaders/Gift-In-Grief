@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import { Drawer as DrawerPrimitive } from "vaul"
 
@@ -47,7 +48,7 @@ const DrawerContent = React.forwardRef<
       {...props}
     >
       <div className="mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted" />
-      {children}
+      {typeof children === "object" && children !== null && "toString" in children ? children.toString() : children}
     </DrawerPrimitive.Content>
   </DrawerPortal>
 ))
@@ -78,28 +79,44 @@ DrawerFooter.displayName = "DrawerFooter"
 const DrawerTitle = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Title>,
   React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Title>
->(({ className, ...props }, ref) => (
-  <DrawerPrimitive.Title
-    ref={ref}
-    className={cn(
-      "text-lg font-semibold leading-none tracking-tight",
-      className
-    )}
-    {...props}
-  />
-))
+>(({ className, children, ...props }, ref) => {
+  const safeChildren =
+    typeof children === "object" && children !== null && "toString" in children
+      ? children.toString()
+      : children
+  return (
+    <DrawerPrimitive.Title
+      ref={ref}
+      className={cn(
+        "text-lg font-semibold leading-none tracking-tight",
+        className
+      )}
+      {...props}
+    >
+      {safeChildren}
+    </DrawerPrimitive.Title>
+  )
+})
 DrawerTitle.displayName = DrawerPrimitive.Title.displayName
 
 const DrawerDescription = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Description>,
   React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Description>
->(({ className, ...props }, ref) => (
-  <DrawerPrimitive.Description
-    ref={ref}
-    className={cn("text-sm text-muted-foreground", className)}
-    {...props}
-  />
-))
+>(({ className, children, ...props }, ref) => {
+  const safeChildren =
+    typeof children === "object" && children !== null && "toString" in children
+      ? children.toString()
+      : children
+  return (
+    <DrawerPrimitive.Description
+      ref={ref}
+      className={cn("text-sm text-muted-foreground", className)}
+      {...props}
+    >
+      {safeChildren}
+    </DrawerPrimitive.Description>
+  )
+})
 DrawerDescription.displayName = DrawerPrimitive.Description.displayName
 
 export {
