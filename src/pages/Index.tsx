@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, Heart, Star, Sun, Compass, Users, Briefcase, Home, TreePine, Sparkles, Sunrise, Shield } from "lucide-react";
+import { ArrowRight, Star, Sun, Compass, Users, Briefcase, Home, TreePine, Sparkles, Sunrise, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Index = () => {
@@ -18,7 +18,7 @@ const Index = () => {
       color: "from-red-700 to-amber-600"
     },
     {
-      icon: <Heart className="h-8 w-8" />,
+      icon: <Sun className="h-8 w-8" />,
       title: "Death & Rebirth",
       description: "Embracing the sacred cycles of transformation and renewal",
       color: "from-amber-600 to-slate-400"
@@ -50,7 +50,7 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
-              <Heart className="h-8 w-8 text-yellow-600" />
+              <Star className="h-8 w-8 text-yellow-600" />
               <span className="text-2xl font-bold bg-gradient-to-r from-yellow-600 to-red-700 bg-clip-text text-transparent">
                 The Gift in Grief
               </span>
@@ -80,7 +80,7 @@ const Index = () => {
       <section className="relative py-20 px-4 text-center">
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">
-            <Heart className="h-16 w-16 mx-auto text-yellow-600 mb-6" />
+            <Star className="h-16 w-16 mx-auto text-yellow-600 mb-6" />
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-yellow-600 via-red-700 to-slate-300 bg-clip-text text-transparent">
               The Gift in Grief
             </h1>
