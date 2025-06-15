@@ -1,0 +1,70 @@
+
+{
+  "app": {
+    "title": "Le Cadeau dans le Chagrin"
+  },
+  "nav": {
+    "discovery": "Commencer",
+    "practices": "Aide Quotidienne",
+    "sessions": "En Savoir Plus",
+    "community": "Communauté",
+    "signin": "Se Connecter"
+  },
+  "hero": {
+    "title": "Le Cadeau dans le Chagrin",
+    "subtitle": "Transformez votre perte en force avec un soutien doux et des conseils simples.",
+    "subtitle2": "Vous pouvez guérir. Nous sommes là pour vous aider.",
+    "startButton": "Commencez Votre Guérison",
+    "watchButton": "Voir Comment Ça Marche"
+  },
+  "pillars": {
+    "impermanence": {
+      "title": "Accepter le Changement",
+      "description": "Apprendre que le changement est normal et trouver la paix quand les choses bougent"
+    },
+    "truth": {
+      "title": "Trouver l'Équilibre",
+      "description": "Chercher une vraie compréhension et trouver son chemin dans les moments difficiles"
+    },
+    "rebirth": {
+      "title": "Nouveaux Commencements",
+      "description": "Accueillir le cycle naturel des fins et des nouveaux départs"
+    },
+    "love": {
+      "title": "Ouvrir Votre Cœur",
+      "description": "Trouver le pouvoir guérisseur du pardon et prendre soin de soi et des autres"
+    }
+  },
+  "lossTypes": {
+    "title": "9 Types de Perte",
+    "relationship": "Perte de Relation",
+    "career": "Perte d'Emploi/But",
+    "financial": "Problèmes d'Argent",
+    "health": "Problèmes de Santé",
+    "spiritual": "Perte de Foi",
+    "dreams": "Rêves Brisés",
+    "safety": "Se Sentir en Danger",
+    "identity": "Ne Pas Savoir Qui Vous Êtes",
+    "acceptance": "Apprendre à Accepter"
+  },
+  "journey": {
+    "title": "Votre Voyage de Guérison",
+    "step1": {
+      "title": "Bilan Simple",
+      "description": "Découvrez où vous en êtes dans votre chagrin avec des questions douces et une auto-réflexion facile."
+    },
+    "step2": {
+      "title": "Soutien Quotidien",
+      "description": "Bilans matinaux, réflexions d'après-midi et résumés du soir qui vous aident à guérir naturellement."
+    },
+    "step3": {
+      "title": "Aide Communautaire",
+      "description": "Rencontrez d'autres personnes vivant des expériences similaires et obtenez de l'aide professionnelle quand vous en avez besoin."
+    }
+  },
+  "cta": {
+    "title": "Prêt à Trouver l'Espoir dans Votre Chagrin?",
+    "description": "Votre guérison vous est unique. Laissez-nous vous guider doucement pendant que vous découvrez votre force intérieure.",
+    "button": "Commencer Votre Voyage"
+  }
+}

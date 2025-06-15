@@ -1,46 +1,51 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, Star, Sun, Compass, Users, Briefcase, Home, TreePine, Sparkles, Sunrise, Shield } from "lucide-react";
+import { ArrowRight, Compass, Sun, Users, Briefcase, Home, TreePine, Sparkles, Sunrise, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import LanguageSelector from "@/components/LanguageSelector";
 
 const Index = () => {
+  const { t } = useTranslation();
+
   const pillars = [
     {
       icon: <TreePine className="h-8 w-8" />,
-      title: "Impermanence",
-      description: "Understanding the natural flow of life and finding peace in change",
+      title: t('pillars.impermanence.title'),
+      description: t('pillars.impermanence.description'),
       color: "from-amber-600 to-red-700"
     },
     {
-      icon: <Star className="h-8 w-8" />,
-      title: "Truth & Balance",
-      description: "Seeking authentic understanding and cosmic order through life's challenges",
+      icon: <Compass className="h-8 w-8" />,
+      title: t('pillars.truth.title'),
+      description: t('pillars.truth.description'),
       color: "from-red-700 to-amber-600"
     },
     {
       icon: <Sun className="h-8 w-8" />,
-      title: "Death & Rebirth",
-      description: "Embracing the sacred cycles of transformation and renewal",
+      title: t('pillars.rebirth.title'),
+      description: t('pillars.rebirth.description'),
       color: "from-amber-600 to-slate-400"
     },
     {
       icon: <Sun className="h-8 w-8" />,
-      title: "Unconditional Love",
-      description: "Discovering the healing power of forgiveness and compassionate presence",
+      title: t('pillars.love.title'),
+      description: t('pillars.love.description'),
       color: "from-red-700 to-amber-600"
     }
   ];
 
   const lossTypes = [
-    { title: "Loss of Relationship", icon: <Users className="h-6 w-6" />, color: "from-red-700 to-amber-600" },
-    { title: "Loss of Career/Purpose", icon: <Briefcase className="h-6 w-6" />, color: "from-amber-600 to-red-700" },
-    { title: "Loss of Financial Security", icon: <Home className="h-6 w-6" />, color: "from-amber-600 to-slate-400" },
-    { title: "Loss of Health", icon: <TreePine className="h-6 w-6" />, color: "from-slate-400 to-red-700" },
-    { title: "Loss of Spiritual Identity", icon: <Sparkles className="h-6 w-6" />, color: "from-red-700 to-slate-400" },
-    { title: "Loss of Dreams/Future", icon: <Sunrise className="h-6 w-6" />, color: "from-amber-600 to-red-700" },
-    { title: "Loss of Safety/Security", icon: <Shield className="h-6 w-6" />, color: "from-slate-500 to-black" },
-    { title: "Loss of Identity/Role", icon: <Sparkles className="h-6 w-6" />, color: "from-slate-400 to-amber-600" },
-    { title: "Radical Acceptance", icon: <TreePine className="h-6 w-6" />, color: "from-amber-600 to-slate-500" }
+    { title: t('lossTypes.relationship'), icon: <Users className="h-6 w-6" />, color: "from-red-700 to-amber-600" },
+    { title: t('lossTypes.career'), icon: <Briefcase className="h-6 w-6" />, color: "from-amber-600 to-red-700" },
+    { title: t('lossTypes.financial'), icon: <Home className="h-6 w-6" />, color: "from-amber-600 to-slate-400" },
+    { title: t('lossTypes.health'), icon: <TreePine className="h-6 w-6" />, color: "from-slate-400 to-red-700" },
+    { title: t('lossTypes.spiritual'), icon: <Sparkles className="h-6 w-6" />, color: "from-red-700 to-slate-400" },
+    { title: t('lossTypes.dreams'), icon: <Sunrise className="h-6 w-6" />, color: "from-amber-600 to-red-700" },
+    { title: t('lossTypes.safety'), icon: <Shield className="h-6 w-6" />, color: "from-slate-500 to-black" },
+    { title: t('lossTypes.identity'), icon: <Sparkles className="h-6 w-6" />, color: "from-slate-400 to-amber-600" },
+    { title: t('lossTypes.acceptance'), icon: <TreePine className="h-6 w-6" />, color: "from-amber-600 to-slate-500" }
   ];
 
   return (
@@ -50,26 +55,27 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
-              <Star className="h-8 w-8 text-yellow-600" />
+              <Compass className="h-8 w-8 text-yellow-600" />
               <span className="text-2xl font-bold bg-gradient-to-r from-yellow-600 to-red-700 bg-clip-text text-transparent">
-                The Gift in Grief
+                {t('app.title')}
               </span>
             </div>
             <div className="hidden md:flex items-center space-x-8">
               <Link to="/assessment" className="text-gray-300 hover:text-yellow-600 transition-colors">
-                Inner Discovery
+                {t('nav.discovery')}
               </Link>
               <Link to="/sessions" className="text-gray-300 hover:text-yellow-600 transition-colors">
-                Daily Practices
+                {t('nav.practices')}
               </Link>
               <Link to="/masterclass" className="text-gray-300 hover:text-yellow-600 transition-colors">
-                Wisdom Sessions
+                {t('nav.sessions')}
               </Link>
               <Link to="/community" className="text-gray-300 hover:text-yellow-600 transition-colors">
-                Community
+                {t('nav.community')}
               </Link>
+              <LanguageSelector />
               <Button variant="outline" className="border-yellow-600 text-yellow-600 hover:bg-yellow-600/10">
-                Sign In
+                {t('nav.signin')}
               </Button>
             </div>
           </div>
@@ -80,31 +86,31 @@ const Index = () => {
       <section className="relative py-20 px-4 text-center">
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">
-            <Star className="h-16 w-16 mx-auto text-yellow-600 mb-6" />
+            <Compass className="h-16 w-16 mx-auto text-yellow-600 mb-6" />
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-yellow-600 via-red-700 to-slate-300 bg-clip-text text-transparent">
-              The Gift in Grief
+              {t('hero.title')}
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
-              Transform your relationship with loss through gentle wisdom and compassionate support.<br />
-              <span className="text-yellow-600">The roadmap is here. The healing is within you.</span>
+              {t('hero.subtitle')}<br />
+              <span className="text-yellow-600">{t('hero.subtitle2')}</span>
             </p>
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <Link to="/assessment">
               <Button size="lg" className="bg-gradient-to-r from-yellow-600 to-red-700 hover:from-yellow-700 hover:to-red-800 text-white px-8 py-3">
-                Begin Your Journey
+                {t('hero.startButton')}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Button variant="outline" size="lg" className="border-yellow-600 text-yellow-600 hover:bg-yellow-600/10 px-8 py-3">
-              Watch Introduction
+              {t('hero.watchButton')}
             </Button>
           </div>
 
           {/* 9 Faces of Loss */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-yellow-600 to-red-700 bg-clip-text text-transparent">The 9 Faces of Loss</h2>
+            <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-yellow-600 to-red-700 bg-clip-text text-transparent">{t('lossTypes.title')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {lossTypes.map((loss, index) => (
                 <Card key={index} className="bg-slate-800/50 border-slate-700 hover:border-yellow-600/50 transition-all duration-300 group">
@@ -143,7 +149,7 @@ const Index = () => {
       <section className="py-20 px-4 bg-slate-800/30">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-yellow-600 to-red-700 bg-clip-text text-transparent">
-            Your Gentle Healing Journey
+            {t('journey.title')}
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -151,12 +157,12 @@ const Index = () => {
               <CardHeader>
                 <CardTitle className="text-white flex items-center">
                   <span className="w-8 h-8 bg-gradient-to-r from-yellow-600 to-red-700 rounded-full flex items-center justify-center text-sm mr-3">1</span>
-                  Gentle Assessment
+                  {t('journey.step1.title')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-400">
-                  Discover where you are in your grief journey through compassionate self-reflection and gentle exploration.
+                  {t('journey.step1.description')}
                 </p>
               </CardContent>
             </Card>
@@ -165,12 +171,12 @@ const Index = () => {
               <CardHeader>
                 <CardTitle className="text-white flex items-center">
                   <span className="w-8 h-8 bg-gradient-to-r from-red-700 to-yellow-600 rounded-full flex items-center justify-center text-sm mr-3">2</span>
-                  Daily Practices
+                  {t('journey.step2.title')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-400">
-                  Morning check-ins, afternoon reflections, and evening integrations that nurture your natural healing wisdom.
+                  {t('journey.step2.description')}
                 </p>
               </CardContent>
             </Card>
@@ -179,12 +185,12 @@ const Index = () => {
               <CardHeader>
                 <CardTitle className="text-white flex items-center">
                   <span className="w-8 h-8 bg-gradient-to-r from-yellow-600 to-slate-400 rounded-full flex items-center justify-center text-sm mr-3">3</span>
-                  Community Support
+                  {t('journey.step3.title')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-400">
-                  Connect with others on similar journeys and access professional resources when you're ready.
+                  {t('journey.step3.description')}
                 </p>
               </CardContent>
             </Card>
@@ -196,14 +202,14 @@ const Index = () => {
       <section className="py-20 px-4 text-center">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold mb-6 text-white">
-            Ready to Discover the Gift in Your Grief?
+            {t('cta.title')}
           </h2>
           <p className="text-xl text-gray-300 mb-8">
-            Your healing journey is unique. Let us provide gentle guidance as you uncover the wisdom and strength within your experience.
+            {t('cta.description')}
           </p>
           <Link to="/assessment">
             <Button size="lg" className="bg-gradient-to-r from-yellow-600 to-red-700 hover:from-yellow-700 hover:to-red-800 text-white px-12 py-4 text-lg">
-              Begin Your Gentle Journey
+              {t('cta.button')}
               <ArrowRight className="ml-2 h-6 w-6" />
             </Button>
           </Link>

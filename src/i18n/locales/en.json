@@ -1,0 +1,70 @@
+
+{
+  "app": {
+    "title": "The Gift in Grief"
+  },
+  "nav": {
+    "discovery": "Get Started",
+    "practices": "Daily Help",
+    "sessions": "Learn More",
+    "community": "Community",
+    "signin": "Sign In"
+  },
+  "hero": {
+    "title": "The Gift in Grief",
+    "subtitle": "Turn your loss into strength with gentle support and simple guidance.",
+    "subtitle2": "You can heal. We're here to help.",
+    "startButton": "Start Your Healing",
+    "watchButton": "See How It Works"
+  },
+  "pillars": {
+    "impermanence": {
+      "title": "Accept Change",
+      "description": "Learning that change is normal and finding peace when things shift"
+    },
+    "truth": {
+      "title": "Find Balance",
+      "description": "Looking for real understanding and finding your way through tough times"
+    },
+    "rebirth": {
+      "title": "New Beginnings",
+      "description": "Welcoming the natural cycle of endings and fresh starts"
+    },
+    "love": {
+      "title": "Open Your Heart",
+      "description": "Finding the healing power of forgiveness and caring for yourself and others"
+    }
+  },
+  "lossTypes": {
+    "title": "9 Types of Loss",
+    "relationship": "Loss of Relationship",
+    "career": "Loss of Job/Purpose",
+    "financial": "Money Problems",
+    "health": "Health Issues",
+    "spiritual": "Loss of Faith",
+    "dreams": "Broken Dreams",
+    "safety": "Feeling Unsafe",
+    "identity": "Not Knowing Who You Are",
+    "acceptance": "Learning to Accept"
+  },
+  "journey": {
+    "title": "Your Healing Journey",
+    "step1": {
+      "title": "Simple Check-In",
+      "description": "Find out where you are in your grief with gentle questions and easy self-reflection."
+    },
+    "step2": {
+      "title": "Daily Support",
+      "description": "Morning check-ins, afternoon thoughts, and evening wrap-ups that help you heal naturally."
+    },
+    "step3": {
+      "title": "Community Help",
+      "description": "Meet others going through similar experiences and get professional help when you need it."
+    }
+  },
+  "cta": {
+    "title": "Ready to Find Hope in Your Grief?",
+    "description": "Your healing is unique to you. Let us guide you gently as you discover your inner strength.",
+    "button": "Start Your Journey"
+  }
+}

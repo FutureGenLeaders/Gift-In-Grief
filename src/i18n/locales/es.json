@@ -1,0 +1,70 @@
+
+{
+  "app": {
+    "title": "El Regalo en el Dolor"
+  },
+  "nav": {
+    "discovery": "Comenzar",
+    "practices": "Ayuda Diaria",
+    "sessions": "Aprender Más",
+    "community": "Comunidad",
+    "signin": "Iniciar Sesión"
+  },
+  "hero": {
+    "title": "El Regalo en el Dolor",
+    "subtitle": "Convierte tu pérdida en fortaleza con apoyo gentil y guía simple.",
+    "subtitle2": "Puedes sanar. Estamos aquí para ayudar.",
+    "startButton": "Comienza tu Sanación",
+    "watchButton": "Ve Cómo Funciona"
+  },
+  "pillars": {
+    "impermanence": {
+      "title": "Acepta el Cambio",
+      "description": "Aprender que el cambio es normal y encontrar paz cuando las cosas cambian"
+    },
+    "truth": {
+      "title": "Encuentra Equilibrio",
+      "description": "Buscar comprensión real y encontrar tu camino en tiempos difíciles"
+    },
+    "rebirth": {
+      "title": "Nuevos Comienzos",
+      "description": "Acoger el ciclo natural de finales y nuevos inicios"
+    },
+    "love": {
+      "title": "Abre tu Corazón",
+      "description": "Encontrar el poder sanador del perdón y cuidar de ti mismo y otros"
+    }
+  },
+  "lossTypes": {
+    "title": "9 Tipos de Pérdida",
+    "relationship": "Pérdida de Relación",
+    "career": "Pérdida de Trabajo/Propósito",
+    "financial": "Problemas de Dinero",
+    "health": "Problemas de Salud",
+    "spiritual": "Pérdida de Fe",
+    "dreams": "Sueños Rotos",
+    "safety": "Sentirse Inseguro",
+    "identity": "No Saber Quién Eres",
+    "acceptance": "Aprender a Aceptar"
+  },
+  "journey": {
+    "title": "Tu Viaje de Sanación",
+    "step1": {
+      "title": "Revisión Simple",
+      "description": "Descubre dónde estás en tu dolor con preguntas gentiles y autorreflexión fácil."
+    },
+    "step2": {
+      "title": "Apoyo Diario",
+      "description": "Revisiones matutinas, pensamientos de tarde y cierres nocturnos que te ayudan a sanar naturalmente."
+    },
+    "step3": {
+      "title": "Ayuda Comunitaria",
+      "description": "Conoce a otros que pasan por experiencias similares y obtén ayuda profesional cuando la necesites."
+    }
+  },
+  "cta": {
+    "title": "¿Listo para Encontrar Esperanza en tu Dolor?",
+    "description": "Tu sanación es única para ti. Déjanos guiarte gentilmente mientras descubres tu fuerza interior.",
+    "button": "Comienza tu Viaje"
+  }
+}
