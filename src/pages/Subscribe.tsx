@@ -1,8 +1,8 @@
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
+import { supabase } from "@/integrations/supabase/client";
 
 const tiers = [
   {
@@ -37,12 +37,28 @@ const tiers = [
 export default function Subscribe() {
   const navigate = useNavigate();
 
-  function handleSubscribeClick(tier: string) {
+  async function handleSubscribeClick(tier: string) {
     toast({
-      title: `Subscribing...`,
-      description: `Stripe integration coming next! (Selected: ${tier})`,
+      title: "Connecting to Stripe...",
+      description: `Preparing your ${tier} membership checkout.`,
     });
-    // Placeholder for Stripe flow. Will integrate checkout in next step!
+    try {
+      const { data, error } = await supabase.functions.invoke("create-checkout", {
+        body: { tier },
+      });
+      if (error) {
+        toast({ title: "Error", description: error.message || "Stripe error." });
+        return;
+      }
+      if (!data?.url) {
+        toast({ title: "Error", description: "No Stripe link received." });
+        return;
+      }
+      // Open Stripe in a new tab
+      window.open(data.url, "_blank");
+    } catch (e) {
+      toast({ title: "Error", description: (e as Error).message });
+    }
   }
 
   return (
@@ -51,7 +67,7 @@ export default function Subscribe() {
         Leadership Laboratory Membership
       </h1>
       <p className="text-gray-300 text-lg mb-10 text-center max-w-2xl">
-        Choose your premium membership level. All subscriptions include full access to advanced leadership labs, neuroscience tools, and exclusive events.
+        Choose your premium membership level. All subscriptions include full access to advanced leadership labs, neuroscience tools, exclusive events, and a <b>2-week free trial</b> before you are billed.
       </p>
       <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-8">
         {tiers.map((tier) => (
@@ -87,7 +103,7 @@ export default function Subscribe() {
                     "border border-white/10"
                   )}
                 >
-                  Click to subscribe
+                  Click to subscribe — 2 week free trial
                 </span>
               </div>
             </div>
