@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, Compass, Sun, Users, Briefcase, Home, TreePine, Sparkles, Sunrise, Shield } from "lucide-react";
@@ -11,40 +12,40 @@ const Index = () => {
   const pillars = [
     {
       icon: <TreePine className="h-8 w-8" />,
-      title: t('pillars.impermanence.title'),
-      description: t('pillars.impermanence.description'),
+      title: t('pillars.impermanence.title').toString(),
+      description: t('pillars.impermanence.description').toString(),
       color: "from-amber-600 to-red-700"
     },
     {
       icon: <Compass className="h-8 w-8" />,
-      title: t('pillars.truth.title'),
-      description: t('pillars.truth.description'),
+      title: t('pillars.truth.title').toString(),
+      description: t('pillars.truth.description').toString(),
       color: "from-red-700 to-amber-600"
     },
     {
       icon: <Sun className="h-8 w-8" />,
-      title: t('pillars.rebirth.title'),
-      description: t('pillars.rebirth.description'),
+      title: t('pillars.rebirth.title').toString(),
+      description: t('pillars.rebirth.description').toString(),
       color: "from-amber-600 to-slate-400"
     },
     {
       icon: <Sun className="h-8 w-8" />,
-      title: t('pillars.love.title'),
-      description: t('pillars.love.description'),
+      title: t('pillars.love.title').toString(),
+      description: t('pillars.love.description').toString(),
       color: "from-red-700 to-amber-600"
     }
   ];
 
   const lossTypes = [
-    { title: t('lossTypes.relationship'), icon: <Users className="h-6 w-6" />, color: "from-red-700 to-amber-600" },
-    { title: t('lossTypes.career'), icon: <Briefcase className="h-6 w-6" />, color: "from-amber-600 to-red-700" },
-    { title: t('lossTypes.financial'), icon: <Home className="h-6 w-6" />, color: "from-amber-600 to-slate-400" },
-    { title: t('lossTypes.health'), icon: <TreePine className="h-6 w-6" />, color: "from-slate-400 to-red-700" },
-    { title: t('lossTypes.spiritual'), icon: <Sparkles className="h-6 w-6" />, color: "from-red-700 to-slate-400" },
-    { title: t('lossTypes.dreams'), icon: <Sunrise className="h-6 w-6" />, color: "from-amber-600 to-red-700" },
-    { title: t('lossTypes.safety'), icon: <Shield className="h-6 w-6" />, color: "from-slate-500 to-black" },
-    { title: t('lossTypes.identity'), icon: <Sparkles className="h-6 w-6" />, color: "from-slate-400 to-amber-600" },
-    { title: t('lossTypes.acceptance'), icon: <TreePine className="h-6 w-6" />, color: "from-amber-600 to-slate-500" }
+    { title: t('lossTypes.relationship').toString(), icon: <Users className="h-6 w-6" />, color: "from-red-700 to-amber-600" },
+    { title: t('lossTypes.career').toString(), icon: <Briefcase className="h-6 w-6" />, color: "from-amber-600 to-red-700" },
+    { title: t('lossTypes.financial').toString(), icon: <Home className="h-6 w-6" />, color: "from-amber-600 to-slate-400" },
+    { title: t('lossTypes.health').toString(), icon: <TreePine className="h-6 w-6" />, color: "from-slate-400 to-red-700" },
+    { title: t('lossTypes.spiritual').toString(), icon: <Sparkles className="h-6 w-6" />, color: "from-red-700 to-slate-400" },
+    { title: t('lossTypes.dreams').toString(), icon: <Sunrise className="h-6 w-6" />, color: "from-amber-600 to-red-700" },
+    { title: t('lossTypes.safety').toString(), icon: <Shield className="h-6 w-6" />, color: "from-slate-500 to-black" },
+    { title: t('lossTypes.identity').toString(), icon: <Sparkles className="h-6 w-6" />, color: "from-slate-400 to-amber-600" },
+    { title: t('lossTypes.acceptance').toString(), icon: <TreePine className="h-6 w-6" />, color: "from-amber-600 to-slate-500" }
   ];
 
   return (
@@ -56,25 +57,25 @@ const Index = () => {
             <div className="flex items-center space-x-2">
               <Compass className="h-8 w-8 text-yellow-600" />
               <span className="text-2xl font-bold bg-gradient-to-r from-yellow-600 to-red-700 bg-clip-text text-transparent">
-                {t('app.title')}
+                {t('app.title').toString()}
               </span>
             </div>
             <div className="hidden md:flex items-center space-x-8">
               <Link to="/assessment" className="text-gray-300 hover:text-yellow-600 transition-colors">
-                {t('nav.discovery')}
+                {t('nav.discovery').toString()}
               </Link>
               <Link to="/sessions" className="text-gray-300 hover:text-yellow-600 transition-colors">
-                {t('nav.practices')}
+                {t('nav.practices').toString()}
               </Link>
               <Link to="/masterclass" className="text-gray-300 hover:text-yellow-600 transition-colors">
-                {t('nav.sessions')}
+                {t('nav.sessions').toString()}
               </Link>
               <Link to="/community" className="text-gray-300 hover:text-yellow-600 transition-colors">
-                {t('nav.community')}
+                {t('nav.community').toString()}
               </Link>
               <LanguageSelector />
               <Button variant="outline" className="border-yellow-600 text-yellow-600 hover:bg-yellow-600/10">
-                {t('nav.signin')}
+                {t('nav.signin').toString()}
               </Button>
             </div>
           </div>
@@ -87,30 +88,30 @@ const Index = () => {
           <div className="mb-8">
             <Compass className="h-16 w-16 mx-auto text-yellow-600 mb-6" />
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-yellow-600 via-red-700 to-slate-300 bg-clip-text text-transparent">
-              {t('hero.title')}
+              {t('hero.title').toString()}
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
-              {t('hero.subtitle')}
+              {t('hero.subtitle').toString()}
               <br />
-              <span className="text-yellow-600">{t('hero.subtitle2')}</span>
+              <span className="text-yellow-600">{t('hero.subtitle2').toString()}</span>
             </p>
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <Link to="/assessment">
               <Button size="lg" className="bg-gradient-to-r from-yellow-600 to-red-700 hover:from-yellow-700 hover:to-red-800 text-white px-8 py-3">
-                {t('hero.startButton')}
+                {t('hero.startButton').toString()}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Button variant="outline" size="lg" className="border-yellow-600 text-yellow-600 hover:bg-yellow-600/10 px-8 py-3">
-              {t('hero.watchButton')}
+              {t('hero.watchButton').toString()}
             </Button>
           </div>
 
           {/* 9 Faces of Loss */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-yellow-600 to-red-700 bg-clip-text text-transparent">{t('lossTypes.title')}</h2>
+            <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-yellow-600 to-red-700 bg-clip-text text-transparent">{t('lossTypes.title').toString()}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {lossTypes.map((loss, index) => (
                 <Card key={index} className="bg-slate-800/50 border-slate-700 hover:border-yellow-600/50 transition-all duration-300 group">
@@ -149,7 +150,7 @@ const Index = () => {
       <section className="py-20 px-4 bg-slate-800/30">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-yellow-600 to-red-700 bg-clip-text text-transparent">
-            {t('journey.title')}
+            {t('journey.title').toString()}
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -157,12 +158,12 @@ const Index = () => {
               <CardHeader>
                 <CardTitle className="text-white flex items-center">
                   <span className="w-8 h-8 bg-gradient-to-r from-yellow-600 to-red-700 rounded-full flex items-center justify-center text-sm mr-3">1</span>
-                  {t('journey.step1.title')}
+                  {t('journey.step1.title').toString()}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-400">
-                  {t('journey.step1.description')}
+                  {t('journey.step1.description').toString()}
                 </p>
               </CardContent>
             </Card>
@@ -171,12 +172,12 @@ const Index = () => {
               <CardHeader>
                 <CardTitle className="text-white flex items-center">
                   <span className="w-8 h-8 bg-gradient-to-r from-red-700 to-yellow-600 rounded-full flex items-center justify-center text-sm mr-3">2</span>
-                  {t('journey.step2.title')}
+                  {t('journey.step2.title').toString()}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-400">
-                  {t('journey.step2.description')}
+                  {t('journey.step2.description').toString()}
                 </p>
               </CardContent>
             </Card>
@@ -185,12 +186,12 @@ const Index = () => {
               <CardHeader>
                 <CardTitle className="text-white flex items-center">
                   <span className="w-8 h-8 bg-gradient-to-r from-yellow-600 to-slate-400 rounded-full flex items-center justify-center text-sm mr-3">3</span>
-                  {t('journey.step3.title')}
+                  {t('journey.step3.title').toString()}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-400">
-                  {t('journey.step3.description')}
+                  {t('journey.step3.description').toString()}
                 </p>
               </CardContent>
             </Card>
@@ -202,14 +203,14 @@ const Index = () => {
       <section className="py-20 px-4 text-center">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold mb-6 text-white">
-            {t('cta.title')}
+            {t('cta.title').toString()}
           </h2>
           <p className="text-xl text-gray-300 mb-8">
-            {t('cta.description')}
+            {t('cta.description').toString()}
           </p>
           <Link to="/assessment">
             <Button size="lg" className="bg-gradient-to-r from-yellow-600 to-red-700 hover:from-yellow-700 hover:to-red-800 text-white px-12 py-4 text-lg">
-              {t('cta.button')}
+              {t('cta.button').toString()}
               <ArrowRight className="ml-2 h-6 w-6" />
             </Button>
           </Link>
@@ -220,3 +221,4 @@ const Index = () => {
 };
 
 export default Index;
+
