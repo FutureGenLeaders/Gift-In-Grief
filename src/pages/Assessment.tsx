@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
-import { Flower2, ArrowLeft, ArrowRight } from "lucide-react";
+import { Compass, ArrowLeft, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Assessment = () => {
@@ -16,41 +16,41 @@ const Assessment = () => {
   const questions = [
     {
       id: 0,
-      tradition: "Buddhist Wisdom",
-      question: "How do you currently relate to the impermanence of life and loss?",
+      theme: "Embracing Change",
+      question: "How do you currently relate to the impermanence and constant change in life?",
       options: [
-        { value: "denial", label: "I resist accepting that everything must change and pass away" },
-        { value: "struggle", label: "I intellectually understand impermanence but emotionally fight it" },
-        { value: "acceptance", label: "I'm learning to find peace in life's constant flow of change" },
-        { value: "wisdom", label: "I embrace impermanence as the natural order and find freedom in it" }
+        { value: "resistance", label: "I resist accepting that everything must change and pass away" },
+        { value: "struggle", label: "I understand change intellectually but emotionally fight it" },
+        { value: "acceptance", label: "I'm learning to find peace in life's natural flow of change" },
+        { value: "embrace", label: "I embrace change as natural and find freedom in letting go" }
       ]
     },
     {
       id: 1,
-      tradition: "Maat's Balance",
-      question: "When facing loss, how do you seek truth and justice in your experience?",
+      theme: "Seeking Truth",
+      question: "When facing loss, how do you seek understanding and meaning?",
       options: [
-        { value: "chaos", label: "Everything feels unfair and without meaning or purpose" },
+        { value: "chaos", label: "Everything feels meaningless and without purpose" },
         { value: "questioning", label: "I'm searching for understanding of why this happened" },
         { value: "balance", label: "I'm learning to hold both pain and gratitude simultaneously" },
-        { value: "cosmic", label: "I trust in a greater cosmic order beyond my understanding" }
+        { value: "trust", label: "I trust in a greater order beyond my current understanding" }
       ]
     },
     {
       id: 2,
-      tradition: "Auset's Resurrection",
-      question: "How do you experience the cycle of death and rebirth in your grief?",
+      theme: "Transformation Cycles",
+      question: "How do you experience the cycle of endings and new beginnings in your grief?",
       options: [
-        { value: "stuck", label: "I feel trapped in death with no possibility of renewal" },
+        { value: "stuck", label: "I feel trapped in the ending with no possibility of renewal" },
         { value: "seeking", label: "I sense potential for rebirth but don't know how to access it" },
         { value: "emerging", label: "I'm experiencing moments of new life emerging from my loss" },
-        { value: "embodying", label: "I fully embrace the sacred cycle of death, transformation, and rebirth" }
+        { value: "flowing", label: "I fully embrace the sacred cycle of death, transformation, and rebirth" }
       ]
     },
     {
       id: 3,
-      tradition: "Christ Consciousness",
-      question: "How does unconditional love and forgiveness manifest in your grief journey?",
+      theme: "Heart Opening",
+      question: "How does love and forgiveness manifest in your grief journey?",
       options: [
         { value: "closed", label: "My heart feels closed and hardened by pain" },
         { value: "opening", label: "I'm struggling to forgive and love through my suffering" },
@@ -60,13 +60,13 @@ const Assessment = () => {
     },
     {
       id: 4,
-      tradition: "Integration",
-      question: "Which sacred practice calls most strongly to your soul right now?",
+      theme: "Inner Calling",
+      question: "Which practice calls most strongly to your soul right now?",
       options: [
-        { value: "meditation", label: "Silent meditation and mindfulness practices" },
-        { value: "ritual", label: "Sacred ceremonies and symbolic rituals" },
+        { value: "stillness", label: "Silent reflection and mindful presence" },
+        { value: "ritual", label: "Sacred ceremonies and meaningful rituals" },
         { value: "service", label: "Compassionate service to others in pain" },
-        { value: "study", label: "Deep study of spiritual texts and wisdom teachings" }
+        { value: "wisdom", label: "Deep study of universal wisdom and truth" }
       ]
     }
   ];
@@ -95,16 +95,16 @@ const Assessment = () => {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-800 py-20 px-4">
         <div className="max-w-2xl mx-auto text-center">
-          <Flower2 className="h-16 w-16 mx-auto text-purple-400 mb-6" />
+          <Compass className="h-16 w-16 mx-auto text-purple-400 mb-6" />
           <h1 className="text-4xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-            Your Sacred Assessment is Complete
+            Your Inner Discovery is Complete
           </h1>
           <p className="text-xl text-gray-300 mb-8">
-            Your personalized grief transformation journey has been prepared based on your responses.
+            Your personalized grief transformation journey has been prepared based on your inner wisdom.
           </p>
           <div className="space-y-4">
             <Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-3 w-full">
-              View Your Sacred Path
+              Explore Your Unique Path
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             <Link to="/">
@@ -127,7 +127,7 @@ const Assessment = () => {
             Back to Home
           </Link>
           <h1 className="text-3xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-            Sacred Grief Assessment
+            Inner Discovery Assessment
           </h1>
           <p className="text-gray-300 mb-6">
             Question {currentQuestion + 1} of {questions.length}
@@ -138,7 +138,7 @@ const Assessment = () => {
         <Card className="bg-slate-800/50 border-slate-700">
           <CardHeader>
             <CardDescription className="text-purple-400 text-sm font-medium">
-              {questions[currentQuestion].tradition}
+              {questions[currentQuestion].theme}
             </CardDescription>
             <CardTitle className="text-white text-xl">
               {questions[currentQuestion].question}
@@ -175,7 +175,7 @@ const Assessment = () => {
                 disabled={!answers[currentQuestion]}
                 className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
               >
-                {currentQuestion === questions.length - 1 ? "Complete Assessment" : "Next"}
+                {currentQuestion === questions.length - 1 ? "Complete Discovery" : "Next"}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>

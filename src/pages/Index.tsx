@@ -1,33 +1,33 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, Heart, Flower2, Star, Sun } from "lucide-react";
+import { ArrowRight, Heart, Flower2, Star, Sun, Compass } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Index = () => {
   const pillars = [
     {
       icon: <Flower2 className="h-8 w-8" />,
-      title: "Buddhist Wisdom",
-      description: "Understanding impermanence and the path through suffering to liberation",
+      title: "Sacred Impermanence",
+      description: "Understanding the natural flow of life and finding peace in change",
       color: "from-orange-500 to-red-500"
     },
     {
       icon: <Star className="h-8 w-8" />,
-      title: "Maat's Balance",
-      description: "Truth, justice, and cosmic order in the face of loss and transformation",
+      title: "Truth & Balance",
+      description: "Seeking authentic understanding and cosmic order through life's challenges",
       color: "from-blue-500 to-purple-500"
     },
     {
       icon: <Heart className="h-8 w-8" />,
-      title: "Auset's Resurrection",
-      description: "Divine feminine wisdom of death, rebirth, and eternal renewal",
+      title: "Death & Rebirth",
+      description: "Embracing the sacred cycles of transformation and renewal",
       color: "from-green-500 to-teal-500"
     },
     {
       icon: <Sun className="h-8 w-8" />,
-      title: "Christ Consciousness",
-      description: "Unconditional love, forgiveness, and transcendence through sacred suffering",
+      title: "Unconditional Love",
+      description: "Discovering the healing power of forgiveness and compassionate presence",
       color: "from-yellow-500 to-orange-500"
     }
   ];
@@ -46,13 +46,13 @@ const Index = () => {
             </div>
             <div className="hidden md:flex items-center space-x-8">
               <Link to="/assessment" className="text-gray-300 hover:text-purple-400 transition-colors">
-                Assessment
+                Inner Discovery
               </Link>
               <Link to="/sessions" className="text-gray-300 hover:text-purple-400 transition-colors">
-                Daily Sessions
+                Daily Practices
               </Link>
               <Link to="/masterclass" className="text-gray-300 hover:text-purple-400 transition-colors">
-                Masterclasses
+                Wisdom Sessions
               </Link>
               <Link to="/community" className="text-gray-300 hover:text-purple-400 transition-colors">
                 Community
@@ -69,20 +69,20 @@ const Index = () => {
       <section className="relative py-20 px-4 text-center">
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">
-            <Flower2 className="h-16 w-16 mx-auto text-purple-400 mb-6" />
+            <Compass className="h-16 w-16 mx-auto text-purple-400 mb-6" />
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-pink-400 to-yellow-400 bg-clip-text text-transparent">
               Sacred Grief Journey
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
-              Transform your relationship with loss through ancient wisdom traditions.<br />
-              <span className="text-purple-400">Buddhism • Maat • Auset • Christ Consciousness</span>
+              Transform your relationship with loss through your own inner wisdom.<br />
+              <span className="text-purple-400">The roadmap is here. The guru is within you.</span>
             </p>
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <Link to="/assessment">
               <Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-3">
-                Begin Your Assessment
+                Discover Your Path
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
@@ -115,7 +115,7 @@ const Index = () => {
       <section className="py-20 px-4 bg-slate-800/30">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-            Your Sacred Transformation Journey
+            Your Inner Wisdom Awakening
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -123,12 +123,12 @@ const Index = () => {
               <CardHeader>
                 <CardTitle className="text-white flex items-center">
                   <span className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center text-sm mr-3">1</span>
-                  Sacred Assessment
+                  Inner Discovery
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-400">
-                  Discover where you are in your grief journey through the lens of ancient wisdom traditions.
+                  Discover where you are in your grief journey through gentle self-reflection and inner exploration.
                 </p>
               </CardContent>
             </Card>
@@ -137,12 +137,12 @@ const Index = () => {
               <CardHeader>
                 <CardTitle className="text-white flex items-center">
                   <span className="w-8 h-8 bg-pink-600 rounded-full flex items-center justify-center text-sm mr-3">2</span>
-                  Daily Practices
+                  Sacred Practices
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-400">
-                  Morning meditations, afternoon reflections, and evening integration sessions guided by sacred teachings.
+                  Morning reflections, afternoon contemplations, and evening integrations that awaken your natural wisdom.
                 </p>
               </CardContent>
             </Card>
@@ -151,12 +151,12 @@ const Index = () => {
               <CardHeader>
                 <CardTitle className="text-white flex items-center">
                   <span className="w-8 h-8 bg-yellow-600 rounded-full flex items-center justify-center text-sm mr-3">3</span>
-                  Spiritual Integration
+                  Truth Integration
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-400">
-                  Deep masterclasses and community support to embody the wisdom of your transformation.
+                  Deep wisdom sessions and community support to embody the truth that emerges from within.
                 </p>
               </CardContent>
             </Card>
@@ -168,14 +168,14 @@ const Index = () => {
       <section className="py-20 px-4 text-center">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold mb-6 text-white">
-            Ready to Transform Your Grief into Sacred Wisdom?
+            Ready to Awaken Your Inner Wisdom?
           </h2>
           <p className="text-xl text-gray-300 mb-8">
-            Join thousands who have found peace, purpose, and profound healing through ancient spiritual practices.
+            The roadmap is here. The answers are within you. Your transformation awaits your courage to look inside.
           </p>
           <Link to="/assessment">
             <Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-12 py-4 text-lg">
-              Start Your Sacred Journey
+              Begin Your Inner Discovery
               <ArrowRight className="ml-2 h-6 w-6" />
             </Button>
           </Link>
