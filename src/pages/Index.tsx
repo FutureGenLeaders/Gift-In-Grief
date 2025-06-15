@@ -10,7 +10,7 @@ const Index = () => {
       icon: <Flower2 className="h-8 w-8" />,
       title: "Sacred Impermanence",
       description: "Understanding the natural flow of life and finding peace in change",
-      color: "from-orange-500 to-red-500"
+      color: "from-purple-500 to-pink-500"
     },
     {
       icon: <Star className="h-8 w-8" />,
@@ -22,26 +22,26 @@ const Index = () => {
       icon: <Heart className="h-8 w-8" />,
       title: "Death & Rebirth",
       description: "Embracing the sacred cycles of transformation and renewal",
-      color: "from-green-500 to-teal-500"
+      color: "from-pink-500 to-purple-500"
     },
     {
       icon: <Sun className="h-8 w-8" />,
       title: "Unconditional Love",
       description: "Discovering the healing power of forgiveness and compassionate presence",
-      color: "from-yellow-500 to-orange-500"
+      color: "from-yellow-400 to-pink-500"
     }
   ];
 
   const lossTypes = [
-    { title: "Loss of Relationship", icon: "💔", color: "from-rose-400 to-pink-500" },
-    { title: "Loss of Career/Purpose", icon: "🌱", color: "from-green-400 to-emerald-500" },
-    { title: "Loss of Financial Security", icon: "🏠", color: "from-amber-400 to-orange-500" },
-    { title: "Loss of Health", icon: "🌿", color: "from-emerald-400 to-teal-500" },
-    { title: "Loss of Spiritual Identity", icon: "⭐", color: "from-purple-400 to-indigo-500" },
-    { title: "Loss of Dreams/Future", icon: "🌅", color: "from-pink-400 to-rose-500" },
-    { title: "Loss of Safety/Security", icon: "🛡️", color: "from-slate-400 to-gray-500" },
-    { title: "Loss of Identity/Role", icon: "🦋", color: "from-blue-400 to-cyan-500" },
-    { title: "Radical Acceptance", icon: "🌳", color: "from-green-500 to-emerald-600" }
+    { title: "Loss of Relationship", icon: "💔", color: "from-pink-400 to-purple-500" },
+    { title: "Loss of Career/Purpose", icon: "🌱", color: "from-purple-400 to-pink-500" },
+    { title: "Loss of Financial Security", icon: "🏠", color: "from-yellow-400 to-purple-500" },
+    { title: "Loss of Health", icon: "🌿", color: "from-purple-500 to-blue-500" },
+    { title: "Loss of Spiritual Identity", icon: "⭐", color: "from-indigo-500 to-purple-500" },
+    { title: "Loss of Dreams/Future", icon: "🌅", color: "from-pink-500 to-yellow-400" },
+    { title: "Loss of Safety/Security", icon: "🛡️", color: "from-purple-600 to-indigo-600" },
+    { title: "Loss of Identity/Role", icon: "🦋", color: "from-blue-500 to-purple-500" },
+    { title: "Radical Acceptance", icon: "🌳", color: "from-purple-500 to-pink-600" }
   ];
 
   return (
@@ -105,7 +105,7 @@ const Index = () => {
 
           {/* 9 Faces of Loss */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold mb-8 text-white">The 9 Faces of Loss</h2>
+            <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">The 9 Faces of Loss</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {lossTypes.map((loss, index) => (
                 <Card key={index} className="bg-slate-800/50 border-slate-700 hover:border-purple-500/50 transition-all duration-300 group">
@@ -151,7 +151,7 @@ const Index = () => {
             <Card className="bg-slate-800/50 border-slate-700">
               <CardHeader>
                 <CardTitle className="text-white flex items-center">
-                  <span className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center text-sm mr-3">1</span>
+                  <span className="w-8 h-8 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center text-sm mr-3">1</span>
                   Gentle Assessment
                 </CardTitle>
               </CardHeader>
@@ -165,7 +165,7 @@ const Index = () => {
             <Card className="bg-slate-800/50 border-slate-700">
               <CardHeader>
                 <CardTitle className="text-white flex items-center">
-                  <span className="w-8 h-8 bg-pink-600 rounded-full flex items-center justify-center text-sm mr-3">2</span>
+                  <span className="w-8 h-8 bg-gradient-to-r from-pink-600 to-purple-600 rounded-full flex items-center justify-center text-sm mr-3">2</span>
                   Daily Practices
                 </CardTitle>
               </CardHeader>
@@ -179,7 +179,7 @@ const Index = () => {
             <Card className="bg-slate-800/50 border-slate-700">
               <CardHeader>
                 <CardTitle className="text-white flex items-center">
-                  <span className="w-8 h-8 bg-yellow-600 rounded-full flex items-center justify-center text-sm mr-3">3</span>
+                  <span className="w-8 h-8 bg-gradient-to-r from-yellow-500 to-pink-600 rounded-full flex items-center justify-center text-sm mr-3">3</span>
                   Community Support
                 </CardTitle>
               </CardHeader>
