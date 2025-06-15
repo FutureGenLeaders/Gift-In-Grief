@@ -32,6 +32,18 @@ const Index = () => {
     }
   ];
 
+  const lossTypes = [
+    { title: "Loss of Relationship", icon: "💔", color: "from-rose-400 to-pink-500" },
+    { title: "Loss of Career/Purpose", icon: "🌱", color: "from-green-400 to-emerald-500" },
+    { title: "Loss of Financial Security", icon: "🏠", color: "from-amber-400 to-orange-500" },
+    { title: "Loss of Health", icon: "🌿", color: "from-emerald-400 to-teal-500" },
+    { title: "Loss of Spiritual Identity", icon: "⭐", color: "from-purple-400 to-indigo-500" },
+    { title: "Loss of Dreams/Future", icon: "🌅", color: "from-pink-400 to-rose-500" },
+    { title: "Loss of Safety/Security", icon: "🛡️", color: "from-slate-400 to-gray-500" },
+    { title: "Loss of Identity/Role", icon: "🦋", color: "from-blue-400 to-cyan-500" },
+    { title: "Radical Acceptance", icon: "🌳", color: "from-green-500 to-emerald-600" }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-800">
       {/* Navigation */}
@@ -39,9 +51,9 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
-              <Flower2 className="h-8 w-8 text-purple-400" />
+              <Heart className="h-8 w-8 text-purple-400" />
               <span className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Sacred Grief Journey
+                The Gift in Grief
               </span>
             </div>
             <div className="hidden md:flex items-center space-x-8">
@@ -69,26 +81,43 @@ const Index = () => {
       <section className="relative py-20 px-4 text-center">
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">
-            <Compass className="h-16 w-16 mx-auto text-purple-400 mb-6" />
+            <Heart className="h-16 w-16 mx-auto text-purple-400 mb-6" />
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-pink-400 to-yellow-400 bg-clip-text text-transparent">
-              Sacred Grief Journey
+              The Gift in Grief
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
-              Transform your relationship with loss through your own inner wisdom.<br />
-              <span className="text-purple-400">The roadmap is here. The guru is within you.</span>
+              Transform your relationship with loss through gentle wisdom and compassionate support.<br />
+              <span className="text-purple-400">The roadmap is here. The healing is within you.</span>
             </p>
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <Link to="/assessment">
               <Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-3">
-                Discover Your Path
+                Begin Your Journey
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Button variant="outline" size="lg" className="border-purple-500 text-purple-400 hover:bg-purple-500/10 px-8 py-3">
               Watch Introduction
             </Button>
+          </div>
+
+          {/* 9 Faces of Loss */}
+          <div className="mb-16">
+            <h2 className="text-3xl font-bold mb-8 text-white">The 9 Faces of Loss</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {lossTypes.map((loss, index) => (
+                <Card key={index} className="bg-slate-800/50 border-slate-700 hover:border-purple-500/50 transition-all duration-300 group">
+                  <CardHeader className="text-center pb-3">
+                    <div className={`w-12 h-12 mx-auto mb-3 rounded-full bg-gradient-to-r ${loss.color} p-3 flex items-center justify-center text-lg group-hover:scale-110 transition-transform`}>
+                      {loss.icon}
+                    </div>
+                    <CardTitle className="text-white text-sm">{loss.title}</CardTitle>
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
@@ -115,7 +144,7 @@ const Index = () => {
       <section className="py-20 px-4 bg-slate-800/30">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-            Your Inner Wisdom Awakening
+            Your Gentle Healing Journey
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -123,12 +152,12 @@ const Index = () => {
               <CardHeader>
                 <CardTitle className="text-white flex items-center">
                   <span className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center text-sm mr-3">1</span>
-                  Inner Discovery
+                  Gentle Assessment
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-400">
-                  Discover where you are in your grief journey through gentle self-reflection and inner exploration.
+                  Discover where you are in your grief journey through compassionate self-reflection and gentle exploration.
                 </p>
               </CardContent>
             </Card>
@@ -137,12 +166,12 @@ const Index = () => {
               <CardHeader>
                 <CardTitle className="text-white flex items-center">
                   <span className="w-8 h-8 bg-pink-600 rounded-full flex items-center justify-center text-sm mr-3">2</span>
-                  Sacred Practices
+                  Daily Practices
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-400">
-                  Morning reflections, afternoon contemplations, and evening integrations that awaken your natural wisdom.
+                  Morning check-ins, afternoon reflections, and evening integrations that nurture your natural healing wisdom.
                 </p>
               </CardContent>
             </Card>
@@ -151,12 +180,12 @@ const Index = () => {
               <CardHeader>
                 <CardTitle className="text-white flex items-center">
                   <span className="w-8 h-8 bg-yellow-600 rounded-full flex items-center justify-center text-sm mr-3">3</span>
-                  Truth Integration
+                  Community Support
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-400">
-                  Deep wisdom sessions and community support to embody the truth that emerges from within.
+                  Connect with others on similar journeys and access professional resources when you're ready.
                 </p>
               </CardContent>
             </Card>
@@ -168,14 +197,14 @@ const Index = () => {
       <section className="py-20 px-4 text-center">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold mb-6 text-white">
-            Ready to Awaken Your Inner Wisdom?
+            Ready to Discover the Gift in Your Grief?
           </h2>
           <p className="text-xl text-gray-300 mb-8">
-            The roadmap is here. The answers are within you. Your transformation awaits your courage to look inside.
+            Your healing journey is unique. Let us provide gentle guidance as you uncover the wisdom and strength within your experience.
           </p>
           <Link to="/assessment">
             <Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-12 py-4 text-lg">
-              Begin Your Inner Discovery
+              Begin Your Gentle Journey
               <ArrowRight className="ml-2 h-6 w-6" />
             </Button>
           </Link>
