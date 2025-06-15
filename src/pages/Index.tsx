@@ -1,13 +1,13 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, Heart, Lotus, Star, Sun } from "lucide-react";
+import { ArrowRight, Heart, Flower2, Star, Sun } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Index = () => {
   const pillars = [
     {
-      icon: <Lotus className="h-8 w-8" />,
+      icon: <Flower2 className="h-8 w-8" />,
       title: "Buddhist Wisdom",
       description: "Understanding impermanence and the path through suffering to liberation",
       color: "from-orange-500 to-red-500"
@@ -39,7 +39,7 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
-              <Lotus className="h-8 w-8 text-purple-400" />
+              <Flower2 className="h-8 w-8 text-purple-400" />
               <span className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
                 Sacred Grief Journey
               </span>
@@ -69,7 +69,7 @@ const Index = () => {
       <section className="relative py-20 px-4 text-center">
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">
-            <Lotus className="h-16 w-16 mx-auto text-purple-400 mb-6" />
+            <Flower2 className="h-16 w-16 mx-auto text-purple-400 mb-6" />
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-pink-400 to-yellow-400 bg-clip-text text-transparent">
               Sacred Grief Journey
             </h1>
@@ -80,10 +80,12 @@ const Index = () => {
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-3">
-              Begin Your Assessment
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <Link to="/assessment">
+              <Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-3">
+                Begin Your Assessment
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
             <Button variant="outline" size="lg" className="border-purple-500 text-purple-400 hover:bg-purple-500/10 px-8 py-3">
               Watch Introduction
             </Button>
@@ -171,10 +173,12 @@ const Index = () => {
           <p className="text-xl text-gray-300 mb-8">
             Join thousands who have found peace, purpose, and profound healing through ancient spiritual practices.
           </p>
-          <Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-12 py-4 text-lg">
-            Start Your Sacred Journey
-            <ArrowRight className="ml-2 h-6 w-6" />
-          </Button>
+          <Link to="/assessment">
+            <Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-12 py-4 text-lg">
+              Start Your Sacred Journey
+              <ArrowRight className="ml-2 h-6 w-6" />
+            </Button>
+          </Link>
         </div>
       </section>
     </div>

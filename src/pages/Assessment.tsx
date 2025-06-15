@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
-import { Lotus, ArrowLeft, ArrowRight } from "lucide-react";
+import { Flower2, ArrowLeft, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Assessment = () => {
@@ -95,7 +95,7 @@ const Assessment = () => {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-800 py-20 px-4">
         <div className="max-w-2xl mx-auto text-center">
-          <Lotus className="h-16 w-16 mx-auto text-purple-400 mb-6" />
+          <Flower2 className="h-16 w-16 mx-auto text-purple-400 mb-6" />
           <h1 className="text-4xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
             Your Sacred Assessment is Complete
           </h1>
