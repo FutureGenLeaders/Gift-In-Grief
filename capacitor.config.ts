@@ -16,6 +16,12 @@ const config: CapacitorConfig = {
       showSpinner: false,
     },
   },
+  ios: {
+    contentInset: 'automatic'
+  },
+  android: {
+    allowMixedContent: true
+  }
 };
 
 export default config;
