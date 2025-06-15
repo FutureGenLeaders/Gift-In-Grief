@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -9,6 +10,9 @@ import NotFound from "./pages/NotFound";
 import Sessions from "@/pages/Sessions";
 import CreateSession from "@/pages/CreateSession";
 import Subscribe from "@/pages/Subscribe";
+import ProfilePage from "@/pages/ProfilePage";
+import MasterclassLibrary from "@/pages/MasterclassLibrary";
+import CommunityPage from "@/pages/CommunityPage";
 import "./i18n";
 import { usePushNotifications } from "@/hooks/usePushNotifications";
 import AnnouncementBoardPage from "@/pages/AnnouncementBoard";
@@ -31,6 +35,9 @@ const App = () => {
             <Route path="/sessions" element={<Sessions />} />
             <Route path="/create-session" element={<CreateSession />} />
             <Route path="/subscribe" element={<Subscribe />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/masterclass" element={<MasterclassLibrary />} />
+            <Route path="/community" element={<CommunityPage />} />
             <Route path="/announcements" element={<AnnouncementBoardPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

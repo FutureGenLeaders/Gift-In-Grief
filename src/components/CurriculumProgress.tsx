@@ -29,7 +29,6 @@ export default function CurriculumProgress({ joinDate, onComplete }: { joinDate:
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Only allow unlocking up to current week since join date (drip logic)
   const weeksSinceJoin = getWeeksSince(joinDate);
 
   useEffect(() => {
@@ -37,9 +36,8 @@ export default function CurriculumProgress({ joinDate, onComplete }: { joinDate:
       setLoading(true);
       setError(null);
 
-      // Fix: Use string as any for Supabase table due to type limits
       const { data: mods, error: modErr } = await supabase
-        .from("curriculum_modules" as any)
+        .from("curriculum_modules")
         .select("*")
         .order("release_week", { ascending: true });
 
@@ -50,7 +48,7 @@ export default function CurriculumProgress({ joinDate, onComplete }: { joinDate:
       let progErr = null;
       if (userId) {
         const { data, error } = await supabase
-          .from("user_curriculum_progress" as any)
+          .from("user_curriculum_progress")
           .select("*")
           .eq("user_id", userId);
         prog = data;
@@ -71,13 +69,12 @@ export default function CurriculumProgress({ joinDate, onComplete }: { joinDate:
     fetchData();
   }, [joinDate]);
 
-  // Mark module as complete
   async function handleComplete(moduleId: string) {
     const { data: user } = await supabase.auth.getUser();
     if (!user?.user?.id) return;
 
     await supabase
-      .from("user_curriculum_progress" as any)
+      .from("user_curriculum_progress")
       .upsert([
         {
           user_id: user.user.id,
@@ -87,17 +84,21 @@ export default function CurriculumProgress({ joinDate, onComplete }: { joinDate:
         },
       ]);
 
-    setProgress((old) => ({
-      ...old,
-      [moduleId]: { ...old[moduleId], completed_at: new Date().toISOString() },
+    setProgress((prevProgress) => ({
+      ...prevProgress,
+      [moduleId]: { 
+        ...prevProgress[moduleId], 
+        module_id: moduleId,
+        completed_at: new Date().toISOString(),
+        unlocked_at: prevProgress[moduleId]?.unlocked_at ?? new Date().toISOString()
+      },
     }));
 
-    // If all modules completed, fire callback
     const allComplete =
       modules.length > 0 &&
       modules
         .filter((m) => m.release_week <= weeksSinceJoin + 1)
-        .every((m) => old[m.id]?.completed_at || m.id === moduleId);
+        .every((m) => prevProgress[m.id]?.completed_at || m.id === moduleId);
 
     if (allComplete && onComplete) {
       onComplete();
