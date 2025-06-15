@@ -19,7 +19,7 @@ export default function MorningSession() {
     }
 
     // Get current streak
-    const { data: recentSessions } = await supabase
+    const { data: recentSessions } = await (supabase as any)
       .from("daily_sessions")
       .select("completed_at")
       .eq("user_id", user.user.id)
@@ -28,7 +28,7 @@ export default function MorningSession() {
 
     let streakCount = 1;
     if (recentSessions && recentSessions.length > 0) {
-      const lastSession = new Date(recentSessions[0].completed_at);
+      const lastSession = new Date((recentSessions as any)[0].completed_at);
       const yesterday = new Date();
       yesterday.setDate(yesterday.getDate() - 1);
       yesterday.setHours(0, 0, 0, 0);
@@ -40,7 +40,7 @@ export default function MorningSession() {
     }
 
     // Record the session
-    await supabase
+    await (supabase as any)
       .from("daily_sessions")
       .insert({
         user_id: user.user.id,
@@ -53,7 +53,7 @@ export default function MorningSession() {
   };
 
   const getCurrentStreak = async (userId: string): Promise<number> => {
-    const { data: sessions } = await supabase
+    const { data: sessions } = await (supabase as any)
       .from("daily_sessions")
       .select("completed_at")
       .eq("user_id", userId)
@@ -67,7 +67,7 @@ export default function MorningSession() {
     today.setHours(0, 0, 0, 0);
 
     for (let i = 0; i < sessions.length; i++) {
-      const sessionDate = new Date(sessions[i].completed_at);
+      const sessionDate = new Date((sessions as any)[i].completed_at);
       sessionDate.setHours(0, 0, 0, 0);
 
       const expectedDate = new Date(today);

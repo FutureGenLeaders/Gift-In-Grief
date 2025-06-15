@@ -39,14 +39,14 @@ export default function ProfilePage() {
       if (!user?.user?.id) return;
 
       // Get user profile (now typed)
-      const { data: profileData } = await supabase
+      const { data: profileData } = await (supabase as any)
         .from("user_profiles")
         .select("*")
         .eq("user_id", user.user.id)
         .maybeSingle();
 
       // Get session history
-      const { data: sessions } = await supabase
+      const { data: sessions } = await (supabase as any)
         .from("daily_sessions")
         .select("*")
         .eq("user_id", user.user.id)
