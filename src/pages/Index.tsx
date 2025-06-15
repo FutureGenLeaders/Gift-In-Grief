@@ -12,40 +12,40 @@ const Index = () => {
   const pillars = [
     {
       icon: <TreePine className="h-8 w-8" />,
-      title: t('pillars.impermanence.title'),
-      description: t('pillars.impermanence.description'),
+      title: <span>{t('pillars.impermanence.title')}</span>,
+      description: <span>{t('pillars.impermanence.description')}</span>,
       color: "from-amber-600 to-red-700"
     },
     {
       icon: <Compass className="h-8 w-8" />,
-      title: t('pillars.truth.title'),
-      description: t('pillars.truth.description'),
+      title: <span>{t('pillars.truth.title')}</span>,
+      description: <span>{t('pillars.truth.description')}</span>,
       color: "from-red-700 to-amber-600"
     },
     {
       icon: <Sun className="h-8 w-8" />,
-      title: t('pillars.rebirth.title'),
-      description: t('pillars.rebirth.description'),
+      title: <span>{t('pillars.rebirth.title')}</span>,
+      description: <span>{t('pillars.rebirth.description')}</span>,
       color: "from-amber-600 to-slate-400"
     },
     {
       icon: <Sun className="h-8 w-8" />,
-      title: t('pillars.love.title'),
-      description: t('pillars.love.description'),
+      title: <span>{t('pillars.love.title')}</span>,
+      description: <span>{t('pillars.love.description')}</span>,
       color: "from-red-700 to-amber-600"
     }
   ];
 
   const lossTypes = [
-    { title: t('lossTypes.relationship'), icon: <Users className="h-6 w-6" />, color: "from-red-700 to-amber-600" },
-    { title: t('lossTypes.career'), icon: <Briefcase className="h-6 w-6" />, color: "from-amber-600 to-red-700" },
-    { title: t('lossTypes.financial'), icon: <Home className="h-6 w-6" />, color: "from-amber-600 to-slate-400" },
-    { title: t('lossTypes.health'), icon: <TreePine className="h-6 w-6" />, color: "from-slate-400 to-red-700" },
-    { title: t('lossTypes.spiritual'), icon: <Sparkles className="h-6 w-6" />, color: "from-red-700 to-slate-400" },
-    { title: t('lossTypes.dreams'), icon: <Sunrise className="h-6 w-6" />, color: "from-amber-600 to-red-700" },
-    { title: t('lossTypes.safety'), icon: <Shield className="h-6 w-6" />, color: "from-slate-500 to-black" },
-    { title: t('lossTypes.identity'), icon: <Sparkles className="h-6 w-6" />, color: "from-slate-400 to-amber-600" },
-    { title: t('lossTypes.acceptance'), icon: <TreePine className="h-6 w-6" />, color: "from-amber-600 to-slate-500" }
+    { title: <span>{t('lossTypes.relationship')}</span>, icon: <Users className="h-6 w-6" />, color: "from-red-700 to-amber-600" },
+    { title: <span>{t('lossTypes.career')}</span>, icon: <Briefcase className="h-6 w-6" />, color: "from-amber-600 to-red-700" },
+    { title: <span>{t('lossTypes.financial')}</span>, icon: <Home className="h-6 w-6" />, color: "from-amber-600 to-slate-400" },
+    { title: <span>{t('lossTypes.health')}</span>, icon: <TreePine className="h-6 w-6" />, color: "from-slate-400 to-red-700" },
+    { title: <span>{t('lossTypes.spiritual')}</span>, icon: <Sparkles className="h-6 w-6" />, color: "from-red-700 to-slate-400" },
+    { title: <span>{t('lossTypes.dreams')}</span>, icon: <Sunrise className="h-6 w-6" />, color: "from-amber-600 to-red-700" },
+    { title: <span>{t('lossTypes.safety')}</span>, icon: <Shield className="h-6 w-6" />, color: "from-slate-500 to-black" },
+    { title: <span>{t('lossTypes.identity')}</span>, icon: <Sparkles className="h-6 w-6" />, color: "from-slate-400 to-amber-600" },
+    { title: <span>{t('lossTypes.acceptance')}</span>, icon: <TreePine className="h-6 w-6" />, color: "from-amber-600 to-slate-500" }
   ];
 
   return (
@@ -62,20 +62,20 @@ const Index = () => {
             </div>
             <div className="hidden md:flex items-center space-x-8">
               <Link to="/assessment" className="text-gray-300 hover:text-yellow-600 transition-colors">
-                {t('nav.discovery')}
+                <span>{t('nav.discovery')}</span>
               </Link>
               <Link to="/sessions" className="text-gray-300 hover:text-yellow-600 transition-colors">
-                {t('nav.practices')}
+                <span>{t('nav.practices')}</span>
               </Link>
               <Link to="/masterclass" className="text-gray-300 hover:text-yellow-600 transition-colors">
-                {t('nav.sessions')}
+                <span>{t('nav.sessions')}</span>
               </Link>
               <Link to="/community" className="text-gray-300 hover:text-yellow-600 transition-colors">
-                {t('nav.community')}
+                <span>{t('nav.community')}</span>
               </Link>
               <LanguageSelector />
               <Button variant="outline" className="border-yellow-600 text-yellow-600 hover:bg-yellow-600/10">
-                {t('nav.signin')}
+                <span>{t('nav.signin')}</span>
               </Button>
             </div>
           </div>
@@ -88,7 +88,7 @@ const Index = () => {
           <div className="mb-8">
             <Compass className="h-16 w-16 mx-auto text-yellow-600 mb-6" />
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-yellow-600 via-red-700 to-slate-300 bg-clip-text text-transparent">
-              {t('hero.title')}
+              <span>{t('hero.title')}</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
               {t('hero.subtitle')}<br />
@@ -99,18 +99,18 @@ const Index = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <Link to="/assessment">
               <Button size="lg" className="bg-gradient-to-r from-yellow-600 to-red-700 hover:from-yellow-700 hover:to-red-800 text-white px-8 py-3">
-                {t('hero.startButton')}
+                <span>{t('hero.startButton')}</span>
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Button variant="outline" size="lg" className="border-yellow-600 text-yellow-600 hover:bg-yellow-600/10 px-8 py-3">
-              {t('hero.watchButton')}
+              <span>{t('hero.watchButton')}</span>
             </Button>
           </div>
 
           {/* 9 Faces of Loss */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-yellow-600 to-red-700 bg-clip-text text-transparent">{t('lossTypes.title')}</h2>
+            <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-yellow-600 to-red-700 bg-clip-text text-transparent"><span>{t('lossTypes.title')}</span></h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {lossTypes.map((loss, index) => (
                 <Card key={index} className="bg-slate-800/50 border-slate-700 hover:border-yellow-600/50 transition-all duration-300 group">
@@ -149,7 +149,7 @@ const Index = () => {
       <section className="py-20 px-4 bg-slate-800/30">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-yellow-600 to-red-700 bg-clip-text text-transparent">
-            {t('journey.title')}
+            <span>{t('journey.title')}</span>
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -157,12 +157,12 @@ const Index = () => {
               <CardHeader>
                 <CardTitle className="text-white flex items-center">
                   <span className="w-8 h-8 bg-gradient-to-r from-yellow-600 to-red-700 rounded-full flex items-center justify-center text-sm mr-3">1</span>
-                  {t('journey.step1.title')}
+                  <span>{t('journey.step1.title')}</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-400">
-                  {t('journey.step1.description')}
+                  <span>{t('journey.step1.description')}</span>
                 </p>
               </CardContent>
             </Card>
@@ -171,12 +171,12 @@ const Index = () => {
               <CardHeader>
                 <CardTitle className="text-white flex items-center">
                   <span className="w-8 h-8 bg-gradient-to-r from-red-700 to-yellow-600 rounded-full flex items-center justify-center text-sm mr-3">2</span>
-                  {t('journey.step2.title')}
+                  <span>{t('journey.step2.title')}</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-400">
-                  {t('journey.step2.description')}
+                  <span>{t('journey.step2.description')}</span>
                 </p>
               </CardContent>
             </Card>
@@ -185,12 +185,12 @@ const Index = () => {
               <CardHeader>
                 <CardTitle className="text-white flex items-center">
                   <span className="w-8 h-8 bg-gradient-to-r from-yellow-600 to-slate-400 rounded-full flex items-center justify-center text-sm mr-3">3</span>
-                  {t('journey.step3.title')}
+                  <span>{t('journey.step3.title')}</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-400">
-                  {t('journey.step3.description')}
+                  <span>{t('journey.step3.description')}</span>
                 </p>
               </CardContent>
             </Card>
@@ -202,14 +202,14 @@ const Index = () => {
       <section className="py-20 px-4 text-center">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold mb-6 text-white">
-            {t('cta.title')}
+            <span>{t('cta.title')}</span>
           </h2>
           <p className="text-xl text-gray-300 mb-8">
-            {t('cta.description')}
+            <span>{t('cta.description')}</span>
           </p>
           <Link to="/assessment">
             <Button size="lg" className="bg-gradient-to-r from-yellow-600 to-red-700 hover:from-yellow-700 hover:to-red-800 text-white px-12 py-4 text-lg">
-              {t('cta.button')}
+              <span>{t('cta.button')}</span>
               <ArrowRight className="ml-2 h-6 w-6" />
             </Button>
           </Link>
@@ -220,3 +220,4 @@ const Index = () => {
 };
 
 export default Index;
+
