@@ -8,6 +8,7 @@ import Assessment from "./pages/Assessment";
 import NotFound from "./pages/NotFound";
 import Sessions from "@/pages/Sessions";
 import CreateSession from "@/pages/CreateSession";
+import Subscribe from "@/pages/Subscribe";
 import "./i18n";
 import { usePushNotifications } from "@/hooks/usePushNotifications";
 
@@ -28,6 +29,7 @@ const App = () => {
             <Route path="/assessment" element={<Assessment />} />
             <Route path="/sessions" element={<Sessions />} />
             <Route path="/create-session" element={<CreateSession />} />
+            <Route path="/subscribe" element={<Subscribe />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

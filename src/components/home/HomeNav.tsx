@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Compass } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -29,6 +28,9 @@ export default function HomeNav() {
             </Link>
             <Link to="/community" className="text-gray-300 hover:text-yellow-600 transition-colors">
               {t("nav.community").toString()}
+            </Link>
+            <Link to="/subscribe" className="text-yellow-500 hover:text-yellow-300 font-bold bg-gradient-to-r from-yellow-700/20 via-red-700/20 to-yellow-600/20 px-3 py-1 rounded">
+              Membership
             </Link>
             <LanguageSelector />
             <Button variant="outline" className="border-yellow-600 text-yellow-600 hover:bg-yellow-600/10">
