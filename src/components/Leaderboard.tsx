@@ -18,7 +18,7 @@ export default function Leaderboard() {
     async function fetchLeaderboard() {
       // Get user profiles with session counts
       const { data, error } = await supabase
-        .from("user_profiles" as any)
+        .from("user_profiles")
         .select(`
           full_name,
           user_id
@@ -29,7 +29,7 @@ export default function Leaderboard() {
         const userSessionCounts = await Promise.all(
           data.map(async (profile: any) => {
             const { data: sessions } = await supabase
-              .from("daily_sessions" as any)
+              .from("daily_sessions")
               .select("id")
               .eq("user_id", profile.user_id);
             

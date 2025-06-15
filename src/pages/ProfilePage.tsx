@@ -40,14 +40,14 @@ export default function ProfilePage() {
 
       // Get user profile
       const { data: profileData } = await supabase
-        .from("user_profiles" as any)
+        .from("user_profiles")
         .select("*")
         .eq("user_id", user.user.id)
         .single();
 
       // Get session history
       const { data: sessions } = await supabase
-        .from("daily_sessions" as any)
+        .from("daily_sessions")
         .select("*")
         .eq("user_id", user.user.id)
         .order("completed_at", { ascending: false })
