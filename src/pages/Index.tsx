@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 export default function Index() {
   return (
-    <main className="min-h-screen bg-background w-full">
+    <main className="min-h-screen bg-black w-full">
       <HomeNav />
 
       <HeroSection />

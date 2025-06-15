@@ -1,4 +1,3 @@
-
 import { Compass, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -7,7 +6,7 @@ import { useTranslation } from "react-i18next";
 export default function HeroSection() {
   const { t } = useTranslation();
   return (
-    <section className="relative py-20 px-4 text-center bg-background">
+    <section className="relative py-20 px-4 text-center bg-black">
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
           <Compass className="h-16 w-16 mx-auto text-yellow-600 mb-6" />
