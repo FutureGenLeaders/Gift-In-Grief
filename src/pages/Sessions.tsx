@@ -2,16 +2,114 @@
 import React from "react";
 import { SessionList } from "@/components/SessionList";
 import { MyBookings } from "@/components/MyBookings";
+import HomeNav from "@/components/home/HomeNav";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Calendar, Clock, Users, Video, BookOpen } from "lucide-react";
 
-const Sessions = () => (
-  <div className="max-w-2xl mx-auto pt-8 space-y-10">
-    <h1 className="text-3xl font-bold mb-4">Available Sessions</h1>
-    <SessionList />
-    <div className="mt-10">
-      <h2 className="text-2xl font-semibold mb-2">Your Bookings</h2>
-      <MyBookings />
+const Sessions = () => {
+  const navigate = useNavigate();
+
+  return (
+    <div className="min-h-screen bg-black">
+      <HomeNav />
+      <div className="container mx-auto px-4 py-8">
+        <div className="max-w-4xl mx-auto">
+          {/* Header Section */}
+          <div className="text-center mb-12">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-yellow-600 to-red-700 bg-clip-text text-transparent mb-4">
+              Leadership Sessions
+            </h1>
+            <p className="text-gray-300 text-lg mb-6">
+              Join live sessions with experts to accelerate your transformation journey
+            </p>
+            <Button
+              onClick={() => navigate("/create-session")}
+              className="bg-gradient-to-r from-yellow-600 to-red-700 hover:from-yellow-700 hover:to-red-800 text-white"
+            >
+              <Video className="h-4 w-4 mr-2" />
+              Host a Session
+            </Button>
+          </div>
+
+          {/* Session Types */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <Card className="bg-slate-800/50 border-slate-700 hover:border-yellow-600/50 transition-all">
+              <CardHeader>
+                <CardTitle className="text-yellow-600 flex items-center">
+                  <BookOpen className="h-5 w-5 mr-2" />
+                  Masterclasses
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-300 text-sm">
+                  Deep-dive sessions on specific leadership and nervous system topics
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-slate-800/50 border-slate-700 hover:border-yellow-600/50 transition-all">
+              <CardHeader>
+                <CardTitle className="text-yellow-600 flex items-center">
+                  <Users className="h-5 w-5 mr-2" />
+                  Group Coaching
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-300 text-sm">
+                  Interactive sessions with personalized guidance and peer support
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-slate-800/50 border-slate-700 hover:border-yellow-600/50 transition-all">
+              <CardHeader>
+                <CardTitle className="text-yellow-600 flex items-center">
+                  <Calendar className="h-5 w-5 mr-2" />
+                  Q&A Sessions
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-300 text-sm">
+                  Open forums to get your questions answered by experts
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Available Sessions */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-semibold text-white mb-6 flex items-center">
+              <Clock className="h-6 w-6 text-yellow-600 mr-2" />
+              Available Sessions
+            </h2>
+            <SessionList />
+          </div>
+
+          {/* Your Bookings */}
+          <div className="mb-8">
+            <h2 className="text-2xl font-semibold text-white mb-6 flex items-center">
+              <Users className="h-6 w-6 text-yellow-600 mr-2" />
+              Your Bookings
+            </h2>
+            <MyBookings />
+          </div>
+
+          {/* Back to Dashboard */}
+          <div className="text-center">
+            <Button
+              onClick={() => navigate("/")}
+              variant="outline"
+              className="border-yellow-600 text-yellow-600 hover:bg-yellow-600/10"
+            >
+              ← Back to Dashboard
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Sessions;
