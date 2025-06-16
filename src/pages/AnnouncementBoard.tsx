@@ -4,7 +4,7 @@ import AnnouncementBoard from "@/components/AnnouncementBoard";
 import HomeNav from "@/components/home/HomeNav";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Megaphone } from "lucide-react";
+import { Heart } from "lucide-react";
 
 export default function AnnouncementBoardPage() {
   const navigate = useNavigate();
@@ -15,11 +15,11 @@ export default function AnnouncementBoardPage() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
             <h1 className="text-4xl font-bold bg-gradient-to-r from-yellow-600 to-red-700 bg-clip-text text-transparent mb-4 flex items-center justify-center">
-              <Megaphone className="h-10 w-10 text-yellow-600 mr-3" />
-              Notice Board
+              <Heart className="h-10 w-10 text-yellow-600 mr-3" />
+              Community Messages
             </h1>
             <p className="text-gray-300 text-lg">
-              Stay updated with the latest announcements and community news
+              Updates, encouragement, and gentle reminders from our healing community
             </p>
           </div>
           

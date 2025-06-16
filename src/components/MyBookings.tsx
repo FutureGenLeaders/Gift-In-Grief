@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -6,10 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "@/components/ui/use-toast";
-import { Calendar, Clock, Video, User, AlertCircle } from "lucide-react";
-
-// WARNING: Type override for Supabase missing-type tables.
-// For full type safety, re-generate your Supabase types after DB change.
+import { Calendar, Clock, Video, User, AlertCircle, Heart } from "lucide-react";
 
 type Booking = {
   id: string;
@@ -22,7 +18,7 @@ type Booking = {
     zoom_link: string | null;
     description: string | null;
     session_type?: string;
-    instructor_name?: string;
+    facilitator_name?: string;
   };
 };
 
@@ -34,12 +30,12 @@ const mockBookings: Booking[] = [
     status: "confirmed",
     created_at: new Date().toISOString(),
     session: {
-      title: "Nervous System Regulation Fundamentals",
+      title: "Finding Peace in Loss",
       start_time: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString(),
       zoom_link: "https://zoom.us/j/123456789",
-      description: "Learn the core principles of nervous system regulation",
-      session_type: "Masterclass",
-      instructor_name: "Dr. Sarah Chen"
+      description: "A gentle circle for those who have lost a loved one",
+      session_type: "Grief Circle",
+      facilitator_name: "Sarah Martinez, LCSW"
     }
   }
 ];
@@ -95,9 +91,9 @@ export function MyBookings() {
 
   const getSessionTypeColor = (type: string) => {
     switch (type) {
-      case "Masterclass": return "bg-yellow-900/50 text-yellow-300";
-      case "Group Coaching": return "bg-blue-900/50 text-blue-300";
-      case "Q&A Session": return "bg-green-900/50 text-green-300";
+      case "Grief Circle": return "bg-yellow-900/50 text-yellow-300";
+      case "Support Group": return "bg-blue-900/50 text-blue-300";
+      case "Daily Check-in": return "bg-green-900/50 text-green-300";
       default: return "bg-gray-900/50 text-gray-300";
     }
   };
@@ -105,7 +101,7 @@ export function MyBookings() {
   if (isLoading) {
     return (
       <div className="text-center py-8">
-        <div className="text-gray-400">Loading your bookings...</div>
+        <div className="text-gray-400">Loading your healing journey...</div>
       </div>
     );
   }
@@ -122,9 +118,9 @@ export function MyBookings() {
     return (
       <Card className="bg-slate-800/50 border-slate-700">
         <CardContent className="pt-6 text-center">
-          <AlertCircle className="h-12 w-12 text-gray-500 mx-auto mb-4" />
-          <p className="text-gray-400">You haven't booked any sessions yet.</p>
-          <p className="text-gray-500 text-sm mt-2">Book a session above to get started!</p>
+          <Heart className="h-12 w-12 text-gray-500 mx-auto mb-4" />
+          <p className="text-gray-400">You haven't joined any healing sessions yet.</p>
+          <p className="text-gray-500 text-sm mt-2">Book a session above to start your healing journey!</p>
         </CardContent>
       </Card>
     );
@@ -149,10 +145,10 @@ export function MyBookings() {
                   )}
                 </div>
               </div>
-              {booking.session.instructor_name && (
+              {booking.session.facilitator_name && (
                 <div className="flex items-center text-gray-400 text-sm">
                   <User className="h-4 w-4 mr-1" />
-                  {booking.session.instructor_name}
+                  {booking.session.facilitator_name}
                 </div>
               )}
             </div>
@@ -182,7 +178,7 @@ export function MyBookings() {
                   rel="noopener noreferrer"
                   className="text-yellow-600 hover:text-yellow-400 underline"
                 >
-                  Join Zoom Meeting
+                  Join Healing Session
                 </a>
               </div>
             )}
@@ -202,3 +198,22 @@ export function MyBookings() {
     </div>
   );
 }
+
+// Helper functions
+const getStatusColor = (status: string) => {
+  switch (status) {
+    case "confirmed": return "bg-green-900/50 text-green-300";
+    case "canceled": return "bg-red-900/50 text-red-300";
+    case "pending": return "bg-yellow-900/50 text-yellow-300";
+    default: return "bg-gray-900/50 text-gray-300";
+  }
+};
+
+const getSessionTypeColor = (type: string) => {
+  switch (type) {
+    case "Grief Circle": return "bg-yellow-900/50 text-yellow-300";
+    case "Support Group": return "bg-blue-900/50 text-blue-300";
+    case "Daily Check-in": return "bg-green-900/50 text-green-300";
+    default: return "bg-gray-900/50 text-gray-300";
+  }
+};

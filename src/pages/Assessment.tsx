@@ -1,106 +1,91 @@
 
-import { useState } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
-import { Heart, ArrowLeft, ArrowRight } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import HomeNav from "@/components/home/HomeNav";
+import { Heart, ArrowLeft, ArrowRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const Assessment = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState<Record<number, string>>({});
-  const [isComplete, setIsComplete] = useState(false);
+  const [answers, setAnswers] = useState<string[]>([]);
+  const [showResults, setShowResults] = useState(false);
 
   const questions = [
     {
-      id: 0,
-      theme: "Understanding Your Loss",
-      question: "Which type of loss resonates most deeply with your current experience?",
+      question: "What type of loss are you currently experiencing?",
       options: [
-        { value: "relationship", label: "Loss of Relationship - Death, divorce, breakup, or estrangement" },
-        { value: "career", label: "Loss of Career/Purpose - Job loss, retirement, or identity crisis" },
-        { value: "financial", label: "Loss of Financial Security - Economic hardship or financial upheaval" },
-        { value: "health", label: "Loss of Health - Illness, disability, or physical changes" },
-        { value: "spiritual", label: "Loss of Spiritual Identity - Faith crisis or meaning-making challenges" },
-        { value: "dreams", label: "Loss of Dreams/Future Vision - Unfulfilled goals or changed life plans" },
-        { value: "safety", label: "Loss of Safety/Security - Trauma, violence, or upheaval" },
-        { value: "identity", label: "Loss of Identity/Role - Life transitions or role changes" },
-        { value: "multiple", label: "I'm experiencing multiple types of loss simultaneously" }
+        "Loss of a loved one",
+        "Relationship ending",
+        "Job or career change", 
+        "Health challenges",
+        "Loss of dreams or goals",
+        "Multiple losses"
       ]
     },
     {
-      id: 1,
-      theme: "Embracing Change",
-      question: "How do you currently relate to the impermanence and constant change in life?",
+      question: "How long ago did this loss occur?",
       options: [
-        { value: "resistance", label: "I resist accepting that everything must change and pass away" },
-        { value: "struggle", label: "I understand change intellectually but emotionally fight it" },
-        { value: "acceptance", label: "I'm learning to find peace in life's natural flow of change" },
-        { value: "embrace", label: "I embrace change as natural and find freedom in letting go" }
+        "Within the last month",
+        "1-6 months ago",
+        "6 months to 1 year ago",
+        "1-2 years ago",
+        "More than 2 years ago",
+        "It's ongoing"
       ]
     },
     {
-      id: 2,
-      theme: "Seeking Understanding",
-      question: "When facing your loss, how do you seek meaning and understanding?",
+      question: "How would you describe your current emotional state?",
       options: [
-        { value: "chaos", label: "Everything feels meaningless and without purpose" },
-        { value: "questioning", label: "I'm searching for understanding of why this happened" },
-        { value: "balance", label: "I'm learning to hold both pain and gratitude simultaneously" },
-        { value: "trust", label: "I trust there's wisdom to be found in this experience" }
+        "Overwhelmed and struggling daily",
+        "Sad but managing basic tasks",
+        "Having good and bad days",
+        "Slowly finding moments of peace",
+        "Feeling stronger but still healing",
+        "Ready to help others on their journey"
       ]
     },
     {
-      id: 3,
-      theme: "Transformation Cycles",
-      question: "How do you experience the cycle of endings and new beginnings in your grief?",
+      question: "What support do you currently have?",
       options: [
-        { value: "stuck", label: "I feel trapped in the ending with no possibility of renewal" },
-        { value: "seeking", label: "I sense potential for rebirth but don't know how to access it" },
-        { value: "emerging", label: "I'm experiencing moments of new life emerging from my loss" },
-        { value: "flowing", label: "I embrace the natural cycle of death, transformation, and rebirth" }
+        "Very little support",
+        "Some family or friends",
+        "Strong support system",
+        "Professional counseling",
+        "Support groups",
+        "I prefer to handle things alone"
       ]
     },
     {
-      id: 4,
-      theme: "Heart Opening",
-      question: "How does love and compassion manifest in your grief journey?",
+      question: "What brings you the most comfort right now?",
       options: [
-        { value: "closed", label: "My heart feels closed and protected from further pain" },
-        { value: "opening", label: "I'm learning to keep my heart open despite the hurt" },
-        { value: "flowing", label: "Love is beginning to flow again through my experience" },
-        { value: "radiating", label: "My grief has deepened my capacity for compassion and love" }
-      ]
-    },
-    {
-      id: 5,
-      theme: "Inner Guidance",
-      question: "Which practice calls most strongly to your soul right now?",
-      options: [
-        { value: "stillness", label: "Silent reflection and mindful presence" },
-        { value: "ritual", label: "Sacred ceremonies and meaningful rituals" },
-        { value: "service", label: "Compassionate service to others in pain" },
-        { value: "wisdom", label: "Deep study and integration of universal truths" }
+        "Quiet time alone",
+        "Connecting with others",
+        "Creative expression",
+        "Nature and movement",
+        "Spiritual practices",
+        "Helping others"
       ]
     }
   ];
 
-  const handleAnswer = (value: string) => {
-    setAnswers({ ...answers, [currentQuestion]: value });
+  const handleAnswer = (answer: string) => {
+    const newAnswers = [...answers];
+    newAnswers[currentQuestion] = answer;
+    setAnswers(newAnswers);
   };
 
   const nextQuestion = () => {
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
-      setIsComplete(true);
+      setShowResults(true);
     }
   };
 
@@ -110,39 +95,86 @@ const Assessment = () => {
     }
   };
 
-  const progress = ((currentQuestion + 1) / questions.length) * 100;
+  const getPersonalizedGuidance = () => {
+    return {
+      title: "Your Healing Path",
+      description: "Based on your responses, here's what we recommend for your journey:",
+      recommendations: [
+        "Start with daily gentle check-ins to honor your feelings",
+        "Consider joining our grief circles for community support", 
+        "Explore creative expression as a way to process emotions",
+        "Practice mindful breathing when overwhelmed",
+        "Remember that healing isn't linear - be patient with yourself"
+      ],
+      nextSteps: [
+        "Join our daily practices for gentle guidance",
+        "Book a one-on-one session with a grief counselor",
+        "Connect with others in our community space"
+      ]
+    };
+  };
 
-  if (isComplete) {
+  if (showResults) {
+    const guidance = getPersonalizedGuidance();
+    
     return (
       <div className="min-h-screen bg-black">
         <HomeNav />
-        <div className="py-20 px-4">
-          <div className="max-w-2xl mx-auto text-center">
-            <Heart className="h-16 w-16 mx-auto text-yellow-600 mb-6" />
-            <h1 className="text-4xl font-bold mb-6 bg-gradient-to-r from-yellow-600 to-red-700 bg-clip-text text-transparent">
-              Your Gentle Journey Begins
-            </h1>
-            <p className="text-xl text-gray-300 mb-8">
-              Thank you for your courage in exploring your grief. Your personalized healing path has been prepared with love and wisdom.
-            </p>
-            <div className="space-y-4">
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-yellow-600 to-red-700 hover:from-yellow-700 hover:to-red-800 text-white px-8 py-3 w-full"
-                onClick={() => navigate("/")}
-              >
-                Explore Your Healing Path
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="border-yellow-600 text-yellow-600 hover:bg-yellow-600/10 px-8 py-3 w-full"
-                onClick={() => navigate("/")}
-              >
-                Return to Dashboard
-              </Button>
-            </div>
+        <div className="container mx-auto px-4 py-8">
+          <div className="max-w-2xl mx-auto">
+            <Card className="bg-slate-800/50 border-slate-700">
+              <CardHeader className="text-center">
+                <div className="flex justify-center mb-4">
+                  <Heart className="h-12 w-12 text-yellow-600" />
+                </div>
+                <CardTitle className="text-white text-2xl mb-2">
+                  {guidance.title}
+                </CardTitle>
+                <p className="text-gray-300">{guidance.description}</p>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div>
+                  <h3 className="text-yellow-600 font-semibold mb-3">Recommended Practices:</h3>
+                  <ul className="space-y-2">
+                    {guidance.recommendations.map((rec, index) => (
+                      <li key={index} className="flex items-start text-gray-300">
+                        <Heart className="h-4 w-4 text-yellow-600 mr-2 mt-0.5 flex-shrink-0" />
+                        {rec}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <div>
+                  <h3 className="text-yellow-600 font-semibold mb-3">Next Steps:</h3>
+                  <div className="space-y-3">
+                    {guidance.nextSteps.map((step, index) => (
+                      <Button
+                        key={index}
+                        variant="outline"
+                        className="w-full text-left justify-start border-yellow-600/50 text-yellow-600 hover:bg-yellow-600/10"
+                        onClick={() => {
+                          if (index === 0) navigate("/");
+                          if (index === 1) navigate("/sessions");
+                          if (index === 2) navigate("/community");
+                        }}
+                      >
+                        {step}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="text-center pt-4">
+                  <Button
+                    onClick={() => navigate("/")}
+                    className="bg-gradient-to-r from-yellow-600 to-red-700 hover:from-yellow-700 hover:to-red-800 text-white"
+                  >
+                    Begin Your Healing Journey
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>
@@ -152,60 +184,74 @@ const Assessment = () => {
   return (
     <div className="min-h-screen bg-black">
       <HomeNav />
-      <div className="py-20 px-4">
+      <div className="container mx-auto px-4 py-8">
         <div className="max-w-2xl mx-auto">
-          <div className="mb-8 text-center">
-            <h1 className="text-3xl font-bold mb-4 bg-gradient-to-r from-yellow-600 to-red-700 bg-clip-text text-transparent">
-              Gentle Assessment
+          <div className="text-center mb-8">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-yellow-600 to-red-700 bg-clip-text text-transparent mb-4">
+              Grief Assessment
             </h1>
-            <p className="text-gray-300 mb-6">
-              Question {currentQuestion + 1} of {questions.length} - Take your time, there are no wrong answers
+            <p className="text-gray-300 text-lg">
+              Help us understand where you are in your healing journey
             </p>
-            <Progress value={progress} className="mb-8" />
           </div>
 
           <Card className="bg-slate-800/50 border-slate-700">
             <CardHeader>
-              <CardDescription className="text-yellow-600 text-sm font-medium">
-                {questions[currentQuestion].theme}
-              </CardDescription>
-              <CardTitle className="text-white text-xl leading-relaxed">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-yellow-600 text-sm">
+                  Question {currentQuestion + 1} of {questions.length}
+                </span>
+                <Heart className="h-5 w-5 text-yellow-600" />
+              </div>
+              <Progress 
+                value={((currentQuestion + 1) / questions.length) * 100} 
+                className="mb-4"
+              />
+              <CardTitle className="text-white text-xl">
                 {questions[currentQuestion].question}
               </CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="space-y-6">
               <RadioGroup
                 value={answers[currentQuestion] || ""}
                 onValueChange={handleAnswer}
-                className="space-y-4"
+                className="space-y-3"
               >
                 {questions[currentQuestion].options.map((option, index) => (
-                  <div key={index} className="flex items-start space-x-3 p-4 rounded-lg hover:bg-slate-700/50 transition-colors">
-                    <RadioGroupItem value={option.value} id={option.value} className="mt-1" />
-                    <Label htmlFor={option.value} className="text-gray-300 cursor-pointer leading-relaxed">
-                      {option.label}
+                  <div key={index} className="flex items-center space-x-2">
+                    <RadioGroupItem 
+                      value={option} 
+                      id={`option-${index}`}
+                      className="border-yellow-600 text-yellow-600"
+                    />
+                    <Label 
+                      htmlFor={`option-${index}`}
+                      className="text-gray-300 cursor-pointer flex-grow"
+                    >
+                      {option}
                     </Label>
                   </div>
                 ))}
               </RadioGroup>
 
-              <div className="flex justify-between mt-8">
-                <Button 
-                  variant="outline" 
+              <div className="flex justify-between pt-6">
+                <Button
                   onClick={prevQuestion}
                   disabled={currentQuestion === 0}
-                  className="border-slate-600 text-gray-400 hover:bg-slate-700"
+                  variant="outline"
+                  className="border-yellow-600 text-yellow-600 hover:bg-yellow-600/10"
                 >
-                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  <ArrowLeft className="h-4 w-4 mr-2" />
                   Previous
                 </Button>
-                <Button 
+                
+                <Button
                   onClick={nextQuestion}
                   disabled={!answers[currentQuestion]}
                   className="bg-gradient-to-r from-yellow-600 to-red-700 hover:from-yellow-700 hover:to-red-800 text-white"
                 >
-                  {currentQuestion === questions.length - 1 ? "Complete Assessment" : "Next"}
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  {currentQuestion === questions.length - 1 ? "See Results" : "Next"}
+                  <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>
               </div>
             </CardContent>

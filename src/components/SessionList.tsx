@@ -6,10 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "@/components/ui/use-toast";
-import { Calendar, Clock, Users, Video, User } from "lucide-react";
-
-// WARNING: Type override for Supabase missing-type tables.
-// For full type safety, re-generate your Supabase types after DB change.
+import { Calendar, Clock, Users, Video, User, Heart } from "lucide-react";
 
 type Session = {
   id: string;
@@ -20,43 +17,43 @@ type Session = {
   end_time: string;
   session_type?: string;
   max_participants?: number;
-  instructor_name?: string;
+  facilitator_name?: string;
 };
 
-// Mock data for demonstration - replace with real data when backend is ready
+// Mock data for grief healing sessions
 const mockSessions: Session[] = [
   {
     id: "1",
-    title: "Nervous System Regulation Fundamentals",
-    description: "Learn the core principles of nervous system regulation for peak performance and emotional resilience.",
+    title: "Finding Peace in Loss",
+    description: "A gentle circle for those who have lost a loved one. We'll explore ways to honor memory while finding hope.",
     zoom_link: "https://zoom.us/j/123456789",
-    start_time: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString(), // 2 days from now
-    end_time: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000 + 60 * 60 * 1000).toISOString(), // 1 hour later
-    session_type: "Masterclass",
-    max_participants: 50,
-    instructor_name: "Dr. Sarah Chen"
+    start_time: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString(),
+    end_time: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000 + 60 * 60 * 1000).toISOString(),
+    session_type: "Grief Circle",
+    max_participants: 12,
+    facilitator_name: "Sarah Martinez, LCSW"
   },
   {
     id: "2",
-    title: "Leadership Under Pressure - Group Coaching",
-    description: "Interactive session on maintaining leadership effectiveness during high-stress situations.",
+    title: "Processing Relationship Loss",
+    description: "Support for those navigating divorce, breakup, or estrangement. Learn healthy coping strategies.",
     zoom_link: "https://zoom.us/j/987654321",
-    start_time: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString(), // 5 days from now
-    end_time: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000 + 90 * 60 * 1000).toISOString(), // 1.5 hours later
-    session_type: "Group Coaching",
-    max_participants: 20,
-    instructor_name: "Marcus Thompson"
+    start_time: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString(),
+    end_time: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000 + 90 * 60 * 1000).toISOString(),
+    session_type: "Support Group",
+    max_participants: 8,
+    facilitator_name: "Dr. Michael Chen"
   },
   {
     id: "3",
-    title: "Weekly Q&A: Your Leadership Journey",
-    description: "Open forum to get your questions answered about leadership development and nervous system mastery.",
+    title: "Daily Hope Check-in",
+    description: "Start your day with gentle guidance and connection. A brief session to set positive intentions.",
     zoom_link: "https://zoom.us/j/456789123",
-    start_time: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(), // 1 week from now
-    end_time: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000 + 60 * 60 * 1000).toISOString(), // 1 hour later
-    session_type: "Q&A Session",
-    max_participants: 100,
-    instructor_name: "Team Facilitators"
+    start_time: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+    end_time: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000 + 30 * 60 * 1000).toISOString(),
+    session_type: "Daily Check-in",
+    max_participants: 20,
+    facilitator_name: "Team Facilitators"
   }
 ];
 
@@ -64,7 +61,6 @@ export function SessionList() {
   const { data: sessions, isLoading, error, refetch } = useQuery({
     queryKey: ["sessions"],
     queryFn: async () => {
-      // Try to fetch from Supabase first, fall back to mock data
       try {
         const { data, error } = await (supabase as any)
           .from("sessions")
@@ -74,7 +70,7 @@ export function SessionList() {
         if (error) throw error;
         return data as Session[];
       } catch (err) {
-        console.log("Using mock session data - Supabase table not ready yet");
+        console.log("Using mock grief session data - Supabase table not ready yet");
         return mockSessions;
       }
     }
@@ -83,7 +79,7 @@ export function SessionList() {
   const bookSession = async (sessionId: string) => {
     const { data: { user } } = await (supabase as any).auth.getUser();
     if (!user?.id) {
-      toast({ title: "Please sign in to book sessions", description: "You need to be logged in to book a session." });
+      toast({ title: "Please sign in to join sessions", description: "You need to be logged in to join a healing session." });
       return;
     }
     
@@ -95,19 +91,19 @@ export function SessionList() {
       if (error) {
         toast({ title: "Booking failed", description: error.message });
       } else {
-        toast({ title: "Session booked successfully!", description: "Check your bookings below." });
+        toast({ title: "Session booked successfully!", description: "Check your healing journey below." });
         refetch();
       }
     } catch (err) {
-      toast({ title: "Session booked!", description: "Your session has been reserved." });
+      toast({ title: "Session booked!", description: "Your healing session has been reserved." });
     }
   };
 
   const getSessionTypeColor = (type: string) => {
     switch (type) {
-      case "Masterclass": return "bg-yellow-900/50 text-yellow-300";
-      case "Group Coaching": return "bg-blue-900/50 text-blue-300";
-      case "Q&A Session": return "bg-green-900/50 text-green-300";
+      case "Grief Circle": return "bg-yellow-900/50 text-yellow-300";
+      case "Support Group": return "bg-blue-900/50 text-blue-300";
+      case "Daily Check-in": return "bg-green-900/50 text-green-300";
       default: return "bg-gray-900/50 text-gray-300";
     }
   };
@@ -115,7 +111,7 @@ export function SessionList() {
   if (isLoading) {
     return (
       <div className="text-center py-8">
-        <div className="text-gray-400">Loading sessions...</div>
+        <div className="text-gray-400">Loading healing sessions...</div>
       </div>
     );
   }
@@ -132,8 +128,8 @@ export function SessionList() {
     return (
       <Card className="bg-slate-800/50 border-slate-700">
         <CardContent className="pt-6 text-center">
-          <Calendar className="h-12 w-12 text-gray-500 mx-auto mb-4" />
-          <p className="text-gray-400">No upcoming sessions available at the moment.</p>
+          <Heart className="h-12 w-12 text-gray-500 mx-auto mb-4" />
+          <p className="text-gray-400">No upcoming healing sessions at the moment.</p>
           <p className="text-gray-500 text-sm mt-2">Check back soon for new sessions!</p>
         </CardContent>
       </Card>
@@ -154,10 +150,10 @@ export function SessionList() {
                       {session.session_type}
                     </Badge>
                   )}
-                  {session.instructor_name && (
+                  {session.facilitator_name && (
                     <div className="flex items-center text-gray-400 text-sm">
                       <User className="h-4 w-4 mr-1" />
-                      {session.instructor_name}
+                      {session.facilitator_name}
                     </div>
                   )}
                 </div>
@@ -195,7 +191,7 @@ export function SessionList() {
                   rel="noopener noreferrer"
                   className="text-yellow-600 hover:text-yellow-400 underline"
                 >
-                  Join Zoom Meeting
+                  Join Healing Session
                 </a>
               </div>
             )}
@@ -204,7 +200,7 @@ export function SessionList() {
               onClick={() => bookSession(session.id)}
               className="w-full bg-gradient-to-r from-yellow-600 to-red-700 hover:from-yellow-700 hover:to-red-800 text-white"
             >
-              Book This Session
+              Join This Session
             </Button>
           </CardContent>
         </Card>
