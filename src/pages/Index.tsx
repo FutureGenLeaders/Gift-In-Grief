@@ -1,3 +1,4 @@
+
 import HeroSection from "@/components/home/HeroSection";
 import LossTypesSection from "@/components/home/LossTypesSection";
 import PillarsSection from "@/components/home/PillarsSection";
@@ -17,11 +18,9 @@ import SubscriptionCards from "@/components/dashboard/SubscriptionCards";
 import ProfileLink from "@/components/dashboard/ProfileLink";
 import AdditionalNavigation from "@/components/dashboard/AdditionalNavigation";
 import AuthMarketingPage from "@/components/dashboard/AuthMarketingPage";
+import TreeTherapySection from "@/components/dashboard/TreeTherapySection";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { Link } from "react-router-dom";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { BookOpen, Users, Calendar, Crown, DollarSign, User } from "lucide-react";
 
 export default function Index() {
   const [joinDate, setJoinDate] = useState<Date | null>(null);
@@ -63,8 +62,8 @@ export default function Index() {
     <main className="min-h-screen bg-black w-full">
       <HomeNav />
       
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-6xl mx-auto space-y-8">
+      <div className="container mx-auto px-6 py-8">
+        <div className="max-w-7xl mx-auto space-y-12">
           
           {/* Trial Banner */}
           <TrialBanner />
@@ -73,13 +72,13 @@ export default function Index() {
           <WelcomeSection />
 
           {/* Top Row: Personalized Insights & Monthly Motivation */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <PersonalizedInsights />
             <MonthlyMotivation />
           </div>
 
           {/* Daily Protocol Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2">
               <MorningSession />
             </div>
@@ -87,6 +86,9 @@ export default function Index() {
               <Leaderboard />
             </div>
           </div>
+
+          {/* Tree Therapy Sessions - New Section */}
+          <TreeTherapySection />
 
           {/* Navigation Cards */}
           <DashboardNavigationCards />
@@ -103,7 +105,7 @@ export default function Index() {
           {/* Curriculum Progress */}
           {joinDate ? (
             <>
-              <div className="mt-12">
+              <div className="mt-16">
                 <CurriculumProgress joinDate={joinDate} />
               </div>
               {showCertificate && (
