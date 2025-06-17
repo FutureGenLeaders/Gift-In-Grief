@@ -25,7 +25,9 @@ const LanguageSelector = () => {
       <Globe className="h-4 w-4 text-gray-400" />
       <Select value={i18n.language} onValueChange={handleLanguageChange}>
         <SelectTrigger className="w-20 h-8 border-none bg-transparent text-gray-400">
-          <SelectValue>{getLanguageDisplay(i18n.language)}</SelectValue>
+          <SelectValue>
+            {getLanguageDisplay(i18n.language)}
+          </SelectValue>
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="en">English</SelectItem>

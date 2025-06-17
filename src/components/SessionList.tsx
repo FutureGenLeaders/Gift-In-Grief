@@ -31,7 +31,7 @@ const mockSessions: Session[] = [
     end_time: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000 + 60 * 60 * 1000).toISOString(),
     session_type: "Grief Circle",
     max_participants: 12,
-    facilitator_name: "Sarah Martinez, LCSW"
+    facilitator_name: "Team Facilitator"
   },
   {
     id: "2",
@@ -42,7 +42,7 @@ const mockSessions: Session[] = [
     end_time: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000 + 90 * 60 * 1000).toISOString(),
     session_type: "Support Group",
     max_participants: 8,
-    facilitator_name: "Dr. Michael Chen"
+    facilitator_name: "Team Facilitator"
   },
   {
     id: "3",
@@ -53,7 +53,7 @@ const mockSessions: Session[] = [
     end_time: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000 + 30 * 60 * 1000).toISOString(),
     session_type: "Daily Check-in",
     max_participants: 20,
-    facilitator_name: "Team Facilitators"
+    facilitator_name: "Team Facilitator"
   }
 ];
 

@@ -23,7 +23,7 @@ serve(async (req) => {
     const { tier } = await req.json();
     if (!tier || !TIER_CONFIG[tier]) {
       return new Response(JSON.stringify({ error: "Invalid subscription tier." }), {
-        headers: corsHeaders,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 400,
       });
     }
@@ -34,18 +34,33 @@ serve(async (req) => {
       Deno.env.get("SUPABASE_ANON_KEY") ?? ""
     );
 
-    const authHeader = req.headers.get("Authorization")!;
-    const token = authHeader?.replace("Bearer ", "");
-    const { data: { user } } = await supabaseClient.auth.getUser(token);
-
-    if (!user?.email) {
-      return new Response(JSON.stringify({ error: "Not authenticated." }), {
-        headers: corsHeaders,
+    const authHeader = req.headers.get("Authorization");
+    if (!authHeader) {
+      return new Response(JSON.stringify({ error: "Authorization header required." }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 401,
       });
     }
 
-    const stripe = new Stripe(Deno.env.get("STRIPE_SECRET_KEY") || "", {
+    const token = authHeader.replace("Bearer ", "");
+    const { data: { user }, error: userError } = await supabaseClient.auth.getUser(token);
+
+    if (userError || !user?.email) {
+      return new Response(JSON.stringify({ error: "Not authenticated." }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: 401,
+      });
+    }
+
+    const stripeKey = Deno.env.get("STRIPE_SECRET_KEY");
+    if (!stripeKey) {
+      return new Response(JSON.stringify({ error: "Stripe configuration missing." }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        status: 500,
+      });
+    }
+
+    const stripe = new Stripe(stripeKey, {
       apiVersion: "2023-10-16",
     });
 
@@ -87,8 +102,11 @@ serve(async (req) => {
   } catch (error) {
     console.error("Stripe error:", error);
     return new Response(
-      JSON.stringify({ error: error instanceof Error ? error.message : error }),
-      { headers: corsHeaders, status: 500 }
+      JSON.stringify({ error: error instanceof Error ? error.message : "Unknown error occurred" }),
+      { 
+        headers: { ...corsHeaders, "Content-Type": "application/json" }, 
+        status: 500 
+      }
     );
   }
 });

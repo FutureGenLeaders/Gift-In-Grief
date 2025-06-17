@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
@@ -11,7 +12,7 @@ const tiers = [
     border: "border-yellow-400",
     text: "text-yellow-200",
     description:
-      "Access to core labs and daily optimization routines. Unlock the essential tools for nervous system mastery with premium support.",
+      "Access to core healing resources and daily emotional intelligence practices. Unlock essential tools for grief transformation with community support.",
     recommended: false,
   },
   {
@@ -20,7 +21,7 @@ const tiers = [
     border: "border-zinc-300",
     text: "text-white",
     description:
-      "All Gold features plus advanced analytics, custom protocols, and exclusive leader roundtables. For executives who want more.",
+      "All Gold features plus advanced healing analytics, personalized grief protocols, and exclusive healing circles. For those seeking deeper transformation.",
     recommended: true,
   },
   {
@@ -29,7 +30,7 @@ const tiers = [
     border: "border-red-600",
     text: "text-yellow-100",
     description:
-      "Ultimate experience: everything in Silver plus 1:1 coaching, red carpet events, and on-call neuroscience advisors for peak performance.",
+      "Ultimate healing experience: everything in Silver plus 1:1 mindfulness mentoring, exclusive events, and on-call emotional intelligence advisors.",
     recommended: false,
   },
 ];
@@ -39,22 +40,22 @@ export default function Subscribe() {
 
   async function handleSubscribeClick(tier: string) {
     toast({
-      title: "Connecting to Stripe...",
-      description: `Preparing your ${tier} membership checkout.`,
+      title: "Connecting to payment...",
+      description: `Preparing your ${tier} healing membership checkout.`,
     });
     try {
       const { data, error } = await supabase.functions.invoke("create-checkout", {
         body: { tier },
       });
       if (error) {
-        toast({ title: "Error", description: error.message || "Stripe error." });
+        toast({ title: "Error", description: error.message || "Payment setup error." });
         return;
       }
       if (!data?.url) {
-        toast({ title: "Error", description: "No Stripe link received." });
+        toast({ title: "Error", description: "No payment link received." });
         return;
       }
-      // Open Stripe in a new tab
+      // Open payment in a new tab
       window.open(data.url, "_blank");
     } catch (e) {
       toast({ title: "Error", description: (e as Error).message });
@@ -64,10 +65,10 @@ export default function Subscribe() {
   return (
     <main className="min-h-screen bg-black w-full flex flex-col items-center py-10 px-3">
       <h1 className="text-3xl sm:text-5xl font-bold text-center mb-4 bg-gradient-to-r from-yellow-500 via-red-600 to-yellow-300 bg-clip-text text-transparent">
-        Leadership Laboratory Membership
+        The Gift in Grief Membership
       </h1>
       <p className="text-gray-300 text-lg mb-10 text-center max-w-2xl">
-        Choose your premium membership level. All subscriptions include full access to advanced leadership labs, neuroscience tools, exclusive events, and a <b>2-week free trial</b> before you are billed.
+        Choose your healing membership level. All subscriptions include full access to emotional intelligence tools, mindfulness mentoring sessions, weekly healing support, and a <b>2-week free trial</b> before you are billed.
       </p>
       <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-8">
         {tiers.map((tier) => (

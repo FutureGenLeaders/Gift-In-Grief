@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -35,7 +36,7 @@ const mockBookings: Booking[] = [
       zoom_link: "https://zoom.us/j/123456789",
       description: "A gentle circle for those who have lost a loved one",
       session_type: "Grief Circle",
-      facilitator_name: "Sarah Martinez, LCSW"
+      facilitator_name: "Team Facilitator"
     }
   }
 ];
@@ -198,22 +199,3 @@ export function MyBookings() {
     </div>
   );
 }
-
-// Helper functions
-const getStatusColor = (status: string) => {
-  switch (status) {
-    case "confirmed": return "bg-green-900/50 text-green-300";
-    case "canceled": return "bg-red-900/50 text-red-300";
-    case "pending": return "bg-yellow-900/50 text-yellow-300";
-    default: return "bg-gray-900/50 text-gray-300";
-  }
-};
-
-const getSessionTypeColor = (type: string) => {
-  switch (type) {
-    case "Grief Circle": return "bg-yellow-900/50 text-yellow-300";
-    case "Support Group": return "bg-blue-900/50 text-blue-300";
-    case "Daily Check-in": return "bg-green-900/50 text-green-300";
-    default: return "bg-gray-900/50 text-gray-300";
-  }
-};
