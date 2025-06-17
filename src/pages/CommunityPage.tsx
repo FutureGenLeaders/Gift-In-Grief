@@ -12,104 +12,104 @@ export default function CommunityPage() {
   return (
     <div className="min-h-screen bg-black">
       <HomeNav />
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-6 py-8 max-w-4xl">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center justify-between mb-8">
-            <h1 className="text-3xl font-bold text-white flex items-center">
-              <Users className="h-8 w-8 text-green-600 mr-3" />
+            <h1 className="text-3xl font-light text-white flex items-center">
+              <Users className="h-8 w-8 text-yellow-600 mr-3" />
               Sacred Circle Community
             </h1>
             <Button
               onClick={() => navigate("/")}
               variant="outline"
-              className="border-green-600 text-green-600 hover:bg-green-600/10"
+              className="border-yellow-600 text-yellow-600 hover:bg-yellow-600/10"
             >
               Back to Dashboard
             </Button>
           </div>
 
-          <p className="text-gray-300 mb-8">
-            Connect with fellow leaders in our private community space for support, growth, and shared wisdom.
+          <p className="text-gray-300 mb-8 font-light leading-relaxed">
+            Connect with fellow healers in our private community space for support, growth, and shared wisdom.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card className="bg-slate-800/50 border-slate-700 hover:border-green-600/50 transition-all">
+            <Card className="bg-slate-800/50 border-slate-700 hover:border-yellow-600/50 transition-all">
               <CardHeader>
-                <CardTitle className="text-white flex items-center">
-                  <MessageSquare className="h-6 w-6 text-green-400 mr-2" />
+                <CardTitle className="text-white flex items-center font-light">
+                  <MessageSquare className="h-6 w-6 text-yellow-600 mr-2" />
                   Community Chat
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-300 mb-4">
-                  Join ongoing conversations with your peers about leadership challenges and breakthroughs.
+                <p className="text-gray-300 mb-4 font-light leading-relaxed">
+                  Join ongoing conversations with your peers about grief healing and transformation breakthroughs.
                 </p>
-                <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+                <Button className="w-full bg-gradient-to-r from-yellow-600 to-red-700 hover:from-yellow-700 hover:to-red-800 text-white font-light">
                   Join Chat
                 </Button>
               </CardContent>
             </Card>
 
-            <Card className="bg-slate-800/50 border-slate-700 hover:border-green-600/50 transition-all">
+            <Card className="bg-slate-800/50 border-slate-700 hover:border-yellow-600/50 transition-all">
               <CardHeader>
-                <CardTitle className="text-white flex items-center">
-                  <Calendar className="h-6 w-6 text-green-400 mr-2" />
-                  Group Sessions
+                <CardTitle className="text-white flex items-center font-light">
+                  <Calendar className="h-6 w-6 text-yellow-600 mr-2" />
+                  Weekly Sessions
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-300 mb-4">
-                  Participate in weekly group coaching sessions and peer learning circles.
+                <p className="text-gray-300 mb-4 font-light leading-relaxed">
+                  Participate in weekly group healing sessions and peer support circles.
                 </p>
-                <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+                <Button className="w-full bg-gradient-to-r from-yellow-600 to-red-700 hover:from-yellow-700 hover:to-red-800 text-white font-light">
                   View Schedule
                 </Button>
               </CardContent>
             </Card>
 
-            <Card className="bg-slate-800/50 border-slate-700 hover:border-green-600/50 transition-all">
+            <Card className="bg-slate-800/50 border-slate-700 hover:border-yellow-600/50 transition-all">
               <CardHeader>
-                <CardTitle className="text-white flex items-center">
-                  <Heart className="h-6 w-6 text-green-400 mr-2" />
+                <CardTitle className="text-white flex items-center font-light">
+                  <Heart className="h-6 w-6 text-yellow-600 mr-2" />
                   Peer Support
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-300 mb-4">
-                  Find accountability partners and create support networks for your growth journey.
+                <p className="text-gray-300 mb-4 font-light leading-relaxed">
+                  Find accountability partners and create support networks for your healing journey.
                 </p>
-                <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+                <Button className="w-full bg-gradient-to-r from-yellow-600 to-red-700 hover:from-yellow-700 hover:to-red-800 text-white font-light">
                   Find Partners
                 </Button>
               </CardContent>
             </Card>
 
-            <Card className="bg-slate-800/50 border-slate-700 hover:border-green-600/50 transition-all">
+            <Card className="bg-slate-800/50 border-slate-700 hover:border-yellow-600/50 transition-all">
               <CardHeader>
-                <CardTitle className="text-white flex items-center">
-                  <Users className="h-6 w-6 text-green-400 mr-2" />
+                <CardTitle className="text-white flex items-center font-light">
+                  <Users className="h-6 w-6 text-yellow-600 mr-2" />
                   Success Stories
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-300 mb-4">
-                  Share your wins and celebrate the achievements of fellow community members.
+                <p className="text-gray-300 mb-4 font-light leading-relaxed">
+                  Share your healing wins and celebrate the transformation of fellow community members.
                 </p>
-                <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+                <Button className="w-full bg-gradient-to-r from-yellow-600 to-red-700 hover:from-yellow-700 hover:to-red-800 text-white font-light">
                   Share Story
                 </Button>
               </CardContent>
             </Card>
           </div>
 
-          <div className="mt-8 p-6 bg-gradient-to-r from-green-900/20 to-green-800/20 border border-green-700/30 rounded-xl">
-            <h3 className="text-xl font-bold text-green-300 mb-4">Community Guidelines</h3>
-            <ul className="text-green-200 space-y-2">
-              <li>• Respect and support all community members</li>
-              <li>• Share openly and vulnerably about your journey</li>
-              <li>• Maintain confidentiality of shared experiences</li>
-              <li>• Offer constructive feedback and encouragement</li>
-              <li>• Stay present and engaged in conversations</li>
+          <div className="mt-8 p-6 bg-gradient-to-r from-yellow-900/20 to-red-900/20 border border-yellow-700/30 rounded-xl">
+            <h3 className="text-xl font-light text-yellow-300 mb-4">Community Guidelines</h3>
+            <ul className="text-yellow-200 space-y-2 font-light">
+              <li>• Respect and support all community members on their healing journey</li>
+              <li>• Share openly and vulnerably about your transformation process</li>
+              <li>• Maintain confidentiality of shared experiences and stories</li>
+              <li>• Offer constructive feedback and gentle encouragement</li>
+              <li>• Stay present and engaged in healing conversations</li>
             </ul>
           </div>
         </div>

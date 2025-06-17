@@ -13,7 +13,7 @@ const MOTIVATION = [
   "Celebrate your courage and resilience.",
   "Growth happens in moments of challenge.",
   "Trust the process. The journey unveils itself.",
-  "Don’t look back, you’re not going that way!"
+  "Don't look back, you're not going that way!"
 ];
 
 function getQuoteForMonth() {
@@ -23,9 +23,9 @@ function getQuoteForMonth() {
 
 export default function MonthlyMotivation() {
   return (
-    <div className="rounded-xl bg-gradient-to-tr from-yellow-900 via-yellow-700 to-yellow-500 p-4 my-4 text-black font-semibold text-center shadow">
-      <span>🌟 Monthly Motivation: </span>
-      {getQuoteForMonth()}
+    <div className="rounded-xl bg-gradient-to-tr from-yellow-900 via-yellow-700 to-yellow-500 p-6 text-black font-medium text-center shadow-lg max-w-lg mx-auto">
+      <span className="block mb-2">🌟 Monthly Motivation</span>
+      <p className="text-sm leading-relaxed">{getQuoteForMonth()}</p>
     </div>
   );
 }

@@ -62,8 +62,8 @@ export default function Index() {
     <main className="min-h-screen bg-black w-full">
       <HomeNav />
       
-      <div className="container mx-auto px-6 py-8">
-        <div className="max-w-7xl mx-auto space-y-12">
+      <div className="container mx-auto px-6 py-8 max-w-7xl">
+        <div className="space-y-12">
           
           {/* Trial Banner */}
           <TrialBanner />
@@ -74,7 +74,9 @@ export default function Index() {
           {/* Top Row: Personalized Insights & Monthly Motivation */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <PersonalizedInsights />
-            <MonthlyMotivation />
+            <div className="flex items-center justify-center">
+              <MonthlyMotivation />
+            </div>
           </div>
 
           {/* Daily Protocol Section */}
@@ -87,7 +89,7 @@ export default function Index() {
             </div>
           </div>
 
-          {/* Tree Therapy Sessions - New Section */}
+          {/* Mindfulness Mentoring Sessions */}
           <TreeTherapySection />
 
           {/* Navigation Cards */}

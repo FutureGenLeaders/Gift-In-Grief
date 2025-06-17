@@ -103,13 +103,13 @@ const Assessment = () => {
         "Honor your feelings exactly as they are - there's no timeline for healing",
         "Trust your inner wisdom about what support feels right for you", 
         "Remember that healing isn't linear - some days will be harder than others",
-        "Consider our Tree Therapy sessions for private, self-guided support",
+        "Consider our mindfulness mentoring sessions for private, self-guided support",
         "Join our community when you feel ready - no pressure, only invitation"
       ],
       nextSteps: [
-        "Explore our daily mindfulness practices",
-        "Browse Tree Therapy sessions for private healing",
-        "Join group sessions when you feel called to connect"
+        "Start your 2-week free trial to experience the healing magic",
+        "Browse mindfulness mentoring sessions for personalized support",
+        "Explore our weekly healing library when you're ready"
       ]
     };
   };
@@ -120,7 +120,7 @@ const Assessment = () => {
     return (
       <div className="min-h-screen bg-black">
         <HomeNav />
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-6 py-8 max-w-4xl">
           <div className="max-w-2xl mx-auto">
             <Card className="bg-slate-800/50 border-slate-700">
               <CardHeader className="text-center">
@@ -148,29 +148,36 @@ const Assessment = () => {
                 <div>
                   <h3 className="text-yellow-600 font-medium mb-4 text-lg">Choose Your Next Step:</h3>
                   <div className="space-y-3">
-                    {guidance.nextSteps.map((step, index) => (
-                      <Button
-                        key={index}
-                        variant="outline"
-                        className="w-full text-left justify-start border-yellow-600/50 text-yellow-600 hover:bg-yellow-600/10 font-light py-6"
-                        onClick={() => {
-                          if (index === 0) navigate("/");
-                          if (index === 1) navigate("/");
-                          if (index === 2) navigate("/sessions");
-                        }}
-                      >
-                        {step}
-                      </Button>
-                    ))}
+                    <Button
+                      variant="outline"
+                      className="w-full text-left justify-start border-yellow-600/50 text-yellow-600 hover:bg-yellow-600/10 font-light py-6"
+                      onClick={() => navigate("/subscribe")}
+                    >
+                      {guidance.nextSteps[0]}
+                    </Button>
+                    <Button
+                      variant="outline"
+                      className="w-full text-left justify-start border-yellow-600/50 text-yellow-600 hover:bg-yellow-600/10 font-light py-6"
+                      onClick={() => navigate("/")}
+                    >
+                      {guidance.nextSteps[1]}
+                    </Button>
+                    <Button
+                      variant="outline"
+                      className="w-full text-left justify-start border-yellow-600/50 text-yellow-600 hover:bg-yellow-600/10 font-light py-6"
+                      onClick={() => navigate("/masterclass")}
+                    >
+                      {guidance.nextSteps[2]}
+                    </Button>
                   </div>
                 </div>
 
                 <div className="text-center pt-6">
                   <Button
-                    onClick={() => navigate("/")}
+                    onClick={() => navigate("/subscribe")}
                     className="bg-gradient-to-r from-yellow-600 to-red-700 hover:from-yellow-700 hover:to-red-800 text-white font-light px-8 py-3"
                   >
-                    Begin Your Healing Journey
+                    Start Your 2-Week Free Trial
                   </Button>
                 </div>
               </CardContent>
@@ -184,7 +191,7 @@ const Assessment = () => {
   return (
     <div className="min-h-screen bg-black">
       <HomeNav />
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-6 py-8 max-w-4xl">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-light bg-gradient-to-r from-yellow-600 to-red-700 bg-clip-text text-transparent mb-4">
