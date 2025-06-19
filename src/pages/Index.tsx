@@ -1,9 +1,12 @@
 
 import HeroSection from "@/components/home/HeroSection";
+import ProblemSection from "@/components/home/ProblemSection";
+import SolutionSection from "@/components/home/SolutionSection";
+import HowItWorksSection from "@/components/home/HowItWorksSection";
 import LossTypesSection from "@/components/home/LossTypesSection";
-import PillarsSection from "@/components/home/PillarsSection";
-import JourneyOverviewSection from "@/components/home/JourneyOverviewSection";
-import CtaSection from "@/components/home/CtaSection";
+import TestimonialsSection from "@/components/home/TestimonialsSection";
+import FaqSection from "@/components/home/FaqSection";
+import FinalCtaSection from "@/components/home/FinalCtaSection";
 import HomeNav from "@/components/home/HomeNav";
 import CurriculumProgress from "@/components/CurriculumProgress";
 import MonthlyMotivation from "@/components/MonthlyMotivation";
@@ -17,7 +20,6 @@ import DashboardNavigationCards from "@/components/dashboard/DashboardNavigation
 import SubscriptionCards from "@/components/dashboard/SubscriptionCards";
 import ProfileLink from "@/components/dashboard/ProfileLink";
 import AdditionalNavigation from "@/components/dashboard/AdditionalNavigation";
-import AuthMarketingPage from "@/components/dashboard/AuthMarketingPage";
 import MindfulnessSessionsSection from "@/components/dashboard/MindfulnessSessionsSection";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
@@ -54,7 +56,25 @@ export default function Index() {
 
   // If not logged in, show the marketing page
   if (!isLoggedIn) {
-    return <AuthMarketingPage />;
+    return (
+      <main className="min-h-screen bg-black w-full">
+        <HomeNav />
+        
+        {/* Marketing homepage with proper spacing */}
+        <div className="w-full">
+          <div className="space-y-20">
+            <HeroSection />
+            <ProblemSection />
+            <SolutionSection />
+            <HowItWorksSection />
+            <LossTypesSection />
+            <TestimonialsSection />
+            <FaqSection />
+            <FinalCtaSection />
+          </div>
+        </div>
+      </main>
+    );
   }
 
   // If logged in, show the dashboard
