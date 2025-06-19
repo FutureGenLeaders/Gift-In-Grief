@@ -7,7 +7,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import HomeNav from "@/components/home/HomeNav";
-import { Heart, ArrowLeft, ArrowRight } from "lucide-react";
+import { Heart, ArrowLeft, ArrowRight, Shield, Compass } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 const Assessment = () => {
@@ -19,58 +19,86 @@ const Assessment = () => {
 
   const questions = [
     {
-      question: "What type of loss are you currently experiencing?",
+      question: "What type of loss are you currently experiencing or have experienced?",
       options: [
-        "Loss of a loved one",
-        "Relationship ending",
-        "Job or career change", 
-        "Health challenges",
-        "Loss of dreams or goals",
-        "Multiple losses"
+        "Loss of a loved one (death)",
+        "Relationship ending or divorce", 
+        "Job loss or career transition",
+        "Health challenges or chronic illness",
+        "Loss of dreams, goals, or future plans",
+        "Loss of identity or sense of self",
+        "Loss of security or safety",
+        "Loss of faith or spiritual beliefs",
+        "Multiple losses happening at once"
       ]
     },
     {
-      question: "How long ago did this loss occur?",
+      question: "How long ago did this primary loss occur?",
       options: [
         "Within the last month",
         "1-6 months ago",
-        "6 months to 1 year ago",
+        "6 months to 1 year ago", 
         "1-2 years ago",
         "More than 2 years ago",
-        "It's ongoing"
+        "It's an ongoing or recent loss"
       ]
     },
     {
-      question: "How would you describe your current emotional state?",
+      question: "Which emotion feels most prominent in your grief experience right now?",
       options: [
-        "Overwhelmed and struggling daily",
-        "Sad but managing basic tasks",
-        "Having good and bad days",
-        "Slowly finding moments of peace",
-        "Feeling stronger but still healing",
-        "Ready to help others on their journey"
+        "Loneliness - feeling isolated and disconnected",
+        "Anger - rage, resentment, or frustration",
+        "Despair - hopelessness and darkness",
+        "Fear - anxiety about the future or more loss",
+        "Guilt - self-blame or regret",
+        "Shame - feeling fundamentally flawed",
+        "Sadness - deep sorrow and heartbreak",
+        "Overwhelm - too much to process",
+        "Numbness - feeling disconnected from emotions"
       ]
     },
     {
-      question: "What kind of support resonates with you?",
+      question: "How would you describe your current emotional capacity?",
       options: [
-        "Connecting with others who understand",
-        "Learning from someone who's walked this path",
-        "Self-guided healing at my own pace",
-        "Spiritual and mindfulness practices",
-        "Creative expression and journaling",
-        "I prefer to heal privately and independently"
+        "Barely surviving - struggling with basic daily tasks",
+        "Functioning but depleted - managing basics but emotionally drained",
+        "Having ups and downs - some good days, some difficult ones",
+        "Slowly finding stability - building emotional resilience",
+        "Feeling stronger - ready to do deeper healing work",
+        "Transforming pain into wisdom - wanting to help others heal"
       ]
     },
     {
-      question: "What brings you the most comfort right now?",
+      question: "What approach to healing resonates most with you?",
       options: [
-        "Quiet time for reflection",
-        "Sharing with understanding people",
-        "Creative expression",
-        "Nature and movement",
-        "Spiritual practices and meditation",
-        "Taking action to help others"
+        "Self-guided emotional work - processing at my own pace",
+        "Learning emotional intelligence and self-awareness",
+        "Understanding grief through mindfulness and consciousness",
+        "Taking complete responsibility for my healing journey",
+        "Connecting with others who understand this experience",
+        "Integrating spiritual practices with emotional healing"
+      ]
+    },
+    {
+      question: "How do you prefer to approach difficult emotions?",
+      options: [
+        "I want to understand them deeply and learn from them",
+        "I need gentle guidance and support to process them",
+        "I prefer to work through them privately and independently", 
+        "I want to transform them into wisdom and strength",
+        "I need help developing better emotional regulation skills",
+        "I want to honor them as part of my healing journey"
+      ]
+    },
+    {
+      question: "What would emotional sovereignty mean to you in your healing?",
+      options: [
+        "Taking complete responsibility for my emotional well-being",
+        "Learning to be with difficult emotions without being overwhelmed",
+        "No longer depending on others to regulate my emotions",
+        "Understanding how my emotions influence my decisions and life",
+        "Developing the capacity to heal and transform independently",
+        "Becoming emotionally resilient and self-aware"
       ]
     }
   ];
@@ -96,20 +124,33 @@ const Assessment = () => {
   };
 
   const getPersonalizedGuidance = () => {
+    // Analyze answers to provide personalized recommendations
+    const lossType = answers[0];
+    const timeframe = answers[1]; 
+    const primaryEmotion = answers[2];
+    const capacity = answers[3];
+
     return {
-      title: "Your Unique Healing Path",
-      description: "Based on your responses, here's guidance tailored to your journey. Remember, there's no right or wrong way to grieve - only your way.",
+      title: "Your Personalized Grief & Emotional Healing Path",
+      philosophy: "You are entering an era of emotional sovereignty - taking complete responsibility for your healing journey while honoring your unique grief experience. True transformation comes through understanding yourself deeply and developing the capacity to be with difficult emotions without being destroyed by them.",
+      assessment: {
+        lossType: lossType?.split(' - ')[0] || "Multiple types of loss",
+        primaryEmotion: primaryEmotion?.split(' - ')[0] || "Complex emotions",
+        capacity: capacity?.split(' - ')[0] || "Building resilience",
+        timeframe: timeframe || "Recent experience"
+      },
       recommendations: [
-        "Honor your feelings exactly as they are - there's no timeline for healing",
-        "Trust your inner wisdom about what support feels right for you", 
-        "Remember that healing isn't linear - some days will be harder than others",
-        "Consider our mindfulness mentoring sessions for private, self-guided support",
-        "Join our community when you feel ready - no pressure, only invitation"
+        "Your healing journey is unique - there is no timeline or 'right way' to grieve",
+        "Developing emotional sovereignty means learning to be with difficult emotions without being overwhelmed by them",
+        "True healing comes from within - you have the capacity to transform your pain into wisdom and strength",
+        "Grief is not pathology to be fixed but sacred transformation that leads to profound growth",
+        "Taking responsibility for your healing doesn't mean doing it alone - seek appropriate support while maintaining your inner authority"
       ],
       nextSteps: [
-        "Start your 2-week free trial to experience the healing magic",
-        "Browse mindfulness mentoring sessions for personalized support",
-        "Explore our weekly healing library when you're ready"
+        "Start your 2-week free trial to experience personalized grief healing",
+        "Begin with mindfulness mentoring sessions designed for your specific loss and emotion combination", 
+        "Join our supportive community of others on the path to emotional sovereignty",
+        "Access weekly healing sessions for ongoing support and growth"
       ]
     };
   };
@@ -121,20 +162,41 @@ const Assessment = () => {
       <div className="min-h-screen bg-black">
         <HomeNav />
         <div className="container mx-auto px-6 py-8 max-w-4xl">
-          <div className="max-w-2xl mx-auto">
+          <div className="max-w-3xl mx-auto">
             <Card className="bg-slate-800/50 border-slate-700">
               <CardHeader className="text-center">
                 <div className="flex justify-center mb-4">
-                  <Heart className="h-12 w-12 text-yellow-600" />
+                  <Compass className="h-12 w-12 text-yellow-600" />
                 </div>
-                <CardTitle className="text-white text-2xl mb-2 font-light">
+                <CardTitle className="text-white text-2xl mb-4 font-light">
                   {guidance.title}
                 </CardTitle>
-                <p className="text-gray-300 font-light leading-relaxed">{guidance.description}</p>
+                <div className="bg-gradient-to-r from-yellow-900/20 to-red-900/20 border border-yellow-700/30 rounded-lg p-4 mb-6">
+                  <p className="text-yellow-200 font-light leading-relaxed italic">
+                    {guidance.philosophy}
+                  </p>
+                </div>
               </CardHeader>
-              <CardContent className="space-y-6">
+              <CardContent className="space-y-8">
+                
+                {/* Assessment Summary */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-slate-700/30 rounded-lg p-4">
+                    <h4 className="text-yellow-600 font-medium mb-2">Primary Loss Experience</h4>
+                    <p className="text-gray-300 font-light">{guidance.assessment.lossType}</p>
+                  </div>
+                  <div className="bg-slate-700/30 rounded-lg p-4">
+                    <h4 className="text-yellow-600 font-medium mb-2">Dominant Emotion</h4>
+                    <p className="text-gray-300 font-light">{guidance.assessment.primaryEmotion}</p>
+                  </div>
+                </div>
+
+                {/* Personalized Recommendations */}
                 <div>
-                  <h3 className="text-yellow-600 font-medium mb-4 text-lg">Your Personalized Guidance:</h3>
+                  <h3 className="text-yellow-600 font-medium mb-4 text-lg flex items-center">
+                    <Shield className="h-5 w-5 mr-2" />
+                    Your Emotional Sovereignty Journey
+                  </h3>
                   <ul className="space-y-3">
                     {guidance.recommendations.map((rec, index) => (
                       <li key={index} className="flex items-start text-gray-300 font-light leading-relaxed">
@@ -145,40 +207,35 @@ const Assessment = () => {
                   </ul>
                 </div>
                 
+                {/* Next Steps */} 
                 <div>
-                  <h3 className="text-yellow-600 font-medium mb-4 text-lg">Choose Your Next Step:</h3>
+                  <h3 className="text-yellow-600 font-medium mb-4 text-lg">Begin Your Transformation Journey</h3>
                   <div className="space-y-3">
                     <Button
-                      variant="outline"
-                      className="w-full text-left justify-start border-yellow-600/50 text-yellow-600 hover:bg-yellow-600/10 font-light py-6"
+                      className="w-full text-left justify-start bg-gradient-to-r from-yellow-600 to-red-700 hover:from-yellow-700 hover:to-red-800 text-white font-light py-6 text-base"
                       onClick={() => navigate("/subscribe")}
                     >
-                      {guidance.nextSteps[0]}
-                    </Button>
-                    <Button
-                      variant="outline"
-                      className="w-full text-left justify-start border-yellow-600/50 text-yellow-600 hover:bg-yellow-600/10 font-light py-6"
-                      onClick={() => navigate("/")}
-                    >
-                      {guidance.nextSteps[1]}
+                      <Heart className="h-5 w-5 mr-3" />
+                      Start Your 2-Week Free Trial - Experience the Healing Magic
                     </Button>
                     <Button
                       variant="outline"
                       className="w-full text-left justify-start border-yellow-600/50 text-yellow-600 hover:bg-yellow-600/10 font-light py-6"
                       onClick={() => navigate("/masterclass")}
                     >
-                      {guidance.nextSteps[2]}
+                      <Compass className="h-5 w-5 mr-3" />
+                      Explore Mindfulness Mentoring Sessions for Your Specific Needs
                     </Button>
                   </div>
                 </div>
 
-                <div className="text-center pt-6">
-                  <Button
-                    onClick={() => navigate("/subscribe")}
-                    className="bg-gradient-to-r from-yellow-600 to-red-700 hover:from-yellow-700 hover:to-red-800 text-white font-light px-8 py-3"
-                  >
-                    Start Your 2-Week Free Trial
-                  </Button>
+                {/* Crisis Support Notice */}
+                <div className="bg-red-900/20 border border-red-600/30 rounded-lg p-4">
+                  <h4 className="text-red-300 font-medium mb-2">Need Immediate Support?</h4>
+                  <p className="text-red-200 text-sm font-light leading-relaxed">
+                    If you're having thoughts of self-harm, please reach out immediately: 
+                    National Suicide Prevention Lifeline: 988 or 1-800-273-8255
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -195,10 +252,10 @@ const Assessment = () => {
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-light bg-gradient-to-r from-yellow-600 to-red-700 bg-clip-text text-transparent mb-4">
-              Grief Assessment
+              Comprehensive Grief & Emotional Healing Assessment
             </h1>
             <p className="text-gray-300 text-lg font-light leading-relaxed">
-              Help us understand where you are in your unique healing journey
+              Discover your unique grief pattern and receive personalized guidance for your emotional sovereignty journey
             </p>
           </div>
 
@@ -257,7 +314,7 @@ const Assessment = () => {
                   disabled={!answers[currentQuestion]}
                   className="bg-gradient-to-r from-yellow-600 to-red-700 hover:from-yellow-700 hover:to-red-800 text-white font-light"
                 >
-                  {currentQuestion === questions.length - 1 ? "See Results" : "Next"}
+                  {currentQuestion === questions.length - 1 ? "Get Your Personalized Path" : "Next"}
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>
               </div>

@@ -1,118 +1,151 @@
 
 import React, { useEffect, useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
-import { Trophy, Medal, Award } from "lucide-react";
+import { Crown, Heart, Compass, Brain } from "lucide-react";
 
 interface LeaderboardEntry {
-  full_name: string;
-  email: string;
-  session_count: number;
-  rank: number;
+  id: string;
+  name: string;
+  progress: number;
+  streak: number;
+  level: string;
+  joinDate: string;
 }
 
+// Mock data for grief healing progress leaderboard
+const mockLeaderboard: LeaderboardEntry[] = [
+  {
+    id: "1",
+    name: "Sarah M.",
+    progress: 89,
+    streak: 45,
+    level: "Wisdom Guide",
+    joinDate: "8 months ago"
+  },
+  {
+    id: "2", 
+    name: "Michael R.",
+    progress: 76,
+    streak: 32,
+    level: "Heart Healer",
+    joinDate: "6 months ago"
+  },
+  {
+    id: "3",
+    name: "Elena C.",
+    progress: 68,
+    streak: 28,
+    level: "Brave Navigator",
+    joinDate: "5 months ago"
+  },
+  {
+    id: "4",
+    name: "David L.",
+    progress: 55,
+    streak: 21,
+    level: "Growing Strong",
+    joinDate: "4 months ago"
+  },
+  {
+    id: "5",
+    name: "Maria S.",
+    progress: 43,
+    streak: 15,
+    level: "Finding Path",
+    joinDate: "3 months ago"
+  }
+];
+
 export default function Leaderboard() {
-  const [leaders, setLeaders] = useState<LeaderboardEntry[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
+  const [userRank, setUserRank] = useState<number | null>(null);
 
   useEffect(() => {
-    async function fetchLeaderboard() {
-      // Get user profiles with session counts
-      const { data, error } = await (supabase as any)
-        .from("user_profiles")
-        .select(`full_name, user_id`);
-
-      if (!error && data) {
-        // Get daily sessions for each user
-        const userSessionCounts = await Promise.all(
-          data.map(async (profile: any) => {
-            const { data: sessions } = await (supabase as any)
-              .from("daily_sessions")
-              .select("id")
-              .eq("user_id", profile.user_id);
-
-            return {
-              full_name: profile.full_name || "Anonymous",
-              email: "",
-              session_count: sessions?.length || 0,
-              rank: 0
-            };
-          })
-        );
-
-        // Sort by session count and assign ranks
-        const sortedLeaders = userSessionCounts
-          .sort((a, b) => b.session_count - a.session_count)
-          .slice(0, 5)
-          .map((user, index) => ({
-            ...user,
-            rank: index + 1
-          }));
-
-        setLeaders(sortedLeaders);
-      }
-      setLoading(false);
-    }
-
-    fetchLeaderboard();
+    // In a real app, this would fetch from Supabase
+    // For now, using mock data focused on grief healing journey
+    setLeaderboard(mockLeaderboard);
+    setUserRank(7); // User's current rank in healing journey
   }, []);
 
-  const getRankIcon = (rank: number) => {
-    switch (rank) {
-      case 1:
-        return <Trophy className="h-5 w-5 text-yellow-400" />;
-      case 2:
-        return <Medal className="h-5 w-5 text-gray-400" />;
-      case 3:
-        return <Award className="h-5 w-5 text-orange-400" />;
-      default:
-        return <span className="h-5 w-5 flex items-center justify-center text-sm font-bold text-gray-400">#{rank}</span>;
-    }
+  const getLevelIcon = (level: string) => {
+    if (level.includes("Wisdom")) return Crown;
+    if (level.includes("Heart")) return Heart;
+    if (level.includes("Navigator")) return Compass;
+    return Brain;
+  };
+
+  const getLevelColor = (level: string) => {
+    if (level.includes("Wisdom")) return "text-yellow-400";
+    if (level.includes("Heart")) return "text-red-400";
+    if (level.includes("Navigator")) return "text-blue-400";
+    return "text-green-400";
   };
 
   return (
-    <div className="bg-gradient-to-b from-yellow-900/20 to-orange-900/20 border border-yellow-700/30 rounded-xl p-6">
-      <h3 className="text-xl font-bold text-yellow-300 mb-4 flex items-center">
-        <Trophy className="h-6 w-6 mr-2" />
-        Leaderboard
-      </h3>
-      
-      {loading ? (
-        <div className="space-y-3">
-          {[1, 2, 3, 4, 5].map(i => (
-            <div key={i} className="flex items-center justify-between p-3 bg-black/20 rounded-lg animate-pulse">
-              <div className="h-4 bg-yellow-700/30 rounded w-32"></div>
-              <div className="h-4 bg-yellow-700/30 rounded w-8"></div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="space-y-3">
-          {leaders.map((leader) => (
-            <div
-              key={leader.rank}
-              className={`flex items-center justify-between p-3 rounded-lg ${
-                leader.rank === 1 
-                  ? 'bg-gradient-to-r from-yellow-900/40 to-yellow-800/40 border border-yellow-600/40' 
-                  : 'bg-black/20'
-              }`}
-            >
-              <div className="flex items-center space-x-3">
-                {getRankIcon(leader.rank)}
-                <span className="font-medium text-white">{leader.full_name}</span>
-              </div>
-              <span className="text-sm font-bold text-yellow-300">
-                {leader.session_count} sessions
-              </span>
-            </div>
-          ))}
+    <Card className="bg-slate-800/50 border-slate-700 h-fit">
+      <CardHeader>
+        <CardTitle className="text-white flex items-center font-light">
+          <Crown className="h-5 w-5 text-yellow-600 mr-2" />
+          Healing Journey Leaders
+        </CardTitle>
+        <p className="text-gray-400 text-sm font-light">
+          Community members thriving in their grief transformation
+        </p>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        {leaderboard.map((entry, index) => {
+          const IconComponent = getLevelIcon(entry.level);
+          const levelColor = getLevelColor(entry.level);
           
-          {leaders.length === 0 && (
-            <div className="text-center text-gray-400 py-4">
-              No data available yet. Complete sessions to appear on the leaderboard!
+          return (
+            <div key={entry.id} className="flex items-center justify-between p-3 rounded-lg bg-slate-700/30 hover:bg-slate-700/50 transition-colors">
+              <div className="flex items-center space-x-3">
+                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-slate-600/50 text-sm font-medium text-gray-300">
+                  {index + 1}
+                </div>
+                <div>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-white font-medium text-sm">{entry.name}</span>
+                    <IconComponent className={`h-4 w-4 ${levelColor}`} />
+                  </div>
+                  <div className="flex items-center space-x-2 mt-1">
+                    <Badge variant="outline" className="text-xs border-gray-600 text-gray-400">
+                      {entry.level}
+                    </Badge>
+                    <span className="text-xs text-gray-500">{entry.joinDate}</span>
+                  </div>
+                </div>
+              </div>
+              <div className="text-right">
+                <div className="text-sm font-medium text-yellow-600">{entry.progress}%</div>
+                <div className="text-xs text-gray-400">{entry.streak} day streak</div>
+              </div>
             </div>
-          )}
-        </div>
-      )}
-    </div>
+          );
+        })}
+        
+        {userRank && (
+          <div className="border-t border-slate-600 pt-4 mt-4">
+            <div className="flex items-center justify-between p-3 rounded-lg bg-yellow-900/20 border border-yellow-600/30">
+              <div className="flex items-center space-x-3">
+                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-yellow-600/20 text-sm font-medium text-yellow-400">
+                  {userRank}
+                </div>
+                <div>
+                  <span className="text-white font-medium text-sm">Your Journey</span>
+                  <div className="text-xs text-yellow-400 mt-1">Keep growing! 🌱</div>
+                </div>
+              </div>
+              <div className="text-right">
+                <div className="text-sm font-medium text-yellow-400">32%</div>
+                <div className="text-xs text-yellow-500">12 day streak</div>
+              </div>
+            </div>
+          </div>
+        )}
+      </CardContent>
+    </Card>
   );
 }

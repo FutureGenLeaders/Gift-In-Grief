@@ -18,7 +18,7 @@ import SubscriptionCards from "@/components/dashboard/SubscriptionCards";
 import ProfileLink from "@/components/dashboard/ProfileLink";
 import AdditionalNavigation from "@/components/dashboard/AdditionalNavigation";
 import AuthMarketingPage from "@/components/dashboard/AuthMarketingPage";
-import TreeTherapySection from "@/components/dashboard/TreeTherapySection";
+import MindfulnessSessionsSection from "@/components/dashboard/MindfulnessSessionsSection";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -62,7 +62,7 @@ export default function Index() {
     <main className="min-h-screen bg-black w-full">
       <HomeNav />
       
-      <div className="container mx-auto px-6 py-8 max-w-7xl">
+      <div className="container mx-auto px-6 py-8 max-w-6xl">
         <div className="space-y-12">
           
           {/* Trial Banner */}
@@ -90,7 +90,7 @@ export default function Index() {
           </div>
 
           {/* Mindfulness Mentoring Sessions */}
-          <TreeTherapySection />
+          <MindfulnessSessionsSection />
 
           {/* Navigation Cards */}
           <DashboardNavigationCards />
