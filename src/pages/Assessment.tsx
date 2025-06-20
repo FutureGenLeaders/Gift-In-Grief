@@ -8,10 +8,8 @@ import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import HomeNav from "@/components/home/HomeNav";
 import { Heart, ArrowLeft, ArrowRight, Shield, Compass } from "lucide-react";
-import { useTranslation } from "react-i18next";
 
 const Assessment = () => {
-  const { t } = useTranslation();
   const navigate = useNavigate();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<string[]>([]);
@@ -124,7 +122,6 @@ const Assessment = () => {
   };
 
   const getPersonalizedGuidance = () => {
-    // Analyze answers to provide personalized recommendations
     const lossType = answers[0];
     const timeframe = answers[1]; 
     const primaryEmotion = answers[2];
@@ -145,12 +142,6 @@ const Assessment = () => {
         "True healing comes from within - you have the capacity to transform your pain into wisdom and strength",
         "Grief is not pathology to be fixed but sacred transformation that leads to profound growth",
         "Taking responsibility for your healing doesn't mean doing it alone - seek appropriate support while maintaining your inner authority"
-      ],
-      nextSteps: [
-        "Start your 2-week free trial to experience personalized grief healing",
-        "Begin with mindfulness mentoring sessions designed for your specific loss and emotion combination", 
-        "Join our supportive community of others on the path to emotional sovereignty",
-        "Access weekly healing sessions for ongoing support and growth"
       ]
     };
   };
@@ -207,26 +198,19 @@ const Assessment = () => {
                   </ul>
                 </div>
                 
-                {/* Next Steps */} 
-                <div>
+                {/* Call to Action - Fixed to redirect to trial signup */}
+                <div className="space-y-4">
                   <h3 className="text-yellow-600 font-medium mb-4 text-lg">Begin Your Transformation Journey</h3>
-                  <div className="space-y-3">
-                    <Button
-                      className="w-full text-left justify-start bg-gradient-to-r from-yellow-600 to-red-700 hover:from-yellow-700 hover:to-red-800 text-white font-light py-6 text-base"
-                      onClick={() => navigate("/subscribe")}
-                    >
-                      <Heart className="h-5 w-5 mr-3" />
-                      Start Your 2-Week Free Trial - Experience the Healing Magic
-                    </Button>
-                    <Button
-                      variant="outline"
-                      className="w-full text-left justify-start border-yellow-600/50 text-yellow-600 hover:bg-yellow-600/10 font-light py-6"
-                      onClick={() => navigate("/masterclass")}
-                    >
-                      <Compass className="h-5 w-5 mr-3" />
-                      Explore Mindfulness Mentoring Sessions for Your Specific Needs
-                    </Button>
-                  </div>
+                  <Button
+                    className="w-full text-left justify-center bg-gradient-to-r from-yellow-600 to-red-700 hover:from-yellow-700 hover:to-red-800 text-white font-light py-6 text-lg"
+                    onClick={() => navigate("/subscribe")}
+                  >
+                    <Heart className="h-5 w-5 mr-3" />
+                    Start Your 2-Week Free Trial - Experience the Healing Magic
+                  </Button>
+                  <p className="text-center text-gray-400 text-sm">
+                    No payment required • Cancel anytime • Full access to all healing sessions
+                  </p>
                 </div>
 
                 {/* Crisis Support Notice */}

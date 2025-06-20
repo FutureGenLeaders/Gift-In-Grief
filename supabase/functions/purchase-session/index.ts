@@ -8,32 +8,24 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const TIER_CONFIG: Record<string, { name: string; price_cents: number; }> = {
-  Gold: { name: "Gold Membership", price_cents: 4400 },
-  Silver: { name: "Silver Membership", price_cents: 14400 },
-  "VIP Red": { name: "VIP Red Membership", price_cents: 44400 },
-};
-
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    console.log("Starting create-checkout function");
+    console.log("Starting purchase-session function");
     
-    const { tier } = await req.json();
-    console.log("Received tier:", tier);
+    const { sessionId, price } = await req.json();
+    console.log("Received sessionId:", sessionId, "price:", price);
     
-    if (!tier || !TIER_CONFIG[tier]) {
-      console.error("Invalid tier:", tier);
-      return new Response(JSON.stringify({ error: "Invalid subscription tier." }), {
+    if (!sessionId || !price) {
+      return new Response(JSON.stringify({ error: "Missing session ID or price." }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 400,
       });
     }
 
-    // Supabase user session
     const supabaseClient = createClient(
       Deno.env.get("SUPABASE_URL") ?? "",
       Deno.env.get("SUPABASE_ANON_KEY") ?? ""
@@ -41,7 +33,6 @@ serve(async (req) => {
 
     const authHeader = req.headers.get("Authorization");
     if (!authHeader) {
-      console.error("No authorization header");
       return new Response(JSON.stringify({ error: "Authorization header required." }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 401,
@@ -52,18 +43,14 @@ serve(async (req) => {
     const { data: { user }, error: userError } = await supabaseClient.auth.getUser(token);
 
     if (userError || !user?.email) {
-      console.error("User authentication error:", userError);
       return new Response(JSON.stringify({ error: "Not authenticated." }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 401,
       });
     }
 
-    console.log("User authenticated:", user.email);
-
     const stripeKey = Deno.env.get("STRIPE_SECRET_KEY");
     if (!stripeKey) {
-      console.error("Stripe secret key not configured");
       return new Response(JSON.stringify({ error: "Stripe configuration missing." }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 500,
@@ -74,21 +61,16 @@ serve(async (req) => {
       apiVersion: "2023-10-16",
     });
 
-    console.log("Looking for existing customer");
-    // Look for existing customer by email
+    // Look for existing customer
     const customers = await stripe.customers.list({ email: user.email, limit: 1 });
     let customerId: string | undefined;
     if (customers.data.length > 0) {
       customerId = customers.data[0].id;
-      console.log("Found existing customer:", customerId);
-    } else {
-      console.log("No existing customer found");
     }
 
     const origin = req.headers.get("origin") ?? "https://624547dc-459e-4c6d-9740-b72b9d6fe332.lovableproject.com";
     
-    console.log("Creating checkout session for tier:", tier);
-    // Create checkout session for subscription with 14-day trial
+    // Create one-time payment session for individual session
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
       customer_email: customerId ? undefined : user.email,
@@ -96,29 +78,32 @@ serve(async (req) => {
         {
           price_data: {
             currency: "usd",
-            product_data: { name: TIER_CONFIG[tier].name },
-            unit_amount: TIER_CONFIG[tier].price_cents,
-            recurring: { interval: "month" },
+            product_data: { 
+              name: `Mindfulness Mentoring Session`,
+              description: `Individual grief healing session - ${sessionId}`
+            },
+            unit_amount: price, // Price in cents
           },
           quantity: 1,
         },
       ],
-      mode: "subscription",
-      subscription_data: {
-        trial_period_days: 14,
-        metadata: { tier },
+      mode: "payment", // One-time payment, not subscription
+      metadata: {
+        sessionId: sessionId,
+        userId: user.id,
+        type: "mindfulness_session"
       },
-      success_url: `${origin}/subscribe?success=1&tier=${encodeURIComponent(tier)}`,
-      cancel_url: `${origin}/subscribe?canceled=1&tier=${encodeURIComponent(tier)}`,
+      success_url: `${origin}/sessions?success=1&session=${encodeURIComponent(sessionId)}`,
+      cancel_url: `${origin}/sessions?canceled=1`,
     });
 
-    console.log("Checkout session created:", session.id);
+    console.log("Session checkout created:", session.id);
     return new Response(JSON.stringify({ url: session.url }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,
     });
   } catch (error) {
-    console.error("Stripe error:", error);
+    console.error("Session purchase error:", error);
     const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
     return new Response(
       JSON.stringify({ error: errorMessage }),

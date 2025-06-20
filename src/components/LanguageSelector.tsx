@@ -1,5 +1,4 @@
 
-import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useTranslation } from "react-i18next";
 import { Globe } from "lucide-react";
@@ -17,17 +16,17 @@ const LanguageSelector = () => {
     'fr': 'Français'
   };
 
-  const getLanguageDisplay = (lang: string) => {
-    return languages[lang as keyof typeof languages] || 'English';
+  const getCurrentLanguageName = () => {
+    return languages[i18n.language as keyof typeof languages] || 'English';
   };
 
   return (
     <div className="flex items-center space-x-2">
       <Globe className="h-4 w-4 text-gray-400" />
       <Select value={i18n.language} onValueChange={handleLanguageChange}>
-        <SelectTrigger className="w-32 h-8 border-none bg-transparent text-gray-400">
+        <SelectTrigger className="w-36 h-8 border-none bg-transparent text-gray-400">
           <SelectValue>
-            {getLanguageDisplay(i18n.language)}
+            {getCurrentLanguageName()}
           </SelectValue>
         </SelectTrigger>
         <SelectContent>

@@ -2,7 +2,7 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'app.giftingrief.healing',
+  appId: 'com.futuregen.giftingrief',
   appName: 'The Gift in Grief',
   webDir: 'dist',
   server: {
