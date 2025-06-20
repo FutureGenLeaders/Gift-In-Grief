@@ -8,10 +8,10 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const TIER_CONFIG: Record<string, { name: string; price_cents: number; }> = {
-  Gold: { name: "Gold Membership", price_cents: 4400 },
-  Silver: { name: "Silver Membership", price_cents: 14400 },
-  "VIP Red": { name: "VIP Red Membership", price_cents: 44400 },
+const TIER_CONFIG: Record<string, { name: string; price_cents: number; sessions: number; mindfulness_credits: number }> = {
+  "Basic": { name: "Basic Healing Plan", price_cents: 5500, sessions: 2, mindfulness_credits: 0 },
+  "Complete": { name: "Complete Healing Journey", price_cents: 11100, sessions: 40, mindfulness_credits: 1 },
+  "Transformation": { name: "Transformation Circle", price_cents: 22200, sessions: 81, mindfulness_credits: 2 },
 };
 
 serve(async (req) => {
@@ -27,13 +27,12 @@ serve(async (req) => {
     
     if (!tier || !TIER_CONFIG[tier]) {
       console.error("Invalid tier:", tier);
-      return new Response(JSON.stringify({ error: "Invalid subscription tier." }), {
+      return new Response(JSON.stringify({ error: "Invalid subscription tier selected." }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 400,
       });
     }
 
-    // Supabase user session
     const supabaseClient = createClient(
       Deno.env.get("SUPABASE_URL") ?? "",
       Deno.env.get("SUPABASE_ANON_KEY") ?? ""
@@ -42,7 +41,7 @@ serve(async (req) => {
     const authHeader = req.headers.get("Authorization");
     if (!authHeader) {
       console.error("No authorization header");
-      return new Response(JSON.stringify({ error: "Authorization header required." }), {
+      return new Response(JSON.stringify({ error: "Please log in to continue with your subscription." }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 401,
       });
@@ -53,7 +52,7 @@ serve(async (req) => {
 
     if (userError || !user?.email) {
       console.error("User authentication error:", userError);
-      return new Response(JSON.stringify({ error: "Not authenticated." }), {
+      return new Response(JSON.stringify({ error: "Authentication failed. Please log in again." }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 401,
       });
@@ -64,7 +63,7 @@ serve(async (req) => {
     const stripeKey = Deno.env.get("STRIPE_SECRET_KEY");
     if (!stripeKey) {
       console.error("Stripe secret key not configured");
-      return new Response(JSON.stringify({ error: "Stripe configuration missing." }), {
+      return new Response(JSON.stringify({ error: "Payment system configuration error. Please try again later." }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 500,
       });
@@ -75,7 +74,6 @@ serve(async (req) => {
     });
 
     console.log("Looking for existing customer");
-    // Look for existing customer by email
     const customers = await stripe.customers.list({ email: user.email, limit: 1 });
     let customerId: string | undefined;
     if (customers.data.length > 0) {
@@ -88,7 +86,6 @@ serve(async (req) => {
     const origin = req.headers.get("origin") ?? "https://624547dc-459e-4c6d-9740-b72b9d6fe332.lovableproject.com";
     
     console.log("Creating checkout session for tier:", tier);
-    // Create checkout session for subscription with 14-day trial
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
       customer_email: customerId ? undefined : user.email,
@@ -96,7 +93,10 @@ serve(async (req) => {
         {
           price_data: {
             currency: "usd",
-            product_data: { name: TIER_CONFIG[tier].name },
+            product_data: { 
+              name: TIER_CONFIG[tier].name,
+              description: `${TIER_CONFIG[tier].sessions} healing sessions per month, ${TIER_CONFIG[tier].mindfulness_credits} mindfulness mentoring credits`
+            },
             unit_amount: TIER_CONFIG[tier].price_cents,
             recurring: { interval: "month" },
           },
@@ -106,22 +106,35 @@ serve(async (req) => {
       mode: "subscription",
       subscription_data: {
         trial_period_days: 14,
-        metadata: { tier },
+        metadata: { 
+          tier,
+          sessions: TIER_CONFIG[tier].sessions.toString(),
+          mindfulness_credits: TIER_CONFIG[tier].mindfulness_credits.toString()
+        },
       },
       success_url: `${origin}/subscribe?success=1&tier=${encodeURIComponent(tier)}`,
       cancel_url: `${origin}/subscribe?canceled=1&tier=${encodeURIComponent(tier)}`,
     });
 
-    console.log("Checkout session created:", session.id);
+    console.log("Checkout session created successfully:", session.id);
     return new Response(JSON.stringify({ url: session.url }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,
     });
   } catch (error) {
-    console.error("Stripe error:", error);
+    console.error("Detailed Stripe error:", error);
     const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
+    const userFriendlyMessage = errorMessage.includes("Invalid API Key") 
+      ? "Payment system temporarily unavailable. Please try again in a few minutes."
+      : errorMessage.includes("No such customer")
+      ? "Account verification failed. Please contact support."
+      : "Payment processing failed. Please try again or contact support.";
+    
     return new Response(
-      JSON.stringify({ error: errorMessage }),
+      JSON.stringify({ 
+        error: userFriendlyMessage,
+        technical_details: errorMessage
+      }),
       { 
         headers: { ...corsHeaders, "Content-Type": "application/json" }, 
         status: 500 

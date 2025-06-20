@@ -4,7 +4,6 @@ import ProblemSection from "@/components/home/ProblemSection";
 import SolutionSection from "@/components/home/SolutionSection";
 import HowItWorksSection from "@/components/home/HowItWorksSection";
 import LossTypesSection from "@/components/home/LossTypesSection";
-import TestimonialsSection from "@/components/home/TestimonialsSection";
 import FaqSection from "@/components/home/FaqSection";
 import FinalCtaSection from "@/components/home/FinalCtaSection";
 import HomeNav from "@/components/home/HomeNav";
@@ -60,7 +59,7 @@ export default function Index() {
       <main className="min-h-screen bg-black w-full">
         <HomeNav />
         
-        {/* Marketing homepage with proper spacing */}
+        {/* Marketing homepage with proper spacing - testimonials removed */}
         <div className="w-full">
           <div className="space-y-20">
             <HeroSection />
@@ -68,7 +67,6 @@ export default function Index() {
             <SolutionSection />
             <HowItWorksSection />
             <LossTypesSection />
-            <TestimonialsSection />
             <FaqSection />
             <FinalCtaSection />
           </div>
