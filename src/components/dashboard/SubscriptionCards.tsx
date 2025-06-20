@@ -11,7 +11,7 @@ export default function SubscriptionCards() {
         <CardHeader>
           <CardTitle className="text-white flex items-center">
             <Crown className="h-5 w-5 mr-2 text-gray-400" />
-            Basic (Free)
+            Free Access
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -28,15 +28,15 @@ export default function SubscriptionCards() {
         <CardHeader>
           <CardTitle className="text-yellow-200 flex items-center">
             <DollarSign className="h-5 w-5 mr-2" />
-            Premium ($49/mo)
+            Guided Journey ($111/mo)
           </CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-yellow-300 text-sm mb-4">
-            Unlock advanced content and 1:1 sessions
+            40 sessions dripped weekly + mindfulness mentoring
           </p>
           <Link to="/subscribe">
-            <button className="w-full py-2 px-4 bg-yellow-600 hover:bg-yellow-700 text-white rounded transition-colors">
+            <button className="w-full py-2 px-4 bg-yellow-600 hover:bg-yellow-700 text-black rounded transition-colors font-semibold">
               Upgrade Now
             </button>
           </Link>
@@ -47,16 +47,16 @@ export default function SubscriptionCards() {
         <CardHeader>
           <CardTitle className="text-red-200 flex items-center">
             <Crown className="h-5 w-5 mr-2 text-red-400" />
-            Executive ($499/mo)
+            Sacred Transformation ($222/mo)
           </CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-red-300 text-sm mb-4">
-            All features + private coaching and priority support
+            Complete 81-session journey + premium features
           </p>
           <Link to="/subscribe">
-            <button className="w-full py-2 px-4 bg-red-600 hover:bg-red-700 text-white rounded transition-colors">
-              Go Executive
+            <button className="w-full py-2 px-4 bg-red-800 hover:bg-red-900 text-white rounded transition-colors font-semibold">
+              Transform Now
             </button>
           </Link>
         </CardContent>

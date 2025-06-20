@@ -10,16 +10,16 @@ const tiers = [
   {
     name: "Basic",
     price: 55,
-    displayName: "Basic Healing Plan",
-    gradient: "from-blue-400 via-blue-600 to-blue-800",
-    border: "border-blue-400",
-    text: "text-blue-200",
-    description: "Essential grief healing foundation with guided support and community connection for beginning your transformation journey.",
+    displayName: "Gentle Beginning",
+    gradient: "from-yellow-600 via-yellow-700 to-yellow-800",
+    border: "border-yellow-600",
+    text: "text-yellow-100",
+    description: "Start your healing journey with gentle, weekly guidance delivered at a sustainable pace for lasting transformation.",
     features: [
-      "2 healing sessions per month",
-      "Group call access",
-      "Basic community features", 
-      "Mobile app access",
+      "2 healing sessions delivered weekly",
+      "Group healing circles for community support",
+      "Foundation community access",
+      "Mobile healing companion",
       "14-day free trial"
     ],
     recommended: false,
@@ -27,15 +27,15 @@ const tiers = [
   {
     name: "Complete",
     price: 111,
-    displayName: "Complete Healing Journey",
-    gradient: "from-slate-300 via-gray-400 to-gray-700",
-    border: "border-zinc-300",
-    text: "text-white",
-    description: "Comprehensive grief transformation with expanded session access, mindfulness mentoring, and enhanced community support for deeper healing work.",
+    displayName: "Guided Journey",
+    gradient: "from-red-800 via-red-900 to-yellow-700",
+    border: "border-red-800",
+    text: "text-yellow-100",
+    description: "Experience deeper healing with 40 sessions dripped weekly over 10 months, delivered at your perfect healing pace.",
     features: [
-      "40 healing sessions access",
-      "1 mindfulness mentoring session/month (included)",
-      "All group calls",
+      "40 healing sessions dripped weekly over 10 months",
+      "1 mindfulness mentoring session monthly",
+      "All healing circles and community features",
       "Enhanced progress tracking",
       "Priority community access",
       "14-day free trial"
@@ -45,17 +45,17 @@ const tiers = [
   {
     name: "Transformation", 
     price: 222,
-    displayName: "Transformation Circle",
-    gradient: "from-red-600 via-red-700 to-yellow-700",
-    border: "border-red-600",
-    text: "text-yellow-100",
-    description: "Complete emotional sovereignty experience with full session library, premium mentoring, and exclusive transformation community for profound healing mastery.",
+    displayName: "Sacred Transformation",
+    gradient: "from-yellow-700 via-red-800 to-yellow-600",
+    border: "border-yellow-700",
+    text: "text-black",
+    description: "Embrace your complete transformation with 81 sessions delivered weekly over 20+ months for profound, lasting change.",
     features: [
-      "All 81 healing sessions (complete program)",
-      "2 mindfulness mentoring sessions/month (included)",
-      "All premium features",
-      "Advanced healing tools",
-      "Priority support",
+      "81 healing sessions delivered weekly over 20+ months",
+      "2 mindfulness mentoring sessions monthly",
+      "All premium healing features",
+      "Advanced transformation tools",
+      "Sacred circle priority support",
       "Exclusive transformation community",
       "14-day free trial"
     ],
@@ -106,11 +106,11 @@ export default function Subscribe() {
   return (
     <main className="min-h-screen bg-black w-full flex flex-col items-center py-10 px-3">
       <div className="max-w-6xl mx-auto w-full">
-        <h1 className="text-3xl sm:text-5xl font-bold text-center mb-4 bg-gradient-to-r from-yellow-500 via-red-600 to-yellow-300 bg-clip-text text-transparent">
+        <h1 className="text-3xl sm:text-5xl font-bold text-center mb-4 bg-gradient-to-r from-yellow-600 via-red-800 to-yellow-400 bg-clip-text text-transparent">
           Transform Your Grief Into Wisdom & Strength
         </h1>
         <p className="text-gray-300 text-lg mb-10 text-center max-w-3xl mx-auto font-light leading-relaxed">
-          Choose your healing journey level. All subscriptions include comprehensive grief transformation tools, 
+          Choose your healing journey level. All subscriptions include comprehensive grief transformation tools delivered weekly, 
           community support, and a <strong className="text-yellow-600">14-day free trial</strong> to experience the healing before you invest.
         </p>
 
@@ -130,7 +130,7 @@ export default function Subscribe() {
                 <div className="flex items-center justify-between mb-3">
                   <span className={`text-2xl font-bold ${tier.text}`}>{tier.displayName}</span>
                   {tier.recommended && (
-                    <span className="bg-yellow-600/90 text-white text-xs rounded-full px-3 py-1 ml-2 shadow-md font-semibold">
+                    <span className="bg-yellow-600/90 text-black text-xs rounded-full px-3 py-1 ml-2 shadow-md font-semibold">
                       Most Popular
                     </span>
                   )}
@@ -146,7 +146,7 @@ export default function Subscribe() {
                   <ul className="space-y-2">
                     {tier.features.map((feature, index) => (
                       <li key={index} className={cn("text-sm flex items-start", tier.text)}>
-                        <span className="text-green-400 mr-2">✓</span>
+                        <span className="text-yellow-400 mr-2">✓</span>
                         {feature}
                       </li>
                     ))}
@@ -182,7 +182,7 @@ export default function Subscribe() {
               <span className="text-gray-400 ml-2">per session</span>
             </div>
             <Link to="/sessions">
-              <button className="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-2 rounded-lg transition-colors">
+              <button className="bg-yellow-600 hover:bg-yellow-700 text-black px-6 py-2 rounded-lg transition-colors font-semibold">
                 Browse Sessions
               </button>
             </Link>
@@ -190,17 +190,17 @@ export default function Subscribe() {
         </div>
 
         {/* Bulk Ordering CTA */}
-        <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-blue-600/30 rounded-lg p-6 mb-8">
-          <h3 className="text-blue-200 font-medium text-xl mb-4">Organizational & Bulk Orders</h3>
-          <p className="text-blue-200 font-light mb-4">
+        <div className="bg-gradient-to-r from-red-900/20 to-yellow-900/20 border border-red-600/30 rounded-lg p-6 mb-8">
+          <h3 className="text-red-200 font-medium text-xl mb-4">Organizational & Bulk Orders</h3>
+          <p className="text-red-200 font-light mb-4">
             Support your team, clients, or organization with volume pricing and enterprise features.
           </p>
           <div className="flex items-center justify-between">
             <div>
-              <span className="text-blue-300">Volume discounts up to 45% off</span>
+              <span className="text-red-300">Volume discounts up to 45% off</span>
             </div>
             <Link to="/bulk-orders">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors">
+              <button className="bg-red-800 hover:bg-red-900 text-white px-6 py-2 rounded-lg transition-colors font-semibold">
                 Get Volume Pricing
               </button>
             </Link>
