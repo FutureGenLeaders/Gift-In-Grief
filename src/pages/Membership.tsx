@@ -43,14 +43,14 @@ export default function Membership() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="container mx-auto px-6 py-12 max-w-5xl">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl sm:text-5xl font-['Playfair_Display'] font-bold text-gold mb-6 tracking-tight">
+          <h1 className="text-4xl sm:text-5xl luxury-heading font-bold mb-6 tracking-tight">
             Premium Membership
           </h1>
-          <p className="text-lg font-['Inter'] text-silver leading-relaxed max-w-2xl mx-auto">
+          <p className="text-lg luxury-text leading-relaxed max-w-2xl mx-auto">
             Unlock the full potential of your healing journey with exclusive access 
             to premium resources, personalized support, and our complete curriculum.
           </p>
@@ -59,13 +59,13 @@ export default function Membership() {
         {/* Membership Benefits */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           {benefits.map((benefit, index) => (
-            <Card key={index} className="bg-gray-900 border-gray-800 hover:border-gold/30 transition-colors">
+            <Card key={index} className="bg-card border-border hover:border-primary/30 transition-colors">
               <CardHeader>
-                <CardTitle className="flex items-center font-['Playfair_Display'] text-gold">
+                <CardTitle className="flex items-center luxury-heading text-primary">
                   {benefit.icon}
                   <span className="ml-3">{benefit.title}</span>
                 </CardTitle>
-                <CardDescription className="font-['Inter'] text-silver">
+                <CardDescription className="luxury-text">
                   {benefit.description}
                 </CardDescription>
               </CardHeader>
@@ -74,14 +74,14 @@ export default function Membership() {
         </div>
 
         {/* Membership Pricing */}
-        <Card className="bg-gradient-to-br from-gray-900 to-gray-800 border-gold/30 mb-12">
+        <Card className="bg-gradient-subtle border-primary/30 mb-12">
           <CardHeader className="text-center">
-            <CardTitle className="text-3xl font-['Playfair_Display'] text-gold mb-2">Premium Membership</CardTitle>
+            <CardTitle className="text-3xl luxury-heading mb-2">Premium Membership</CardTitle>
             <div className="flex items-center justify-center space-x-2">
-              <span className="text-4xl font-bold text-white">$97</span>
-              <span className="font-['Inter'] text-silver">/month</span>
+              <span className="text-4xl font-bold text-foreground">$97</span>
+              <span className="luxury-text">/month</span>
             </div>
-            <CardDescription className="font-['Inter'] text-silver mt-4">
+            <CardDescription className="luxury-text mt-4">
               Everything you need for complete healing transformation
             </CardDescription>
           </CardHeader>
@@ -89,8 +89,8 @@ export default function Membership() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {features.map((feature, index) => (
                 <div key={index} className="flex items-start space-x-3">
-                  <Check className="h-5 w-5 text-gold mt-0.5 flex-shrink-0" />
-                  <span className="font-['Inter'] text-gray-300 text-sm">{feature}</span>
+                  <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                  <span className="luxury-text text-sm">{feature}</span>
                 </div>
               ))}
             </div>
@@ -98,11 +98,11 @@ export default function Membership() {
         </Card>
 
         {/* Money Back Guarantee */}
-        <Card className="bg-gold/10 border-gold/30 mb-8">
+        <Card className="bg-primary/10 border-primary/30 mb-8">
           <CardContent className="p-6 text-center">
-            <Shield className="h-8 w-8 text-gold mx-auto mb-3" />
-            <h3 className="text-xl font-['Playfair_Display'] font-semibold text-gold mb-2">30-Day Money-Back Guarantee</h3>
-            <p className="font-['Inter'] text-silver">
+            <Shield className="h-8 w-8 text-primary mx-auto mb-3" />
+            <h3 className="text-xl luxury-heading font-semibold mb-2">30-Day Money-Back Guarantee</h3>
+            <p className="luxury-text">
               Try our premium membership risk-free. If you're not completely satisfied 
               within 30 days, we'll refund every penny.
             </p>
@@ -112,13 +112,13 @@ export default function Membership() {
         {/* Call to Action */}
         <div className="text-center space-y-6">
           <Button 
-            className="bg-gold text-black hover:bg-silver font-semibold px-12 py-4 text-xl"
+            className="bg-primary hover:bg-secondary text-primary-foreground font-semibold px-12 py-4 text-xl"
             onClick={() => navigate('/subscribe')}
           >
             Start Your Premium Journey
           </Button>
           
-          <p className="font-['Inter'] text-silver text-sm">
+          <p className="luxury-text text-sm">
             Cancel anytime • No setup fees • Instant access
           </p>
           
@@ -126,7 +126,7 @@ export default function Membership() {
             <Button
               variant="link"
               onClick={() => navigate('/')}
-              className="text-silver hover:text-gold"
+              className="text-muted-foreground hover:text-primary"
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back to Home

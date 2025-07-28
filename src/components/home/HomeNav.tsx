@@ -38,13 +38,19 @@ export default function HomeNav() {
           Home
         </button>
         <button
-          onClick={() => handleProtectedNavigation('/sessions')}
+          onClick={() => navigate('/weekly-help')}
           className="text-white hover:text-gold transition-colors"
         >
-          Sessions
+          Weekly Help
         </button>
         <button
-          onClick={() => handleProtectedNavigation('/community')}
+          onClick={() => navigate('/mindfulness')}
+          className="text-white hover:text-gold transition-colors"
+        >
+          Mindfulness Mentoring
+        </button>
+        <button
+          onClick={() => navigate('/community')}
           className="text-white hover:text-gold transition-colors"
         >
           Community

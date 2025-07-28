@@ -91,7 +91,11 @@ export default function Subscribe() {
         window.location.href = data.url;
       } else {
         console.error('No checkout URL received:', data);
-        throw new Error('No checkout URL received from payment system');
+        toast({
+          title: "Error",
+          description: "No checkout URL received from payment system. Please try again.",
+          variant: "destructive"
+        });
       }
     } catch (error) {
       console.error('Subscription error:', error);
@@ -166,7 +170,7 @@ export default function Subscribe() {
                 <Button 
                   onClick={() => handleSubscribe(plan.tier)}
                   disabled={isLoading === plan.tier}
-                  variant={plan.featured ? "luxury" : "default"}
+                  variant={plan.featured ? "default" : "outline"}
                   className="w-full font-semibold py-3"
                 >
                   {isLoading === plan.tier ? 'Processing...' : 'Start 14-Day Free Trial'}

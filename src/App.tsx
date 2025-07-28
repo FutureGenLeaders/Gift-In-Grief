@@ -18,6 +18,9 @@ import AnnouncementBoard from "./pages/AnnouncementBoard";
 import SystemLogin from "./pages/SystemLogin";
 import SystemDashboard from "./pages/SystemDashboard";
 import Auth from "./pages/Auth";
+import WeeklyHelp from "./pages/WeeklyHelp";
+import Mindfulness from "./pages/Mindfulness";
+import Membership from "./pages/Membership";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { AuthProvider } from "./contexts/AuthContext";
 import { ProtectedRoute } from "./components/ProtectedRoute";
@@ -37,11 +40,14 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="/assessment" element={<Assessment />} />
-              <Route path="/subscribe" element={
-                <ProtectedRoute>
-                  <Subscribe />
-                </ProtectedRoute>
-              } />
+              
+              {/* Public Routes */}
+              <Route path="/subscribe" element={<Subscribe />} />
+              <Route path="/membership" element={<Membership />} />
+              <Route path="/weekly-help" element={<WeeklyHelp />} />
+              <Route path="/mindfulness" element={<Mindfulness />} />
+              
+              {/* Protected Routes */}
               <Route path="/bulk-orders" element={
                 <ProtectedRoute>
                   <BulkOrders />
@@ -67,11 +73,7 @@ const App = () => (
                   <MasterclassLibrary />
                 </ProtectedRoute>
               } />
-              <Route path="/community" element={
-                <ProtectedRoute>
-                  <CommunityPage />
-                </ProtectedRoute>
-              } />
+              <Route path="/community" element={<CommunityPage />} />
               <Route path="/announcements" element={
                 <ProtectedRoute>
                   <AnnouncementBoard />
