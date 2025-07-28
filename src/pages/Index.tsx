@@ -22,24 +22,20 @@ import AdditionalNavigation from "@/components/dashboard/AdditionalNavigation";
 import MindfulnessSessionsSection from "@/components/dashboard/MindfulnessSessionsSection";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/contexts/AuthContext";
+import { VideoPlayer } from "@/components/VideoPlayer";
 
 export default function Index() {
   const [joinDate, setJoinDate] = useState<Date | null>(null);
   const [showCertificate, setShowCertificate] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { user } = useAuth();
 
   // Get join date from auth user metadata
   useEffect(() => {
-    async function getJoinDate() {
-      const { data } = await supabase.auth.getUser();
-      if (data?.user) {
-        setIsLoggedIn(true);
-        const metaDate = data?.user?.created_at;
-        setJoinDate(metaDate ? new Date(metaDate) : null);
-      }
+    if (user) {
+      setJoinDate(user.created_at ? new Date(user.created_at) : null);
     }
-    getJoinDate();
-  }, []);
+  }, [user]);
 
   // Drip: decide whether to show certificate (simulate for now; would want logic to check for completion)
   // For demo, if joinDate was 9 months+ ago show certificate
@@ -54,7 +50,7 @@ export default function Index() {
   }, [joinDate]);
 
   // If not logged in, show the marketing page
-  if (!isLoggedIn) {
+  if (!user) {
     return (
       <main className="min-h-screen bg-black w-full">
         <HomeNav />
@@ -109,6 +105,24 @@ export default function Index() {
 
           {/* Mindfulness Mentoring Sessions */}
           <MindfulnessSessionsSection />
+
+          {/* Featured Video Player Demo */}
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold text-white">Featured Healing Session</h2>
+            <VideoPlayer 
+              src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4"
+              title="Introduction to Grief Healing"
+              description="A gentle introduction to understanding grief and beginning your healing journey."
+              tier="Premium"
+              onProgress={(currentTime, duration) => {
+                // Track progress for analytics
+                console.log(`Video progress: ${Math.round((currentTime / duration) * 100)}%`);
+              }}
+              onComplete={() => {
+                console.log('Video completed');
+              }}
+            />
+          </div>
 
           {/* Navigation Cards */}
           <DashboardNavigationCards />

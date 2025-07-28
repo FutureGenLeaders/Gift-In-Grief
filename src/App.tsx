@@ -17,40 +17,85 @@ import CommunityPage from "./pages/CommunityPage";
 import AnnouncementBoard from "./pages/AnnouncementBoard";
 import SystemLogin from "./pages/SystemLogin";
 import SystemDashboard from "./pages/SystemDashboard";
+import Auth from "./pages/Auth";
+import ErrorBoundary from "./components/ErrorBoundary";
+import { AuthProvider } from "./contexts/AuthContext";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 import "./i18n";
 
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/subscribe" element={<Subscribe />} />
-          <Route path="/bulk-orders" element={<BulkOrders />} />
-          <Route path="/sessions" element={<Sessions />} />
-          <Route path="/assessment" element={<Assessment />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/create-session" element={<CreateSession />} />
-          <Route path="/masterclass" element={<MasterclassLibrary />} />
-          <Route path="/community" element={<CommunityPage />} />
-          <Route path="/announcements" element={<AnnouncementBoard />} />
-          
-          {/* Hidden Admin Routes - No public links anywhere */}
-          <Route path="/admin/hidden-secure-portal-2024" element={<SystemLogin />} />
-          <Route path="/admin/emergency-access-backup" element={<SystemLogin />} />
-          <Route path="/admin/secure-management-panel" element={<SystemDashboard />} />
-          <Route path="/admin/content-mgmt-sys" element={<SystemDashboard />} />
-          <Route path="/admin/user-analytics-panel" element={<SystemDashboard />} />
-          
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <ErrorBoundary>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/auth" element={<Auth />} />
+              <Route path="/subscribe" element={
+                <ProtectedRoute>
+                  <Subscribe />
+                </ProtectedRoute>
+              } />
+              <Route path="/bulk-orders" element={
+                <ProtectedRoute>
+                  <BulkOrders />
+                </ProtectedRoute>
+              } />
+              <Route path="/sessions" element={
+                <ProtectedRoute>
+                  <Sessions />
+                </ProtectedRoute>
+              } />
+              <Route path="/assessment" element={
+                <ProtectedRoute>
+                  <Assessment />
+                </ProtectedRoute>
+              } />
+              <Route path="/profile" element={
+                <ProtectedRoute>
+                  <ProfilePage />
+                </ProtectedRoute>
+              } />
+              <Route path="/create-session" element={
+                <ProtectedRoute>
+                  <CreateSession />
+                </ProtectedRoute>
+              } />
+              <Route path="/masterclass" element={
+                <ProtectedRoute>
+                  <MasterclassLibrary />
+                </ProtectedRoute>
+              } />
+              <Route path="/community" element={
+                <ProtectedRoute>
+                  <CommunityPage />
+                </ProtectedRoute>
+              } />
+              <Route path="/announcements" element={
+                <ProtectedRoute>
+                  <AnnouncementBoard />
+                </ProtectedRoute>
+              } />
+              
+              {/* Hidden Admin Routes - No public links anywhere */}
+              <Route path="/admin/hidden-secure-portal-2024" element={<SystemLogin />} />
+              <Route path="/admin/emergency-access-backup" element={<SystemLogin />} />
+              <Route path="/admin/secure-management-panel" element={<SystemDashboard />} />
+              <Route path="/admin/content-mgmt-sys" element={<SystemDashboard />} />
+              <Route path="/admin/user-analytics-panel" element={<SystemDashboard />} />
+              
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </AuthProvider>
+    </QueryClientProvider>
+  </ErrorBoundary>
 );
 
 export default App;

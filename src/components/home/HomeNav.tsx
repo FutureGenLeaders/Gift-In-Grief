@@ -1,17 +1,30 @@
 
 import { Button } from "@/components/ui/button";
-import { Compass } from "lucide-react";
+import { Compass, User, LogOut } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import LanguageSelector from "@/components/LanguageSelector";
+import { useAuth } from "@/contexts/AuthContext";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function HomeNav() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { user, signOut } = useAuth();
   
   const handleWatchDemo = () => {
     // For now, navigate to the assessment
     navigate("/assessment");
+  };
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/");
   };
 
   return (
@@ -41,12 +54,46 @@ export default function HomeNav() {
               Membership
             </Link>
             <LanguageSelector />
-            <Button 
-              variant="outline" 
-              className="border-yellow-600 text-yellow-600 hover:bg-yellow-600/10 font-light"
-            >
-              {t("nav.signin")}
-            </Button>
+            
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button 
+                    variant="outline" 
+                    className="border-yellow-600 text-yellow-600 hover:bg-yellow-600/10 font-light"
+                  >
+                    <User className="h-4 w-4 mr-2" />
+                    {user.user_metadata?.display_name || user.email?.split('@')[0] || 'User'}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56 bg-black/90 border-yellow-600/20 backdrop-blur-sm">
+                  <DropdownMenuItem asChild>
+                    <Link 
+                      to="/profile" 
+                      className="text-gray-300 hover:text-yellow-600 transition-colors cursor-pointer"
+                    >
+                      <User className="mr-2 h-4 w-4" />
+                      Profile
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    onClick={handleSignOut}
+                    className="text-gray-300 hover:text-yellow-600 transition-colors cursor-pointer"
+                  >
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button 
+                variant="outline" 
+                className="border-yellow-600 text-yellow-600 hover:bg-yellow-600/10 font-light"
+                onClick={() => navigate("/auth")}
+              >
+                {t("nav.signin")}
+              </Button>
+            )}
           </div>
         </div>
       </div>
