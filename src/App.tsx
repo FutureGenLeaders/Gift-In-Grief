@@ -15,6 +15,8 @@ import CreateSession from "./pages/CreateSession";
 import MasterclassLibrary from "./pages/MasterclassLibrary";
 import CommunityPage from "./pages/CommunityPage";
 import AnnouncementBoard from "./pages/AnnouncementBoard";
+import SystemLogin from "./pages/SystemLogin";
+import SystemDashboard from "./pages/SystemDashboard";
 import "./i18n";
 
 const queryClient = new QueryClient();
@@ -36,6 +38,14 @@ const App = () => (
           <Route path="/masterclass" element={<MasterclassLibrary />} />
           <Route path="/community" element={<CommunityPage />} />
           <Route path="/announcements" element={<AnnouncementBoard />} />
+          
+          {/* Hidden Admin Routes - No public links anywhere */}
+          <Route path="/admin/hidden-secure-portal-2024" element={<SystemLogin />} />
+          <Route path="/admin/emergency-access-backup" element={<SystemLogin />} />
+          <Route path="/admin/secure-management-panel" element={<SystemDashboard />} />
+          <Route path="/admin/content-mgmt-sys" element={<SystemDashboard />} />
+          <Route path="/admin/user-analytics-panel" element={<SystemDashboard />} />
+          
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
