@@ -35,7 +35,7 @@ export default function Subscribe() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-foreground flex flex-col items-center justify-center px-6 py-12">
+    <div className="min-h-screen bg-background text-foreground flex flex-col items-center justify-center px-6 py-12">
       <div className="max-w-xl w-full text-center space-y-8">
         {/* Headline in gold */}
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary tracking-tight">
