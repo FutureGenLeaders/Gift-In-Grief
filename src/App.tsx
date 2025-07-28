@@ -36,6 +36,7 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/auth" element={<Auth />} />
+              <Route path="/assessment" element={<Assessment />} />
               <Route path="/subscribe" element={
                 <ProtectedRoute>
                   <Subscribe />
@@ -49,11 +50,6 @@ const App = () => (
               <Route path="/sessions" element={
                 <ProtectedRoute>
                   <Sessions />
-                </ProtectedRoute>
-              } />
-              <Route path="/assessment" element={
-                <ProtectedRoute>
-                  <Assessment />
                 </ProtectedRoute>
               } />
               <Route path="/profile" element={
