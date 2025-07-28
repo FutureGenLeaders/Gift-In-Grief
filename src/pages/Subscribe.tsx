@@ -12,7 +12,6 @@ export default function Subscribe() {
     e.preventDefault();
     setLoading(true);
 
-    // TODO: Add your subscription API logic here
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
@@ -35,65 +34,56 @@ export default function Subscribe() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col items-center justify-center px-6 py-12">
+    <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center px-6">
       <div className="max-w-xl w-full text-center space-y-8">
-        {/* Headline */}
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary tracking-tight">
+        {/* Heading */}
+        <h1 className="text-4xl font-['Playfair_Display'] text-[#D4AF37] font-semibold">
           Join Our Healing Community
         </h1>
 
-        {/* Description */}
-        <div className="space-y-4">
-          <p className="text-lg sm:text-xl body-text leading-relaxed">
-            Subscribe to receive curated grief-healing resources and mindful practices.
-          </p>
-          <p className="text-base body-text">
-            Exclusive content delivered directly to your inbox.
-          </p>
-        </div>
+        {/* Body text */}
+        <p className="text-lg font-['Inter'] text-[#C0C0C0] leading-relaxed max-w-md mx-auto">
+          Subscribe to receive curated grief-healing resources and mindful practices delivered directly to your inbox.
+        </p>
 
         {/* Subscription Form */}
         <form onSubmit={handleSubscribe} className="space-y-6 mt-12">
-          <div className="relative">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Your email address"
-              className="w-full px-6 py-4 text-lg bg-input border border-border rounded-lg 
-                         text-foreground placeholder:text-muted-foreground
-                         focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary
-                         transition-all duration-200"
-              required
-              disabled={loading}
-            />
-          </div>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Your email address"
+            className="w-full px-6 py-4 text-lg bg-gray-900 border border-gray-600 rounded-lg 
+                       text-white placeholder:text-gray-400
+                       focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:border-[#D4AF37]
+                       transition-all duration-200"
+            required
+            disabled={loading}
+          />
           
           <button
             type="submit"
             disabled={loading || !email}
             className="w-full px-8 py-4 text-lg font-semibold rounded-lg
-                       bg-primary text-primary-foreground
-                       hover:bg-secondary hover:text-secondary-foreground
+                       bg-[#D4AF37] text-black
+                       hover:bg-[#C0C0C0]
                        disabled:opacity-50 disabled:cursor-not-allowed
-                       transition-all duration-300 ease-in-out
-                       shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
+                       transition-all duration-300 ease-in-out"
           >
             {loading ? 'Subscribing...' : 'Subscribe'}
           </button>
         </form>
 
         {/* Privacy Note */}
-        <p className="text-sm text-muted-foreground leading-relaxed">
-          We respect your privacy. Unsubscribe anytime with one click.
+        <p className="text-sm text-gray-500">
+          We respect your privacy. Unsubscribe anytime.
         </p>
 
         {/* Return to home */}
-        <div className="pt-8">
+        <div className="pt-4">
           <button
             onClick={() => navigate('/')}
-            className="text-muted-foreground hover:text-primary transition-colors duration-200
-                       underline underline-offset-4 hover:underline-offset-8"
+            className="text-[#D4AF37] hover:text-[#C0C0C0] transition-colors duration-200"
           >
             ← Return to Home
           </button>
