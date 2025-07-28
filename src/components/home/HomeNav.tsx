@@ -28,29 +28,29 @@ export default function HomeNav() {
   };
 
   return (
-    <nav className="bg-black/80 backdrop-blur-sm border-b border-yellow-600/20">
+    <nav className="bg-background/95 backdrop-blur-md border-b border-border shadow-subtle">
       <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex items-center space-x-2">
-            <Compass className="h-8 w-8 text-yellow-600" />
-            <span className="text-2xl font-light bg-gradient-to-r from-yellow-600 to-red-700 bg-clip-text text-transparent">
+        <div className="flex justify-between items-center h-20">
+          <div className="flex items-center space-x-3">
+            <Compass className="h-8 w-8 text-primary" />
+            <span className="text-2xl font-playfair font-semibold luxury-heading">
               {t("app.title")}
             </span>
           </div>
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/assessment" className="text-gray-300 hover:text-yellow-600 transition-colors font-light">
+            <Link to="/assessment" className="luxury-text hover:text-primary transition-colors font-inter">
               {t("nav.discovery")}
             </Link>
-            <Link to="/sessions" className="text-gray-300 hover:text-yellow-600 transition-colors font-light">
+            <Link to="/sessions" className="luxury-text hover:text-primary transition-colors font-inter">
               Weekly Help
             </Link>
-            <Link to="/masterclass" className="text-gray-300 hover:text-yellow-600 transition-colors font-light">
+            <Link to="/masterclass" className="luxury-text hover:text-primary transition-colors font-inter">
               Mindfulness Mentoring
             </Link>
-            <Link to="/community" className="text-gray-300 hover:text-yellow-600 transition-colors font-light">
+            <Link to="/community" className="luxury-text hover:text-primary transition-colors font-inter">
               {t("nav.community")}
             </Link>
-            <Link to="/subscribe" className="text-yellow-500 hover:text-yellow-300 font-medium bg-gradient-to-r from-yellow-700/20 via-red-700/20 to-yellow-600/20 px-3 py-1 rounded">
+            <Link to="/subscribe" className="gold-text hover:text-accent font-medium bg-secondary/50 px-4 py-2 rounded-lg border border-border hover:border-primary transition-all">
               Membership
             </Link>
             <LanguageSelector />
@@ -60,17 +60,17 @@ export default function HomeNav() {
                 <DropdownMenuTrigger asChild>
                   <Button 
                     variant="outline" 
-                    className="border-yellow-600 text-yellow-600 hover:bg-yellow-600/10 font-light"
+                    className="border-border text-foreground hover:bg-secondary hover:border-primary font-inter"
                   >
                     <User className="h-4 w-4 mr-2" />
                     {user.user_metadata?.display_name || user.email?.split('@')[0] || 'User'}
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56 bg-black/90 border-yellow-600/20 backdrop-blur-sm">
+                <DropdownMenuContent className="w-56 bg-popover border-border backdrop-blur-md shadow-luxury">
                   <DropdownMenuItem asChild>
                     <Link 
                       to="/profile" 
-                      className="text-gray-300 hover:text-yellow-600 transition-colors cursor-pointer"
+                      className="text-popover-foreground hover:text-primary transition-colors cursor-pointer"
                     >
                       <User className="mr-2 h-4 w-4" />
                       Profile
@@ -78,7 +78,7 @@ export default function HomeNav() {
                   </DropdownMenuItem>
                   <DropdownMenuItem 
                     onClick={handleSignOut}
-                    className="text-gray-300 hover:text-yellow-600 transition-colors cursor-pointer"
+                    className="text-popover-foreground hover:text-primary transition-colors cursor-pointer"
                   >
                     <LogOut className="mr-2 h-4 w-4" />
                     Sign Out
@@ -87,8 +87,7 @@ export default function HomeNav() {
               </DropdownMenu>
             ) : (
               <Button 
-                variant="outline" 
-                className="border-yellow-600 text-yellow-600 hover:bg-yellow-600/10 font-light"
+                variant="luxury"
                 onClick={() => navigate("/auth")}
               >
                 {t("nav.signin")}
