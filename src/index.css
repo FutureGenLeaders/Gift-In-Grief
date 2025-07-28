@@ -7,36 +7,36 @@
 
 @layer base {
   :root {
-    /* Luxury Color Palette */
-    --background: 0 0% 8%;              /* Deep charcoal black */
-    --foreground: 0 0% 90%;             /* Soft white text */
+    /* Black-Gold-Silver Luxury Color Palette */
+    --background: 0 0% 0%;                   /* Pure Black #000000 */
+    --foreground: 0 0% 100%;                 /* Pure White for main text */
 
-    --card: 0 0% 12%;                   /* Slightly lighter black for cards */
-    --card-foreground: 0 0% 90%;
+    --card: 0 0% 5%;                         /* Very dark card background */
+    --card-foreground: 0 0% 100%;            /* White text on cards */
 
-    --popover: 0 0% 10%;                /* Dark popover background */
-    --popover-foreground: 0 0% 90%;
+    --popover: 0 0% 3%;                      /* Dark popover background */
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 45 90% 58%;              /* Rich Gold #D4AF37 */
-    --primary-foreground: 0 0% 8%;       /* Dark text on gold */
+    --primary: 45 100% 51%;                  /* Gold #D4AF37 */
+    --primary-foreground: 0 0% 0%;           /* Black text on gold */
 
-    --secondary: 0 0% 20%;              /* Dark gray for secondary elements */
-    --secondary-foreground: 0 0% 75%;    /* Silver text #C0C0C0 */
+    --secondary: 0 0% 75%;                   /* Silver #C0C0C0 */
+    --secondary-foreground: 0 0% 0%;         /* Black text on silver */
 
-    --muted: 0 0% 15%;                  /* Muted dark gray */
-    --muted-foreground: 0 0% 60%;       /* Soft gray text */
+    --muted: 0 0% 10%;                       /* Dark gray backgrounds */
+    --muted-foreground: 0 0% 75%;            /* Silver text #C0C0C0 */
 
-    --accent: 0 0% 75%;                 /* Silver accent #C0C0C0 */
-    --accent-foreground: 0 0% 8%;        /* Dark text on silver */
+    --accent: 0 0% 83%;                      /* Light silver #D4D4D4 */
+    --accent-foreground: 0 0% 0%;            /* Black text on light silver */
 
-    --destructive: 0 84% 60%;           /* Elegant red for errors */
+    --destructive: 0 84% 60%;                /* Red for errors */
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 25%;                 /* Subtle gray borders */
-    --input: 0 0% 18%;                  /* Dark input backgrounds */
-    --ring: 45 90% 58%;                 /* Gold focus rings */
+    --border: 0 0% 20%;                      /* Dark gray borders */
+    --input: 0 0% 8%;                        /* Dark input backgrounds */
+    --ring: 45 100% 51%;                     /* Gold focus rings */
 
-    --radius: 0.75rem;                  /* Slightly more rounded for luxury feel */
+    --radius: 0.75rem;                       /* Rounded corners */
 
     /* Sidebar luxury styling */
     --sidebar-background: 0 0% 6%;
@@ -66,33 +66,33 @@
 
   .dark {
     /* Dark mode uses the same luxury palette */
-    --background: 0 0% 8%;
-    --foreground: 0 0% 90%;
-    --card: 0 0% 12%;
-    --card-foreground: 0 0% 90%;
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 90%;
-    --primary: 45 90% 58%;
-    --primary-foreground: 0 0% 8%;
-    --secondary: 0 0% 20%;
-    --secondary-foreground: 0 0% 75%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 60%;
-    --accent: 0 0% 75%;
-    --accent-foreground: 0 0% 8%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 3%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 45 100% 51%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 75%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 75%;
+    --accent: 0 0% 83%;
+    --accent-foreground: 0 0% 0%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 25%;
-    --input: 0 0% 18%;
-    --ring: 45 90% 58%;
-    --sidebar-background: 0 0% 6%;
-    --sidebar-foreground: 0 0% 75%;
-    --sidebar-primary: 45 90% 58%;
-    --sidebar-primary-foreground: 0 0% 8%;
-    --sidebar-accent: 0 0% 15%;
-    --sidebar-accent-foreground: 0 0% 90%;
+    --border: 0 0% 20%;
+    --input: 0 0% 8%;
+    --ring: 45 100% 51%;
+    --sidebar-background: 0 0% 3%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 45 100% 51%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 0 0% 8%;
+    --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 0 0% 20%;
-    --sidebar-ring: 45 90% 58%;
+    --sidebar-ring: 45 100% 51%;
   }
 }
 
@@ -116,13 +116,13 @@
     overflow-x: hidden;
   }
 
-  /* Luxury Typography System */
+  /* Black-Gold-Silver Typography System */
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', Georgia, serif;
     font-weight: var(--font-medium);
     letter-spacing: -0.025em;
     line-height: 1.2;
-    color: hsl(var(--foreground));
+    color: hsl(var(--primary)); /* Gold headings */
   }
 
   h1 { font-size: 3.5rem; font-weight: var(--font-bold); }
@@ -136,22 +136,24 @@
     font-family: 'Inter', sans-serif;
     font-weight: var(--font-normal);
     line-height: 1.6;
+    color: hsl(var(--foreground)); /* White by default */
+  }
+
+  .body-text {
+    color: hsl(var(--muted-foreground)); /* Silver body text */
   }
 
   .luxury-text {
     font-weight: var(--font-light);
     letter-spacing: 0.025em;
     line-height: 1.7;
-    color: hsl(var(--muted-foreground));
+    color: hsl(var(--muted-foreground)); /* Silver text */
   }
 
   .luxury-heading {
     font-family: 'Playfair Display', serif;
     font-weight: var(--font-semibold);
-    background: var(--gradient-luxury);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: hsl(var(--primary)); /* Gold headings */
     letter-spacing: -0.02em;
   }
 
@@ -161,7 +163,7 @@
   }
 
   .silver-text {
-    color: hsl(var(--accent));
+    color: hsl(var(--secondary));
     font-weight: var(--font-normal);
   }
 

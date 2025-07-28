@@ -126,18 +126,18 @@ const Auth = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background to-secondary/20 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-background p-4">
       <div className="w-full max-w-md space-y-6">
         <div className="text-center space-y-2">
           <Link 
             to="/" 
-            className="inline-flex items-center text-sm text-muted-foreground hover:text-primary transition-colors"
+            className="inline-flex items-center text-sm body-text hover:text-primary transition-colors"
           >
             <ArrowLeft className="h-4 w-4 mr-1" />
             Back to Home
           </Link>
-          <h1 className="text-3xl font-bold tracking-tight">Grief Healing</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-3xl font-bold text-primary tracking-tight">Grief Healing</h1>
+          <p className="body-text">
             {activeTab === 'signin' ? 'Welcome back to your healing journey' : 'Begin your healing journey'}
           </p>
         </div>

@@ -52,7 +52,7 @@ export default function Index() {
   // If not logged in, show the marketing page
   if (!user) {
     return (
-      <main className="min-h-screen bg-black w-full">
+      <main className="min-h-screen bg-background w-full">
         <HomeNav />
         
         {/* Marketing homepage with proper spacing - testimonials removed */}
@@ -73,7 +73,7 @@ export default function Index() {
 
   // If logged in, show the dashboard
   return (
-    <main className="min-h-screen bg-black w-full">
+    <main className="min-h-screen bg-background w-full">
       <HomeNav />
       
       <div className="container mx-auto px-6 py-8 max-w-6xl">
