@@ -20,44 +20,44 @@ export default function HomeNav() {
   };
 
   return (
-    <nav className="bg-background border-b border-border text-foreground px-6 py-4 flex items-center justify-between shadow-md">
+    <nav className="bg-black border-b border-gray-800 text-white px-6 py-4 flex items-center justify-between">
       {/* Logo */}
       <div
         onClick={() => navigate('/')}
-        className="cursor-pointer text-2xl font-bold text-primary tracking-wide"
+        className="cursor-pointer text-2xl font-['Playfair_Display'] font-bold text-gold tracking-wide"
       >
         Gift in Grief
       </div>
 
       {/* Navigation Links */}
-      <div className="flex items-center gap-6 body-text">
+      <div className="flex items-center gap-6 font-['Inter']">
         <button
           onClick={() => navigate('/')}
-          className="hover:text-primary transition-colors"
+          className="text-white hover:text-gold transition-colors"
         >
           Home
         </button>
         <button
           onClick={() => handleProtectedNavigation('/sessions')}
-          className="hover:text-primary transition-colors"
+          className="text-white hover:text-gold transition-colors"
         >
           Sessions
         </button>
         <button
           onClick={() => handleProtectedNavigation('/community')}
-          className="hover:text-primary transition-colors"
+          className="text-white hover:text-gold transition-colors"
         >
           Community
         </button>
         <button
           onClick={() => handleProtectedNavigation('/membership')}
-          className="hover:text-primary transition-colors"
+          className="text-white hover:text-gold transition-colors"
         >
           Membership
         </button>
         <button
           onClick={() => navigate('/subscribe')}
-          className="hover:text-primary transition-colors"
+          className="text-white hover:text-gold transition-colors"
         >
           Subscribe
         </button>
@@ -65,12 +65,12 @@ export default function HomeNav() {
         {/* Auth Controls */}
         {user ? (
           <div className="flex items-center gap-3">
-            <span className="silver-text">
+            <span className="text-silver">
               {user.user_metadata?.display_name || user.email.split('@')[0]}
             </span>
             <button
               onClick={handleSignOut}
-              className="bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-secondary hover:text-secondary-foreground transition-colors"
+              className="bg-gold text-black px-4 py-2 rounded-lg hover:bg-silver transition-colors"
             >
               Sign Out
             </button>
@@ -78,7 +78,7 @@ export default function HomeNav() {
         ) : (
           <button
             onClick={() => navigate('/auth')}
-            className="bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-secondary hover:text-secondary-foreground transition-colors"
+            className="bg-gold text-black px-4 py-2 rounded-lg hover:bg-silver transition-colors"
           >
             Sign In
           </button>

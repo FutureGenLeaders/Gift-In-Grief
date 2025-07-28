@@ -119,41 +119,41 @@ const Auth = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background to-secondary/20">
-        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      <div className="min-h-screen flex items-center justify-center bg-black">
+        <Loader2 className="h-8 w-8 animate-spin text-gold" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
+    <div className="min-h-screen flex items-center justify-center bg-black p-4">
       <div className="w-full max-w-md space-y-6">
         <div className="text-center space-y-2">
           <Link 
             to="/" 
-            className="inline-flex items-center text-sm body-text hover:text-primary transition-colors"
+            className="inline-flex items-center text-sm text-silver hover:text-gold transition-colors"
           >
             <ArrowLeft className="h-4 w-4 mr-1" />
             Back to Home
           </Link>
-          <h1 className="text-3xl font-bold text-primary tracking-tight">Grief Healing</h1>
-          <p className="body-text">
+          <h1 className="text-3xl font-['Playfair_Display'] font-bold text-gold tracking-tight">Grief Healing</h1>
+          <p className="font-['Inter'] text-silver">
             {activeTab === 'signin' ? 'Welcome back to your healing journey' : 'Begin your healing journey'}
           </p>
         </div>
 
-        <Card className="shadow-lg">
+        <Card className="shadow-lg border-gray-800 bg-gray-900">
           <CardHeader className="space-y-1">
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="signin">Sign In</TabsTrigger>
-                <TabsTrigger value="signup">Sign Up</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-2 bg-gray-800">
+                <TabsTrigger value="signin" className="text-white data-[state=active]:bg-gold data-[state=active]:text-black">Sign In</TabsTrigger>
+                <TabsTrigger value="signup" className="text-white data-[state=active]:bg-gold data-[state=active]:text-black">Sign Up</TabsTrigger>
               </TabsList>
               
               <TabsContent value="signin" className="space-y-4 mt-6">
                 <div className="space-y-2">
-                  <CardTitle>Welcome back</CardTitle>
-                  <CardDescription>
+                  <CardTitle className="font-['Playfair_Display'] text-gold">Welcome back</CardTitle>
+                  <CardDescription className="font-['Inter'] text-silver">
                     Sign in to continue your healing journey
                   </CardDescription>
                 </div>
@@ -161,8 +161,8 @@ const Auth = () => {
               
               <TabsContent value="signup" className="space-y-4 mt-6">
                 <div className="space-y-2">
-                  <CardTitle>Create account</CardTitle>
-                  <CardDescription>
+                  <CardTitle className="font-['Playfair_Display'] text-gold">Create account</CardTitle>
+                  <CardDescription className="font-['Inter'] text-silver">
                     Start your personalized grief healing journey
                   </CardDescription>
                 </div>
@@ -174,16 +174,16 @@ const Auth = () => {
             <form onSubmit={handleSubmit} className="space-y-4">
               {activeTab === 'signup' && (
                 <div className="space-y-2">
-                  <Label htmlFor="displayName">Display Name</Label>
+                  <Label htmlFor="displayName" className="text-white">Display Name</Label>
                   <div className="relative">
-                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                     <Input
                       id="displayName"
                       type="text"
                       placeholder="Enter your name"
                       value={formData.displayName}
                       onChange={(e) => handleInputChange('displayName', e.target.value)}
-                      className="pl-10"
+                      className="pl-10 bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 focus:ring-gold focus:border-gold"
                       disabled={isLoading}
                     />
                   </div>
@@ -196,16 +196,16 @@ const Auth = () => {
               )}
 
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email" className="text-white">Email</Label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                   <Input
                     id="email"
                     type="email"
                     placeholder="Enter your email"
                     value={formData.email}
                     onChange={(e) => handleInputChange('email', e.target.value)}
-                    className="pl-10"
+                    className="pl-10 bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 focus:ring-gold focus:border-gold"
                     disabled={isLoading}
                   />
                 </div>
@@ -217,16 +217,16 @@ const Auth = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password" className="text-white">Password</Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                   <Input
                     id="password"
                     type="password"
                     placeholder="Enter your password"
                     value={formData.password}
                     onChange={(e) => handleInputChange('password', e.target.value)}
-                    className="pl-10"
+                    className="pl-10 bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 focus:ring-gold focus:border-gold"
                     disabled={isLoading}
                   />
                 </div>
@@ -239,16 +239,16 @@ const Auth = () => {
 
               {activeTab === 'signup' && (
                 <div className="space-y-2">
-                  <Label htmlFor="confirmPassword">Confirm Password</Label>
+                  <Label htmlFor="confirmPassword" className="text-white">Confirm Password</Label>
                   <div className="relative">
-                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                     <Input
                       id="confirmPassword"
                       type="password"
                       placeholder="Confirm your password"
                       value={formData.confirmPassword}
                       onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
-                      className="pl-10"
+                      className="pl-10 bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 focus:ring-gold focus:border-gold"
                       disabled={isLoading}
                     />
                   </div>
@@ -262,7 +262,7 @@ const Auth = () => {
 
               <Button 
                 type="submit" 
-                className="w-full" 
+                className="w-full bg-gold text-black hover:bg-silver font-semibold" 
                 disabled={isLoading}
               >
                 {isLoading ? (
@@ -282,7 +282,7 @@ const Auth = () => {
                     variant="link"
                     onClick={handleResetPassword}
                     disabled={isLoading}
-                    className="text-sm"
+                    className="text-sm text-gold hover:text-silver"
                   >
                     Forgot your password?
                   </Button>
@@ -293,7 +293,7 @@ const Auth = () => {
         </Card>
 
         {activeTab === 'signup' && (
-          <div className="text-center text-sm text-muted-foreground">
+          <div className="text-center text-sm text-gray-400">
             <p>
               By creating an account, you agree to our Terms of Service and Privacy Policy.
             </p>
