@@ -9,9 +9,9 @@ const corsHeaders = {
 };
 
 const TIER_CONFIG: Record<string, { name: string; price_cents: number; sessions: number; mindfulness_credits: number }> = {
-  "Basic": { name: "Basic Healing Plan", price_cents: 5500, sessions: 2, mindfulness_credits: 0 },
-  "Complete": { name: "Complete Healing Journey", price_cents: 11100, sessions: 40, mindfulness_credits: 1 },
-  "Transformation": { name: "Transformation Circle", price_cents: 22200, sessions: 81, mindfulness_credits: 2 },
+  "Basic": { name: "Gentle Beginning", price_cents: 3300, sessions: 1, mindfulness_credits: 0 },
+  "Complete": { name: "Guided Journey", price_cents: 8800, sessions: 40, mindfulness_credits: 1 },
+  "Transformation": { name: "Sacred Transformation", price_cents: 11100, sessions: 81, mindfulness_credits: 2 },
 };
 
 serve(async (req) => {
@@ -39,26 +39,25 @@ serve(async (req) => {
     );
 
     const authHeader = req.headers.get("Authorization");
-    if (!authHeader) {
-      console.error("No authorization header");
-      return new Response(JSON.stringify({ error: "Please log in to continue with your subscription." }), {
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-        status: 401,
-      });
+    let user: any = null;
+    let customerEmail = "guest@example.com"; // Default for guest checkouts
+
+    // Try to authenticate user, but allow guest checkout
+    if (authHeader) {
+      const token = authHeader.replace("Bearer ", "");
+      try {
+        const { data: { user: authUser }, error: userError } = await supabaseClient.auth.getUser(token);
+        if (!userError && authUser?.email) {
+          user = authUser;
+          customerEmail = authUser.email;
+          console.log("User authenticated:", customerEmail);
+        }
+      } catch (error) {
+        console.log("Authentication failed, proceeding as guest:", error);
+      }
+    } else {
+      console.log("No authorization header, proceeding as guest checkout");
     }
-
-    const token = authHeader.replace("Bearer ", "");
-    const { data: { user }, error: userError } = await supabaseClient.auth.getUser(token);
-
-    if (userError || !user?.email) {
-      console.error("User authentication error:", userError);
-      return new Response(JSON.stringify({ error: "Authentication failed. Please log in again." }), {
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-        status: 401,
-      });
-    }
-
-    console.log("User authenticated:", user.email);
 
     const stripeKey = Deno.env.get("STRIPE_SECRET_KEY");
     if (!stripeKey) {
@@ -73,14 +72,14 @@ serve(async (req) => {
       apiVersion: "2023-10-16",
     });
 
-    console.log("Looking for existing customer");
-    const customers = await stripe.customers.list({ email: user.email, limit: 1 });
+    console.log("Looking for existing customer with email:", customerEmail);
+    const customers = await stripe.customers.list({ email: customerEmail, limit: 1 });
     let customerId: string | undefined;
     if (customers.data.length > 0) {
       customerId = customers.data[0].id;
       console.log("Found existing customer:", customerId);
     } else {
-      console.log("No existing customer found");
+      console.log("No existing customer found, will create new one");
     }
 
     const origin = req.headers.get("origin") ?? "https://624547dc-459e-4c6d-9740-b72b9d6fe332.lovableproject.com";
@@ -88,7 +87,7 @@ serve(async (req) => {
     console.log("Creating checkout session for tier:", tier);
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
-      customer_email: customerId ? undefined : user.email,
+      customer_email: customerId ? undefined : customerEmail,
       line_items: [
         {
           price_data: {
@@ -117,7 +116,10 @@ serve(async (req) => {
     });
 
     console.log("Checkout session created successfully:", session.id);
-    return new Response(JSON.stringify({ url: session.url }), {
+    return new Response(JSON.stringify({ 
+      url: session.url,
+      id: session.id 
+    }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,
     });
