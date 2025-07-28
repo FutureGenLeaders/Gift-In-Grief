@@ -2,8 +2,10 @@
 import { ArrowRight, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function FinalCtaSection() {
+  const { user } = useAuth();
   return (
     <section className="py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-black">
       <div className="max-w-4xl mx-auto px-6 text-center">
@@ -19,7 +21,18 @@ export default function FinalCtaSection() {
         </p>
 
         <div className="mb-12">
-          <Link to="/assessment">
+          <Link 
+            to={user ? "/subscribe" : "/assessment"}
+            state={!user ? { 
+              from: { 
+                pathname: "/subscribe", 
+                search: "", 
+                hash: "", 
+                state: null, 
+                key: "final-cta-subscribe" 
+              } 
+            } : undefined}
+          >
             <Button size="lg" className="bg-gradient-to-r from-yellow-600 to-red-700 hover:from-yellow-700 hover:to-red-800 text-white px-16 py-6 text-xl font-light rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105">
               Begin Your Transformation
               <ArrowRight className="ml-3 h-7 w-7" />

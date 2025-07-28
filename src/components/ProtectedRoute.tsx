@@ -20,8 +20,17 @@ export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   }
 
   if (!user) {
-    // Redirect to assessment first, then auth if needed
-    return <Navigate to="/assessment" state={{ from: location }} replace />;
+    // Safely handle location state with fallbacks
+    const safeLocation = {
+      pathname: location?.pathname || '/subscribe',
+      search: location?.search || '',
+      hash: location?.hash || '',
+      state: location?.state || null,
+      key: location?.key || 'default'
+    };
+    
+    // Redirect to assessment first, preserving the original destination
+    return <Navigate to="/assessment" state={{ from: safeLocation }} replace />;
   }
 
   return <>{children}</>;

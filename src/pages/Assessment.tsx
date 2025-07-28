@@ -18,8 +18,21 @@ const Assessment = () => {
   const [answers, setAnswers] = useState<string[]>([]);
   const [showResults, setShowResults] = useState(false);
 
-  // Get the original destination from location state
-  const originalDestination = location.state?.from?.pathname || "/subscribe";
+  // Safely read the original destination with defensive coding
+  const getOriginalDestination = () => {
+    try {
+      const fromState = location?.state?.from;
+      if (fromState && typeof fromState === 'object' && 'pathname' in fromState) {
+        return fromState.pathname || '/subscribe';
+      }
+      return '/subscribe';
+    } catch (error) {
+      console.warn('Error reading location state:', error);
+      return '/subscribe';
+    }
+  };
+
+  const originalDestination = getOriginalDestination();
 
   const questions = [
     {
@@ -210,12 +223,27 @@ const Assessment = () => {
                   <Button
                     className="w-full text-left justify-center bg-gradient-to-r from-yellow-600 to-red-700 hover:from-yellow-700 hover:to-red-800 text-white font-light py-6 text-lg"
                     onClick={() => {
-                      if (user) {
-                        // User is logged in, go to original destination
-                        navigate(originalDestination);
-                      } else {
-                        // User not logged in, go to auth with original destination
-                        navigate("/auth", { state: { from: { pathname: originalDestination } } });
+                      try {
+                        if (user) {
+                          // User is logged in, go to original destination
+                          navigate(originalDestination, { replace: true });
+                        } else {
+                          // User not logged in, go to auth with original destination
+                          const authState = {
+                            from: {
+                              pathname: originalDestination,
+                              search: '',
+                              hash: '',
+                              state: null,
+                              key: 'assessment-redirect'
+                            }
+                          };
+                          navigate("/auth", { state: authState });
+                        }
+                      } catch (error) {
+                        console.error('Navigation error:', error);
+                        // Fallback navigation
+                        navigate(user ? '/subscribe' : '/auth');
                       }
                     }}
                   >

@@ -25,11 +25,30 @@ const Auth = () => {
   const navigate = useNavigate();
   const location = useLocation();
   
-  const from = location.state?.from?.pathname || '/';
+  // Safely handle redirect destination with defensive coding
+  const getRedirectDestination = () => {
+    try {
+      const fromState = location?.state?.from;
+      if (fromState && typeof fromState === 'object' && 'pathname' in fromState) {
+        return fromState.pathname || '/';
+      }
+      return '/';
+    } catch (error) {
+      console.warn('Error reading auth redirect destination:', error);
+      return '/';
+    }
+  };
+
+  const from = getRedirectDestination();
 
   useEffect(() => {
     if (user && !loading) {
-      navigate(from, { replace: true });
+      try {
+        navigate(from, { replace: true });
+      } catch (error) {
+        console.error('Auth redirect error:', error);
+        navigate('/', { replace: true });
+      }
     }
   }, [user, loading, navigate, from]);
 
