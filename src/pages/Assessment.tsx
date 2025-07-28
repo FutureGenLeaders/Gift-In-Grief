@@ -1,6 +1,7 @@
 
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -11,9 +12,14 @@ import { Heart, ArrowLeft, ArrowRight, Shield, Compass } from "lucide-react";
 
 const Assessment = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { user } = useAuth();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<string[]>([]);
   const [showResults, setShowResults] = useState(false);
+
+  // Get the original destination from location state
+  const originalDestination = location.state?.from?.pathname || "/subscribe";
 
   const questions = [
     {
@@ -203,7 +209,15 @@ const Assessment = () => {
                   <h3 className="text-yellow-600 font-medium mb-4 text-lg">Begin Your Transformation Journey</h3>
                   <Button
                     className="w-full text-left justify-center bg-gradient-to-r from-yellow-600 to-red-700 hover:from-yellow-700 hover:to-red-800 text-white font-light py-6 text-lg"
-                    onClick={() => navigate("/subscribe")}
+                    onClick={() => {
+                      if (user) {
+                        // User is logged in, go to original destination
+                        navigate(originalDestination);
+                      } else {
+                        // User not logged in, go to auth with original destination
+                        navigate("/auth", { state: { from: { pathname: originalDestination } } });
+                      }
+                    }}
                   >
                     <Heart className="h-5 w-5 mr-3" />
                     Start Your 2-Week Free Trial - Experience the Healing Magic

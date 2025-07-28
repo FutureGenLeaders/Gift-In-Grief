@@ -41,18 +41,37 @@ export default function HomeNav() {
             <Link to="/assessment" className="luxury-text hover:text-primary transition-colors font-inter">
               {t("nav.discovery")}
             </Link>
-            <Link to="/sessions" className="luxury-text hover:text-primary transition-colors font-inter">
-              Weekly Help
-            </Link>
-            <Link to="/masterclass" className="luxury-text hover:text-primary transition-colors font-inter">
-              Mindfulness Mentoring
-            </Link>
-            <Link to="/community" className="luxury-text hover:text-primary transition-colors font-inter">
-              {t("nav.community")}
-            </Link>
-            <Link to="/subscribe" className="gold-text hover:text-accent font-medium bg-secondary/50 px-4 py-2 rounded-lg border border-border hover:border-primary transition-all">
-              Membership
-            </Link>
+            {user ? (
+              <>
+                <Link to="/sessions" className="luxury-text hover:text-primary transition-colors font-inter">
+                  Weekly Help
+                </Link>
+                <Link to="/masterclass" className="luxury-text hover:text-primary transition-colors font-inter">
+                  Mindfulness Mentoring
+                </Link>
+                <Link to="/community" className="luxury-text hover:text-primary transition-colors font-inter">
+                  {t("nav.community")}
+                </Link>
+                <Link to="/subscribe" className="gold-text hover:text-accent font-medium bg-secondary/50 px-4 py-2 rounded-lg border border-border hover:border-primary transition-all">
+                  Membership
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link to="/assessment" state={{ from: { pathname: "/sessions" } }} className="luxury-text hover:text-primary transition-colors font-inter">
+                  Weekly Help
+                </Link>
+                <Link to="/assessment" state={{ from: { pathname: "/masterclass" } }} className="luxury-text hover:text-primary transition-colors font-inter">
+                  Mindfulness Mentoring
+                </Link>
+                <Link to="/assessment" state={{ from: { pathname: "/community" } }} className="luxury-text hover:text-primary transition-colors font-inter">
+                  {t("nav.community")}
+                </Link>
+                <Link to="/assessment" state={{ from: { pathname: "/subscribe" } }} className="gold-text hover:text-accent font-medium bg-secondary/50 px-4 py-2 rounded-lg border border-border hover:border-primary transition-all">
+                  Membership
+                </Link>
+              </>
+            )}
             <LanguageSelector />
             
             {user ? (

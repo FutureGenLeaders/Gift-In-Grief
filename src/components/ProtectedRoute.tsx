@@ -13,15 +13,15 @@ export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-background">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     );
   }
 
   if (!user) {
-    // Redirect to auth page but save the attempted location
-    return <Navigate to="/auth" state={{ from: location }} replace />;
+    // Redirect to assessment first, then auth if needed
+    return <Navigate to="/assessment" state={{ from: location }} replace />;
   }
 
   return <>{children}</>;
