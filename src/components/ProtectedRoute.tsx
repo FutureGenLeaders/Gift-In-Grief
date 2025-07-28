@@ -19,7 +19,7 @@ export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
     );
   }
 
-  if (!user && location.pathname !== '/assessment' && location.pathname !== '/auth' && location.pathname !== '/subscribe') {
+  if (!user && location.pathname !== '/assessment' && location.pathname !== '/auth' && location.pathname !== '/subscribe' && location.pathname !== '/membership') {
     // Safely handle location state with fallbacks
     const safeLocation = {
       pathname: location?.pathname || '/subscribe',

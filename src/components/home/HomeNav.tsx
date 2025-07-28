@@ -50,7 +50,7 @@ export default function HomeNav() {
           Community
         </button>
         <button
-          onClick={() => handleProtectedNavigation('/membership')}
+          onClick={() => navigate('/membership')}
           className="text-white hover:text-gold transition-colors"
         >
           Membership

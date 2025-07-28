@@ -224,26 +224,12 @@ const Assessment = () => {
                     className="w-full text-left justify-center bg-gradient-to-r from-yellow-600 to-red-700 hover:from-yellow-700 hover:to-red-800 text-white font-light py-6 text-lg"
                     onClick={() => {
                       try {
-                        if (user) {
-                          // User is logged in, go to original destination
-                          navigate(originalDestination, { replace: true });
-                        } else {
-                          // User not logged in, go to auth with original destination
-                          const authState = {
-                            from: {
-                              pathname: originalDestination,
-                              search: '',
-                              hash: '',
-                              state: null,
-                              key: 'assessment-redirect'
-                            }
-                          };
-                          navigate("/auth", { state: authState });
-                        }
+                        // Always redirect to /subscribe after assessment, regardless of auth status
+                        navigate('/subscribe', { replace: true });
                       } catch (error) {
                         console.error('Navigation error:', error);
                         // Fallback navigation
-                        navigate(user ? '/subscribe' : '/auth');
+                        navigate('/subscribe');
                       }
                     }}
                   >
