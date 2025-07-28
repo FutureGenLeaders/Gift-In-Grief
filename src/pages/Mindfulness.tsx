@@ -8,9 +8,9 @@ export default function Mindfulness() {
     {
       id: "1-on-1-mentoring",
       title: "1-on-1 Mindfulness Mentoring",
-      description: "Personalized guidance tailored to your unique grief journey and healing needs.",
+      description: "Self-healing for $25 - Personalized guidance tailored to your unique grief journey and healing needs.",
       duration: "60 minutes",
-      price: "$150",
+      price: "$25",
       features: [
         "Custom meditation practices",
         "Personalized healing roadmap",
