@@ -64,14 +64,21 @@ export default function Subscribe() {
     try {
       setIsLoading(planTier);
       
+      console.log('Starting checkout for tier:', planTier);
+      
       const { data, error } = await supabase.functions.invoke('create-checkout', {
-        body: { tier: planTier }
+        body: { 
+          tier: planTier,
+          email: "guest@example.com" // Guest checkout
+        }
       });
+
+      console.log('Checkout response:', { data, error });
 
       if (error) {
         console.error('Checkout error:', error);
         toast({
-          title: "Error",
+          title: "Payment Error",
           description: error.message || "Failed to create checkout session. Please try again.",
           variant: "destructive"
         });
@@ -79,15 +86,18 @@ export default function Subscribe() {
       }
 
       if (data?.url) {
-        window.open(data.url, '_blank');
+        console.log('Redirecting to Stripe checkout:', data.url);
+        // Redirect to Stripe checkout in the same tab
+        window.location.href = data.url;
       } else {
-        throw new Error('No checkout URL received');
+        console.error('No checkout URL received:', data);
+        throw new Error('No checkout URL received from payment system');
       }
     } catch (error) {
       console.error('Subscription error:', error);
       toast({
         title: "Error", 
-        description: "Something went wrong. Please try again.",
+        description: "Something went wrong with the payment system. Please try again.",
         variant: "destructive"
       });
     } finally {
