@@ -33,21 +33,21 @@ export default function FaqSection() {
     <section className="py-20 bg-black">
       <div className="max-w-4xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-light mb-6 text-white">
+          <h2 className="text-4xl md:text-5xl luxury-heading font-bold mb-6 text-primary">
             Frequently Asked Questions
           </h2>
-          <p className="text-xl text-gray-300 leading-relaxed">
+          <p className="text-xl luxury-text leading-relaxed">
             Everything you need to know about beginning your healing journey
           </p>
         </div>
 
-        <Accordion type="single" collapsible className="space-y-4">
+        <Accordion type="single" collapsible className="space-y-6">
           {faqs.map((faq, index) => (
-            <AccordionItem key={index} value={`item-${index}`} className="bg-slate-800/50 border border-slate-700 rounded-lg px-6">
-              <AccordionTrigger className="text-white font-light text-left hover:text-yellow-600 transition-colors">
+            <AccordionItem key={index} value={`item-${index}`} className="bg-background border border-muted rounded-lg px-6 py-2">
+              <AccordionTrigger className="text-primary luxury-heading text-lg font-semibold text-left hover:text-accent transition-colors duration-300 py-4">
                 {faq.question}
               </AccordionTrigger>
-              <AccordionContent className="text-gray-300 leading-relaxed">
+              <AccordionContent className="luxury-text text-base leading-relaxed pb-4">
                 {faq.answer}
               </AccordionContent>
             </AccordionItem>

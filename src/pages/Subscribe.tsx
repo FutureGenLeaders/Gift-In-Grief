@@ -19,7 +19,7 @@ export default function Subscribe() {
       price: 33,
       description: "Start your healing journey with gentle, weekly guidance delivered at a sustainable pace for lasting transformation.",
       features: [
-        "2 healing sessions delivered weekly",
+        "1 healing session delivered weekly",
         "Group healing circles for community support",
         "Foundation community access",
         "Mobile healing companion"
@@ -29,11 +29,11 @@ export default function Subscribe() {
     },
     {
       name: "Guided Journey",
-      tier: "Premium",
+      tier: "Complete",
       price: 88,
-      description: "Experience deeper healing with 40 sessions dripped weekly over 10 months, delivered at your perfect healing pace.",
+      description: "Experience deeper healing with 40 sessions dripped weekly over 9 months, delivered at your perfect healing pace.",
       features: [
-        "40 healing sessions dripped weekly over 10 months",
+        "40 healing sessions dripped weekly over 9 months",
         "1 mindfulness mentoring session monthly",
         "All healing circles and community features",
         "Enhanced progress tracking",
@@ -44,7 +44,7 @@ export default function Subscribe() {
     },
     {
       name: "Sacred Transformation",
-      tier: "Enterprise",
+      tier: "Transformation",
       price: 111,
       description: "Embrace your complete transformation with 81 sessions delivered weekly over 20+ months for profound, lasting change.",
       features: [
